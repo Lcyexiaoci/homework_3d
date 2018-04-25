@@ -9,7 +9,7 @@ _HW_3D_OPEN_HW_NAMESPACE_
 
 //
 //
-class IBase {
+class _HW_3D_NO_VTABLE_ IBase {
 public:
 	virtual ULONG
 		add_ref(
@@ -47,7 +47,7 @@ class ISurface2;
 
 //
 //
-class IObject : public IBase {
+class _HW_3D_NO_VTABLE_ IObject : public IBase {
 public:
 	virtual _HW_3D_STD_ tuple<Result, void*>
 		get_parent(
@@ -84,7 +84,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IUnknown, IDXGIObject>);
 
 //
 //
-class IAdapter : public IObject {
+class _HW_3D_NO_VTABLE_ IAdapter : public IObject {
 public:
 	virtual _HW_3D_STD_ tuple<Result, LARGE_INTEGER>
 		check_interface_support(
@@ -110,7 +110,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IDXGIObject, IDXGIAdapter>);
 
 //
 //
-class IAdapter1 : public IAdapter {
+class _HW_3D_NO_VTABLE_ IAdapter1 : public IAdapter {
 public:
 	virtual _HW_3D_STD_ tuple<Result, Adapter_desc1>
 		get_desc1(
@@ -126,7 +126,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IDXGIAdapter, IDXGIAdapter1>);
 
 //
 //
-class IAdapter2 : public IAdapter1 {
+class _HW_3D_NO_VTABLE_ IAdapter2 : public IAdapter1 {
 public:
 	virtual _HW_3D_STD_ tuple<Result, Adapter_desc2>
 		get_desc2(
@@ -142,7 +142,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IDXGIAdapter1, IDXGIAdapter2>);
 
 //
 //
-class IAdapter3 : public IAdapter2 {
+class _HW_3D_NO_VTABLE_ IAdapter3 : public IAdapter2 {
 public:
 	virtual _HW_3D_STD_ tuple<Result, Query_video_memory_info>
 		query_video_memory_info(
@@ -187,7 +187,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IDXGIAdapter2, IDXGIAdapter3>);
 
 //
 //
-class IAdapter4 : public IAdapter3 {
+class _HW_3D_NO_VTABLE_ IAdapter4 : public IAdapter3 {
 public:
 	virtual _HW_3D_STD_ tuple<Result, Adapter_desc3>
 		get_desc3(
@@ -203,7 +203,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IDXGIAdapter3, IDXGIAdapter4>);
 
 //
 //
-class IDebug : public IBase {
+class _HW_3D_NO_VTABLE_ IDebug : public IBase {
 public:
 	virtual Result
 		report_live_objects(
@@ -221,7 +221,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IUnknown, IDXGIDebug>);
 
 //
 //
-class IDebug1 : public IDebug {
+class _HW_3D_NO_VTABLE_ IDebug1 : public IDebug {
 public:
 	virtual void
 		disable_leak_tracking_for_thread(
@@ -245,7 +245,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IDXGIDebug, IDXGIDebug1>);
 
 //
 //
-class IDecode_swap_chain : public IBase {
+class _HW_3D_NO_VTABLE_ IDecode_swap_chain : public IBase {
 public:
 	virtual Multiplane_overlay_ycbcr_flag
 		get_color_space(
@@ -301,7 +301,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IUnknown, IDXGIDecodeSwapChain>);
 
 //
 //
-class IDevice : public IObject {
+class _HW_3D_NO_VTABLE_ IDevice : public IObject {
 public:
 	virtual _HW_3D_STD_ tuple<Result, _HW_3D_STD_ vector<_HW_3D_STD_ unique_ptr<ISurface>>>
 		create_surface(
@@ -339,7 +339,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IDXGIObject, IDXGIDevice>);
 
 //
 //
-class IDevice1 : public IDevice {
+class _HW_3D_NO_VTABLE_ IDevice1 : public IDevice {
 public:
 	virtual _HW_3D_STD_ tuple<Result, UINT>
 		get_maximum_frame_latency(
@@ -360,7 +360,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IDXGIDevice, IDXGIDevice1>);
 
 //
 //
-class IDevice2 : public IDevice1 {
+class _HW_3D_NO_VTABLE_ IDevice2 : public IDevice1 {
 public:
 	virtual Result
 		enqueue_set_event(
@@ -388,7 +388,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IDXGIDevice1, IDXGIDevice2>);
 
 //
 //
-class IDevice3 : public IDevice2 {
+class _HW_3D_NO_VTABLE_ IDevice3 : public IDevice2 {
 public:
 	virtual void
 		trim(
@@ -404,7 +404,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IDXGIDevice2, IDXGIDevice3>);
 
 //
 //
-class IDevice4 : public IDevice3 {
+class _HW_3D_NO_VTABLE_ IDevice4 : public IDevice3 {
 public:
 	virtual Result
 		offer_resource1(
@@ -428,7 +428,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IDXGIDevice3, IDXGIDevice4>);
 
 //
 //
-class IDevice_subobject : public IObject {
+class _HW_3D_NO_VTABLE_ IDevice_subobject : public IObject {
 public:
 	virtual _HW_3D_STD_ tuple<Result, void*>
 		get_device(
@@ -445,7 +445,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IDXGIObject, IDXGIDeviceSubObject>);
 
 //
 //
-class IDisplay_control : public IBase {
+class _HW_3D_NO_VTABLE_ IDisplay_control : public IBase {
 public:
 	virtual BOOL
 		is_stereo_enabled(
@@ -466,7 +466,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IUnknown, IDXGIDisplayControl>);
 
 //
 //
-class IFactory : public IObject {
+class _HW_3D_NO_VTABLE_ IFactory : public IObject {
 public:
 	virtual _HW_3D_STD_ tuple<Result, _HW_3D_STD_ unique_ptr<IAdapter>>
 		create_software_adapter(
@@ -504,7 +504,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IUnknown, IDXGIFactory>);
 
 //
 //
-class IFactory1 : public IFactory {
+class _HW_3D_NO_VTABLE_ IFactory1 : public IFactory {
 public:
 	virtual _HW_3D_STD_ tuple<Result, _HW_3D_STD_ unique_ptr<IAdapter1>>
 		enum_adapters1(
@@ -525,7 +525,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IDXGIFactory, IDXGIFactory1>);
 
 //
 //
-class IFactory2 : public IFactory1 {
+class _HW_3D_NO_VTABLE_ IFactory2 : public IFactory1 {
 public:
 	virtual _HW_3D_STD_ tuple<Result, _HW_3D_STD_ unique_ptr<ISwap_chain1>>
 		create_swap_chain_for_composition(
@@ -602,7 +602,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IDXGIFactory1, IDXGIFactory2>);
 
 //
 //
-class IFactory3 : public IFactory2 {
+class _HW_3D_NO_VTABLE_ IFactory3 : public IFactory2 {
 public:
 	virtual UINT
 		get_creation_flags(
@@ -618,7 +618,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IDXGIFactory2, IDXGIFactory3>);
 
 //
 //
-class IFactory4 : public IFactory3 {
+class _HW_3D_NO_VTABLE_ IFactory4 : public IFactory3 {
 public:
 	virtual _HW_3D_STD_ tuple<Result, _HW_3D_STD_ unique_ptr<IAdapter>>
 		enum_adapter_by_luid(
@@ -641,7 +641,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IDXGIFactory3, IDXGIFactory4>);
 
 //
 //
-class IFactory5 : public IFactory4 {
+class _HW_3D_NO_VTABLE_ IFactory5 : public IFactory4 {
 public:
 	virtual Result
 		check_feature_support(
@@ -660,7 +660,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IDXGIFactory4, IDXGIFactory5>);
 
 //
 //
-class IFactory_media : public IBase {
+class _HW_3D_NO_VTABLE_ IFactory_media : public IBase {
 public:
 	virtual _HW_3D_STD_ tuple<Result, _HW_3D_STD_ unique_ptr<IDecode_swap_chain>>
 		create_decode_swap_chain_for_composition_surface_handle(
@@ -689,7 +689,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IUnknown, IDXGIFactoryMedia>);
 
 //
 //
-class IInfo_queue : public IBase {
+class _HW_3D_NO_VTABLE_ IInfo_queue : public IBase {
 public:
 	virtual Result
 		add_application_message(
@@ -907,7 +907,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IUnknown, IDXGIInfoQueue>);
 
 //
 //
-class IKeyed_mutex : public IDevice_subobject {
+class _HW_3D_NO_VTABLE_ IKeyed_mutex : public IDevice_subobject {
 public:
 	virtual Result
 		acquire_sync(
@@ -930,7 +930,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IDXGIDeviceSubObject, IDXGIKeyedMutex>);
 
 //
 //
-class IOutput : public IObject {
+class _HW_3D_NO_VTABLE_ IOutput : public IObject {
 public:
 	virtual _HW_3D_STD_ tuple<Result, Mode_desc>
 		find_closest_matching_mode(
@@ -999,7 +999,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IDXGIObject, IDXGIOutput>);
 
 //
 //
-class IOutput1 : public IOutput {
+class _HW_3D_NO_VTABLE_ IOutput1 : public IOutput {
 public:
 	virtual _HW_3D_STD_ tuple<Result, _HW_3D_STD_ unique_ptr<IOutput_duplication>>
 		duplicate_output(
@@ -1033,7 +1033,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IDXGIOutput, IDXGIOutput1>);
 
 //
 //
-class IOutput2 : public IOutput1 {
+class _HW_3D_NO_VTABLE_ IOutput2 : public IOutput1 {
 public:
 	virtual BOOL
 		supports_overlays(
@@ -1049,7 +1049,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IDXGIOutput1, IDXGIOutput2>);
 
 //
 //
-class IOutput3 : public IOutput2 {
+class _HW_3D_NO_VTABLE_ IOutput3 : public IOutput2 {
 public:
 	virtual _HW_3D_STD_ tuple<Result, Overlay_support_flag>
 		check_overlay_support(
@@ -1067,7 +1067,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IDXGIOutput2, IDXGIOutput3>);
 
 //
 //
-class IOutput4 : public IOutput3 {
+class _HW_3D_NO_VTABLE_ IOutput4 : public IOutput3 {
 public:
 	virtual _HW_3D_STD_ tuple<Result, Overlay_color_space_support_flag>
 		check_overlay_color_space_support(
@@ -1086,7 +1086,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IDXGIOutput3, IDXGIOutput4>);
 
 //
 //
-class IOutput5 : public IOutput4 {
+class _HW_3D_NO_VTABLE_ IOutput5 : public IOutput4 {
 public:
 	virtual _HW_3D_STD_ tuple<Result, _HW_3D_STD_ unique_ptr<IOutput_duplication>>
 		duplicate_output1(
@@ -1105,7 +1105,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IDXGIOutput4, IDXGIOutput5>);
 
 //
 //
-class IOutput6 : public IOutput5 {
+class _HW_3D_NO_VTABLE_ IOutput6 : public IOutput5 {
 public:
 	virtual _HW_3D_STD_ tuple<Result, Output_desc1>
 		get_desc1(
@@ -1121,7 +1121,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IDXGIOutput5, IDXGIOutput6>);
 
 //
 //
-class IOutput_duplication : public IObject {
+class _HW_3D_NO_VTABLE_ IOutput_duplication : public IObject {
 public:
 	virtual _HW_3D_STD_ tuple<Result, Outdupl_frame_info, _HW_3D_STD_ unique_ptr<IResource>>
 		acquire_next_frame(
@@ -1169,7 +1169,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IDXGIObject, IDXGIOutputDuplication>);
 
 //
 //
-class IResource : public IDevice_subobject {
+class _HW_3D_NO_VTABLE_ IResource : public IDevice_subobject {
 public:
 	virtual _HW_3D_STD_ tuple<Result, Resource_priority>
 		get_eviction_priority(
@@ -1198,7 +1198,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IDXGIDeviceSubObject, IDXGIResource>);
 
 //
 //
-class IResource1 : public IResource {
+class _HW_3D_NO_VTABLE_ IResource1 : public IResource {
 public:
 	virtual _HW_3D_STD_ tuple<Result, HANDLE>
 		create_shared_handle(
@@ -1222,7 +1222,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IDXGIResource, IDXGIResource1>);
 
 //
 //
-class ISurface : public IDevice_subobject {
+class _HW_3D_NO_VTABLE_ ISurface : public IDevice_subobject {
 public:
 	virtual _HW_3D_STD_ tuple<Result, Surface_desc>
 		get_desc(
@@ -1247,7 +1247,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IDXGIDeviceSubObject, IDXGISurface>);
 
 //
 //
-class ISurface1 : public ISurface {
+class _HW_3D_NO_VTABLE_ ISurface1 : public ISurface {
 public:
 	virtual _HW_3D_STD_ tuple<Result, HDC>
 		get_dc(
@@ -1269,7 +1269,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IDXGISurface, IDXGISurface1>);
 
 //
 //
-class ISurface2 : public ISurface1 {
+class _HW_3D_NO_VTABLE_ ISurface2 : public ISurface1 {
 public:
 	virtual Result
 		get_resource(
@@ -1288,7 +1288,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IDXGISurface1, IDXGISurface2>);
 
 //
 //
-class ISwap_chain : public IDevice_subobject {
+class _HW_3D_NO_VTABLE_ ISwap_chain : public IDevice_subobject {
 public:
 	virtual _HW_3D_STD_ tuple<Result, void*>
 		get_buffer(
@@ -1352,7 +1352,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IDXGIDeviceSubObject, IDXGISwapChain>);
 
 //
 //
-class ISwap_chain1 : public ISwap_chain {
+class _HW_3D_NO_VTABLE_ ISwap_chain1 : public ISwap_chain {
 public:
 	virtual _HW_3D_STD_ tuple<Result, Rgba>
 		get_background_color(
@@ -1415,7 +1415,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IDXGISwapChain, IDXGISwapChain1>);
 
 //
 //
-class ISwap_chain2 : public ISwap_chain1 {
+class _HW_3D_NO_VTABLE_ ISwap_chain2 : public ISwap_chain1 {
 public:
 	virtual HANDLE
 		get_frame_latency_waitable_object(
@@ -1459,7 +1459,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IDXGISwapChain1, IDXGISwapChain2>);
 
 //
 //
-class ISwap_chain3 : public ISwap_chain2 {
+class _HW_3D_NO_VTABLE_ ISwap_chain3 : public ISwap_chain2 {
 public:
 	virtual _HW_3D_STD_ tuple<Result, Swap_chain_color_space_support_flag>
 		check_color_space_support(
@@ -1495,7 +1495,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IDXGISwapChain2, IDXGISwapChain3>);
 
 //
 //
-class ISwap_chain4 : public ISwap_chain3 {
+class _HW_3D_NO_VTABLE_ ISwap_chain4 : public ISwap_chain3 {
 public:
 	virtual Result
 		set_hdr_meta_data(
@@ -1514,7 +1514,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IDXGISwapChain3, IDXGISwapChain4>);
 
 //
 //
-class ISwap_chain_media : public IBase {
+class _HW_3D_NO_VTABLE_ ISwap_chain_media : public IBase {
 public:
 	virtual _HW_3D_STD_ tuple<Result, UINT, UINT>
 		check_present_duration_support(
@@ -1594,7 +1594,7 @@ class IShader_reflection_variable;
 
 //
 //
-class IDevice : public IBase {
+class _HW_3D_NO_VTABLE_ IDevice : public IBase {
 public:
 	virtual _HW_3D_STD_ tuple<Result, Counter_type, Uint>
 		check_counter(
@@ -1838,7 +1838,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IUnknown, ID3D11Device>);
 
 //
 //
-class IDevice1 : public IDevice {
+class _HW_3D_NO_VTABLE_ IDevice1 : public IDevice {
 public:
 	virtual _HW_3D_STD_ tuple<Result, _HW_3D_STD_ unique_ptr<IBlend_state1>>
 		create_blend_state1(
@@ -1890,7 +1890,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11Device, ID3D11Device1>);
 
 //
 //
-class IDevice2 : public IDevice1 {
+class _HW_3D_NO_VTABLE_ IDevice2 : public IDevice1 {
 public:
 	virtual _HW_3D_STD_ tuple<Result, Uint>
 		check_multisample_quality_levels1(
@@ -1928,7 +1928,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11Device1, ID3D11Device2>);
 
 //
 //
-class IDevice3 : public IDevice2 {
+class _HW_3D_NO_VTABLE_ IDevice3 : public IDevice2 {
 public:
 	virtual _HW_3D_STD_ tuple<Result, _HW_3D_STD_ unique_ptr<IDevice_context3>>
 		create_deferred_context3(
@@ -2009,7 +2009,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11Device2, ID3D11Device3>);
 
 //
 //
-class IDevice4 : public IDevice3 {
+class _HW_3D_NO_VTABLE_ IDevice4 : public IDevice3 {
 public:
 	virtual _HW_3D_STD_ tuple<Result, DWORD>
 		register_device_removed_event(
@@ -2031,7 +2031,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11Device3, ID3D11Device4>);
 
 //
 //
-class IDevice5 : public IDevice4 {
+class _HW_3D_NO_VTABLE_ IDevice5 : public IDevice4 {
 public:
 	virtual _HW_3D_STD_ tuple<Result, _HW_3D_STD_ unique_ptr<IFence>>
 		create_fence(
@@ -2056,7 +2056,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11Device4, ID3D11Device5>);
 
 //
 //
-class IDevice_child : public IBase {
+class _HW_3D_NO_VTABLE_ IDevice_child : public IBase {
 public:
 	virtual _HW_3D_STD_ unique_ptr<IDevice>
 		get_device(
@@ -2092,7 +2092,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IUnknown, ID3D11DeviceChild>);
 
 //
 //
-class IAsynchronous : public IDevice_child {
+class _HW_3D_NO_VTABLE_ IAsynchronous : public IDevice_child {
 public:
 	virtual Uint
 		get_data_size(
@@ -2108,7 +2108,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11DeviceChild, ID3D11Asynchronous>);
 
 //
 //
-class IBlend_state : public IDevice_child {
+class _HW_3D_NO_VTABLE_ IBlend_state : public IDevice_child {
 public:
 	virtual Blend_desc
 		get_desc(
@@ -2124,7 +2124,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11DeviceChild, ID3D11BlendState>);
 
 //
 //
-class IBlend_state1 : public IBlend_state {
+class _HW_3D_NO_VTABLE_ IBlend_state1 : public IBlend_state {
 public:
 	virtual Blend_desc1
 		get_desc1(
@@ -2140,7 +2140,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11BlendState, ID3D11BlendState1>);
 
 //
 //
-class ICommand_list : public IDevice_child {
+class _HW_3D_NO_VTABLE_ ICommand_list : public IDevice_child {
 public:
 	virtual /*unused*/ Uint
 		get_context_flags(
@@ -2156,7 +2156,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11DeviceChild, ID3D11CommandList>);
 
 //
 //
-class ICounter : public IAsynchronous {
+class _HW_3D_NO_VTABLE_ ICounter : public IAsynchronous {
 public:
 	virtual Counter_desc
 		get_desc(
@@ -2172,7 +2172,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11Asynchronous, ID3D11Counter>);
 
 //
 //
-class IDepth_stencil_state : public IDevice_child {
+class _HW_3D_NO_VTABLE_ IDepth_stencil_state : public IDevice_child {
 public:
 	virtual Depth_stencil_desc
 		get_desc(
@@ -2188,7 +2188,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11DeviceChild, ID3D11DepthStencilStat
 
 //
 //
-class IDevice_context : public IDevice_child {
+class _HW_3D_NO_VTABLE_ IDevice_context : public IDevice_child {
 public:
 	virtual void
 		begin(
@@ -2833,7 +2833,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11DeviceChild, ID3D11DeviceContext>);
 
 //
 //
-class IDevice_context1 : public IDevice_context {
+class _HW_3D_NO_VTABLE_ IDevice_context1 : public IDevice_context {
 public:
 	virtual void
 		clear_view(
@@ -2979,7 +2979,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11DeviceContext, ID3D11DeviceContext1
 
 //
 //
-class IDevice_context2 : public IDevice_context1 {
+class _HW_3D_NO_VTABLE_ IDevice_context2 : public IDevice_context1 {
 public:
 	virtual void
 		update_tiles(
@@ -3065,7 +3065,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11DeviceContext1, ID3D11DeviceContext
 
 //
 //
-class IDevice_context3 : public IDevice_context2 {
+class _HW_3D_NO_VTABLE_ IDevice_context3 : public IDevice_context2 {
 public:
 	virtual void
 		flush1(
@@ -3092,7 +3092,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11DeviceContext2, ID3D11DeviceContext
 
 //
 //
-class IDevice_context4 : public IDevice_context3 {
+class _HW_3D_NO_VTABLE_ IDevice_context4 : public IDevice_context3 {
 public:
 	virtual Result
 		signal(
@@ -3117,7 +3117,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11DeviceContext3, ID3D11DeviceContext
 
 //
 //
-class IDevice_context_state : public IDevice_child {
+class _HW_3D_NO_VTABLE_ IDevice_context_state : public IDevice_child {
 public:
 	virtual ID3DDeviceContextState* get() = 0;
 
@@ -3129,7 +3129,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11DeviceChild, ID3DDeviceContextState
 
 //
 //
-class IFence : public IDevice_child {
+class _HW_3D_NO_VTABLE_ IFence : public IDevice_child {
 public:
 	virtual _HW_3D_STD_ tuple<Result, HANDLE>
 		create_shared_handle(
@@ -3159,7 +3159,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11DeviceChild, ID3D11Fence>);
 
 //
 //
-class IInput_layout : public IDevice_child {
+class _HW_3D_NO_VTABLE_ IInput_layout : public IDevice_child {
 public:
 	virtual ID3D11InputLayout* get() = 0;
 
@@ -3171,7 +3171,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11DeviceChild, ID3D11InputLayout>);
 
 //
 //
-class IMultithread : public IBase {
+class _HW_3D_NO_VTABLE_ IMultithread : public IBase {
 public:
 	virtual void
 		enter(
@@ -3200,7 +3200,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IUnknown, ID3D11Multithread>);
 
 //
 //
-class IQuery : public IAsynchronous {
+class _HW_3D_NO_VTABLE_ IQuery : public IAsynchronous {
 public:
 	virtual Query_desc
 		get_desc(
@@ -3216,7 +3216,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11Asynchronous, ID3D11Query>);
 
 //
 //
-class IPredicate : public IQuery {
+class _HW_3D_NO_VTABLE_ IPredicate : public IQuery {
 public:
 	virtual ID3D11Predicate* get() = 0;
 
@@ -3228,7 +3228,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11Query, ID3D11Predicate>);
 
 //
 //
-class IQuery1 : public IQuery {
+class _HW_3D_NO_VTABLE_ IQuery1 : public IQuery {
 public:
 	virtual Query_desc1
 		get_desc1(
@@ -3244,7 +3244,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11Query, ID3D11Query1>);
 
 //
 //
-class IRasterizer_state : public IDevice_child {
+class _HW_3D_NO_VTABLE_ IRasterizer_state : public IDevice_child {
 public:
 	virtual Rasterizer_desc
 		get_desc(
@@ -3260,7 +3260,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11DeviceChild, ID3D11RasterizerState>
 
 //
 //
-class IRasterizer_state1 : public IRasterizer_state {
+class _HW_3D_NO_VTABLE_ IRasterizer_state1 : public IRasterizer_state {
 public:
 	virtual Rasterizer_desc1
 		get_desc1(
@@ -3276,7 +3276,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11RasterizerState, ID3D11RasterizerSt
 
 //
 //
-class IRasterizer_state2 : public IRasterizer_state1 {
+class _HW_3D_NO_VTABLE_ IRasterizer_state2 : public IRasterizer_state1 {
 public:
 	virtual Rasterizer_desc2
 		get_desc2(
@@ -3292,7 +3292,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11RasterizerState1, ID3D11RasterizerS
 
 //
 //
-class ISampler_state : public IDevice_child {
+class _HW_3D_NO_VTABLE_ ISampler_state : public IDevice_child {
 public:
 	virtual Sampler_desc
 		get_desc(
@@ -3308,7 +3308,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11DeviceChild, ID3D11SamplerState>);
 
 //
 //
-class IDebug : public IBase {
+class _HW_3D_NO_VTABLE_ IDebug : public IBase {
 public:
 	virtual Debug_feature_mask
 		get_feature_mask(
@@ -3363,7 +3363,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IUnknown, ID3D11Debug>);
 
 //
 //
-class IInfo_queue : public IBase {
+class _HW_3D_NO_VTABLE_ IInfo_queue : public IBase {
 public:
 	virtual Result
 		add_application_message(
@@ -3540,7 +3540,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IUnknown, ID3D11InfoQueue>);
 
 //
 //
-class IRef_default_tracking_options : public IBase {
+class _HW_3D_NO_VTABLE_ IRef_default_tracking_options : public IBase {
 public:
 	virtual Result
 		set_tracking_options(
@@ -3558,7 +3558,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IUnknown, ID3D11RefDefaultTrackingOptions
 
 //
 //
-class IRef_tracking_options : public IBase {
+class _HW_3D_NO_VTABLE_ IRef_tracking_options : public IBase {
 public:
 	virtual Result
 		set_tracking_options(
@@ -3575,7 +3575,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IUnknown, ID3D11RefTrackingOptions>);
 
 //
 //
-class ITracing_device : public IBase {
+class _HW_3D_NO_VTABLE_ ITracing_device : public IBase {
 public:
 	virtual Result
 		set_shader_tracking_options(
@@ -3599,7 +3599,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IUnknown, ID3D11TracingDevice>);
 
 //
 //
-class IResource : public IDevice_child {
+class _HW_3D_NO_VTABLE_ IResource : public IDevice_child {
 public:
 	virtual  _HW_3D_DXGI_ Resource_priority
 		get_eviction_priority(
@@ -3624,7 +3624,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11DeviceChild, ID3D11Resource>);
 
 //
 //
-class IBuffer : public IResource {
+class _HW_3D_NO_VTABLE_ IBuffer : public IResource {
 public:
 	virtual Buffer_desc
 		get_desc(
@@ -3640,7 +3640,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11Resource, ID3D11Buffer>);
 
 //
 //
-class IView : public IDevice_child {
+class _HW_3D_NO_VTABLE_ IView : public IDevice_child {
 public:
 	virtual _HW_3D_STD_ unique_ptr<IResource>
 		get_resource(
@@ -3656,7 +3656,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11DeviceChild, ID3D11View>);
 
 //
 //
-class IDepth_stencil_view : public IView {
+class _HW_3D_NO_VTABLE_ IDepth_stencil_view : public IView {
 public:
 	virtual Depth_stencil_view_desc
 		get_desc(
@@ -3672,7 +3672,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11View, ID3D11DepthStencilView>);
 
 //
 //
-class IRender_target_view : public IView {
+class _HW_3D_NO_VTABLE_ IRender_target_view : public IView {
 public:
 	virtual Render_target_view_desc
 		get_desc(
@@ -3688,7 +3688,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11View, ID3D11RenderTargetView>);
 
 //
 //
-class IRender_target_view1 : public IRender_target_view {
+class _HW_3D_NO_VTABLE_ IRender_target_view1 : public IRender_target_view {
 public:
 	virtual Render_target_view_desc1
 		get_desc1(
@@ -3704,7 +3704,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11RenderTargetView, ID3D11RenderTarge
 
 //
 //
-class IShader_resource_view : public IView {
+class _HW_3D_NO_VTABLE_ IShader_resource_view : public IView {
 public:
 	virtual Shader_resource_view_desc
 		get_desc(
@@ -3720,7 +3720,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11View, ID3D11ShaderResourceView>);
 
 //
 //
-class IShader_resource_view1 : public IShader_resource_view {
+class _HW_3D_NO_VTABLE_ IShader_resource_view1 : public IShader_resource_view {
 public:
 	virtual Shader_resource_view_desc1
 		get_desc1(
@@ -3736,7 +3736,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11ShaderResourceView, ID3D11ShaderRes
 
 //
 //
-class ITexture1d : public IResource {
+class _HW_3D_NO_VTABLE_ ITexture1d : public IResource {
 public:
 	virtual Texture1d_desc
 		get_desc(
@@ -3752,7 +3752,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11Resource, ID3D11Texture1D>);
 
 //
 //
-class ITexture2d : public IResource {
+class _HW_3D_NO_VTABLE_ ITexture2d : public IResource {
 public:
 	virtual Texture2d_desc
 		get_desc(
@@ -3768,7 +3768,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11Resource, ID3D11Texture2D>);
 
 //
 //
-class ITexture2d1 : public ITexture2d {
+class _HW_3D_NO_VTABLE_ ITexture2d1 : public ITexture2d {
 public:
 	virtual Texture2d_desc1
 		get_desc1(
@@ -3784,7 +3784,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11Texture2D, ID3D11Texture2D1>);
 
 //
 //
-class ITexture3d : public IResource {
+class _HW_3D_NO_VTABLE_ ITexture3d : public IResource {
 public:
 	virtual Texture3d_desc
 		get_desc(
@@ -3800,7 +3800,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11Resource, ID3D11Texture3D>);
 
 //
 //
-class ITexture3d1 : public ITexture3d {
+class _HW_3D_NO_VTABLE_ ITexture3d1 : public ITexture3d {
 public:
 	virtual Texture3d_desc1
 		get_desc1(
@@ -3816,7 +3816,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11Texture3D, ID3D11Texture3D1>);
 
 //
 //
-class IUnordered_access_view : public IView {
+class _HW_3D_NO_VTABLE_ IUnordered_access_view : public IView {
 public:
 	virtual Unordered_access_view_desc
 		get_desc(
@@ -3832,7 +3832,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11View, ID3D11UnorderedAccessView>);
 
 //
 //
-class IUnordered_access_view1 : public IUnordered_access_view {
+class _HW_3D_NO_VTABLE_ IUnordered_access_view1 : public IUnordered_access_view {
 public:
 	virtual Unordered_access_view_desc1
 		get_desc1(
@@ -3848,7 +3848,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11UnorderedAccessView, ID3D11Unordere
 
 //
 //
-class IClass_instance : public IDevice_child {
+class _HW_3D_NO_VTABLE_ IClass_instance : public IDevice_child {
 public:
 	virtual _HW_3D_STD_ unique_ptr<IClass_linkage>
 		get_class_linkage(
@@ -3876,7 +3876,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11DeviceChild, ID3D11ClassInstance>);
 
 //
 //
-class IClass_linkage : public IDevice_child {
+class _HW_3D_NO_VTABLE_ IClass_linkage : public IDevice_child {
 public:
 	virtual _HW_3D_STD_ tuple<Result, _HW_3D_STD_ unique_ptr<IClass_instance>>
 		create_class_instance(
@@ -3903,7 +3903,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11DeviceChild, ID3D11ClassLinkage>);
 
 //
 //
-class ICompute_shader : public IDevice_child {
+class _HW_3D_NO_VTABLE_ ICompute_shader : public IDevice_child {
 public:
 	virtual ID3D11ComputeShader* get() = 0;
 
@@ -3915,7 +3915,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11DeviceChild, ID3D11ComputeShader>);
 
 //
 //
-class IDomain_shader : public IDevice_child {
+class _HW_3D_NO_VTABLE_ IDomain_shader : public IDevice_child {
 public:
 	virtual ID3D11DomainShader* get() = 0;
 
@@ -3927,7 +3927,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11DeviceChild, ID3D11DomainShader>);
 
 //
 //
-class IFunction_linking_graph : public IBase {
+class _HW_3D_NO_VTABLE_ IFunction_linking_graph : public IBase {
 public:
 	virtual _HW_3D_STD_ tuple<Result, _HW_3D_STD_ unique_ptr<ILinking_node>>
 		call_function(
@@ -3987,7 +3987,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IUnknown, ID3D11FunctionLinkingGraph>);
 
 //
 //msdn different from implementation, don't use this, only interface, no impl
-class IFunction_reflection : public IBase {
+class _HW_3D_NO_VTABLE_ IFunction_reflection : public IBase {
 public:
 	virtual _HW_3D_STD_ unique_ptr<IShader_reflection_constant_buffer>
 		get_constant_buffer_by_index(
@@ -4028,7 +4028,7 @@ public:
 
 //
 //msdn different from implementation, don't use this, only interface, no impl
-class IFunction_parameter_reflection : public IBase {
+class _HW_3D_NO_VTABLE_ IFunction_parameter_reflection : public IBase {
 public:
 	virtual _HW_3D_STD_ tuple<Result, Parameter_desc>
 		get_desc(
@@ -4039,7 +4039,7 @@ public:
 
 //
 //
-class IGeometry_shader : public IDevice_child {
+class _HW_3D_NO_VTABLE_ IGeometry_shader : public IDevice_child {
 public:
 	virtual ID3D11GeometryShader* get() = 0;
 
@@ -4051,7 +4051,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11DeviceChild, ID3D11GeometryShader>)
 
 //
 //
-class IHull_shader : public IDevice_child {
+class _HW_3D_NO_VTABLE_ IHull_shader : public IDevice_child {
 public:
 	virtual ID3D11HullShader* get() = 0;
 
@@ -4063,7 +4063,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11DeviceChild, ID3D11HullShader>);
 
 //
 //
-class ILibrary_reflection : public IBase {
+class _HW_3D_NO_VTABLE_ ILibrary_reflection : public IBase {
 public:
 	virtual _HW_3D_STD_ tuple<Result, Library_desc>
 		get_desc(
@@ -4084,7 +4084,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IUnknown, ID3D11LibraryReflection>);
 
 //
 //
-class ILinker : public IBase {
+class _HW_3D_NO_VTABLE_ ILinker : public IBase {
 public:
 	virtual Result
 		add_clip_plane_from_cbuffer(
@@ -4115,7 +4115,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IUnknown, ID3D11Linker>);
 
 //
 //
-class ILinking_node : public IBase {
+class _HW_3D_NO_VTABLE_ ILinking_node : public IBase {
 public:
 	virtual ID3D11LinkingNode* get() = 0;
 
@@ -4127,7 +4127,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IUnknown, ID3D11LinkingNode>);
 
 //
 //
-class IModule : public IBase {
+class _HW_3D_NO_VTABLE_ IModule : public IBase {
 public:
 	virtual _HW_3D_STD_ tuple<Result, _HW_3D_STD_ unique_ptr<IModule_instance>>
 		create_instance(
@@ -4144,7 +4144,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IUnknown, ID3D11Module>);
 
 //
 //
-class IModule_instance : public IBase {
+class _HW_3D_NO_VTABLE_ IModule_instance : public IBase {
 public:
 	virtual Result
 		bind_constant_buffer(
@@ -4226,7 +4226,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IUnknown, ID3D11ModuleInstance>);
 
 //
 //
-class IPixel_shader : public IDevice_child {
+class _HW_3D_NO_VTABLE_ IPixel_shader : public IDevice_child {
 public:
 	virtual ID3D11PixelShader* get() = 0;
 
@@ -4238,7 +4238,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11DeviceChild, ID3D11PixelShader>);
 
 //
 //
-class IShader_reflection : public IBase {
+class _HW_3D_NO_VTABLE_ IShader_reflection : public IBase {
 public:
 	virtual Uint
 		get_bitwise_instruction_count(
@@ -4334,7 +4334,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IUnknown, ID3D11ShaderReflection>);
 
 //
 //msdn different from implementation, don't use this, only interface, no impl
-class IShader_reflection_constant_buffer : public IBase {
+class _HW_3D_NO_VTABLE_ IShader_reflection_constant_buffer : public IBase {
 public:
 	virtual _HW_3D_STD_ tuple<Result, Shader_buffer_desc>
 		get_desc(
@@ -4355,7 +4355,7 @@ public:
 
 //
 //msdn different from implementation, don't use this, only interface, no impl
-class IShader_reflection_type : public IBase {
+class _HW_3D_NO_VTABLE_ IShader_reflection_type : public IBase {
 public:
 	virtual _HW_3D_STD_ unique_ptr<IShader_reflection_type>
 		get_base_class(
@@ -4413,7 +4413,7 @@ public:
 
 //
 //msdn different from implementation, don't use this, only interface here, no impl
-class IShader_reflection_variable : public IBase {
+class _HW_3D_NO_VTABLE_ IShader_reflection_variable : public IBase {
 public:
 	virtual _HW_3D_STD_ unique_ptr<IShader_reflection_constant_buffer>
 		get_buffer(
@@ -4437,7 +4437,7 @@ public:
 
 //
 //
-class IShader_trace : public IBase {
+class _HW_3D_NO_VTABLE_ IShader_trace : public IBase {
 public:
 	virtual _HW_3D_STD_ tuple<Result, Trace_value>
 		get_initial_register_contents(
@@ -4488,7 +4488,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IUnknown, ID3D11ShaderTrace>);
 
 //
 //
-class IShader_trace_factory : public IBase {
+class _HW_3D_NO_VTABLE_ IShader_trace_factory : public IBase {
 public:
 	virtual _HW_3D_STD_ tuple<Result, _HW_3D_STD_ unique_ptr<IShader_trace>>
 		create_shader_trace(
@@ -4506,7 +4506,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IUnknown, ID3D11ShaderTraceFactory>);
 
 //
 //
-class IVertex_shader : public IDevice_child {
+class _HW_3D_NO_VTABLE_ IVertex_shader : public IDevice_child {
 public:
 	virtual ID3D11VertexShader* get() = 0;
 
@@ -4518,7 +4518,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11DeviceChild, ID3D11VertexShader>);
 
 //
 //
-class IBlob : public IBase {
+class _HW_3D_NO_VTABLE_ IBlob : public IBase {
 public:
 	virtual LPVOID
 		get_buffer_pointer(
@@ -4538,7 +4538,7 @@ static_assert(_HW_3D_STD_ is_base_of_v<IUnknown, ID3DBlob>);
 
 //
 //msdn different from implementation, don't use this, only interface here, no impl
-class IInclude : public IBase {
+class _HW_3D_NO_VTABLE_ IInclude : public IBase {
 public:
 	virtual Result
 		close(
@@ -4559,7 +4559,7 @@ public:
 
 //
 //
-class IUser_defined_annotation : public IBase {
+class _HW_3D_NO_VTABLE_ IUser_defined_annotation : public IBase {
 public:
 	virtual Int
 		begin_event(
@@ -4680,7 +4680,7 @@ inline D3d_wrapper_alloc_base::Memory_pool_type D3d_wrapper_alloc_base::memory_p
 //
 //
 template <typename Interface, typename Ty, bool own>
-class __declspec(empty_bases) _TBase : public Interface, public D3d_wrapper_alloc_base {
+class _HW_3D_NO_VTABLE_ _TBase : public Interface, public D3d_wrapper_alloc_base {
 	static_assert(_HW_3D_STD_ is_base_of_v<IBase, Interface> && _HW_3D_STD_ is_base_of_v<IUnknown, Ty>);
 public:
 	explicit _TBase(Ty* handle)
@@ -4726,7 +4726,7 @@ _HW_3D_OPEN_DXGI_NAMESPACE_
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TObject : public _TBase<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TObject : public _TBase<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IObject, Interface> && _HW_3D_STD_ is_base_of_v<IDXGIObject, Ty>);
 public:
 	explicit _TObject(Ty* handle)
@@ -4777,7 +4777,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TDevice_subobject : public _TObject<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TDevice_subobject : public _TObject<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IDevice_subobject, Interface> && _HW_3D_STD_ is_base_of_v<IDXGIDeviceSubObject, Ty>);
 public:
 	explicit _TDevice_subobject(Ty* handle)
@@ -4802,7 +4802,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TResource : public _TDevice_subobject<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TResource : public _TDevice_subobject<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IResource, Interface> && _HW_3D_STD_ is_base_of_v<IDXGIResource, Ty>);
 public:
 	explicit _TResource(Ty* handle)
@@ -4877,7 +4877,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TOutput : public _TObject<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TOutput : public _TObject<Interface, Ty, own> {
 public:
 	explicit _TOutput(Ty* handle)
 		: _TObject<Interface, Ty, own>(handle) {
@@ -5025,7 +5025,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TOutput_duplication : public _TObject<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TOutput_duplication : public _TObject<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IOutput_duplication, Interface> && _HW_3D_STD_ is_base_of_v<IDXGIOutputDuplication, Ty>);
 public:
 	explicit _TOutput_duplication(Ty* handle)
@@ -5155,7 +5155,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TAdapter : public _TObject<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TAdapter : public _TObject<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IAdapter, Interface> && _HW_3D_STD_ is_base_of_v<IDXGIAdapter, Ty>);
 public:
 	explicit _TAdapter(Ty* handle)
@@ -5229,7 +5229,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TDebug : public _TBase<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TDebug : public _TBase<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IDebug, Interface> && _HW_3D_STD_ is_base_of_v<IDXGIDebug, Ty>);
 public:
 	explicit _TDebug(Ty* handle)
@@ -5272,7 +5272,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TDisplay_control : public _TBase<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TDisplay_control : public _TBase<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IDisplay_control, Interface> && _HW_3D_STD_ is_base_of_v<IDXGIDisplayControl, Ty>);
 public:
 	explicit  _TDisplay_control(Ty* handle)
@@ -5320,7 +5320,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TDecode_swap_chain : public _TBase<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TDecode_swap_chain : public _TBase<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IDecode_swap_chain, Interface> && _HW_3D_STD_ is_base_of_v<IDXGIDecodeSwapChain, Ty>);
 public:
 	explicit _TDecode_swap_chain(Ty* handle)
@@ -5435,7 +5435,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TSurface : public _TDevice_subobject<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TSurface : public _TDevice_subobject<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<ISurface, Interface> && _HW_3D_STD_ is_base_of_v<IDXGISurface, Ty>);
 public:
 	explicit _TSurface(Ty* handle)
@@ -5499,7 +5499,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TKeyed_mutex : public _TDevice_subobject<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TKeyed_mutex : public _TDevice_subobject<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IKeyed_mutex, Interface> && _HW_3D_STD_ is_base_of_v<IDXGIKeyedMutex, Ty>);
 public:
 	explicit _TKeyed_mutex(Ty* handle)
@@ -5528,7 +5528,7 @@ public:
 //
 //
 template <bool own>
-class _Keyed_mutex : _TKeyed_mutex<IKeyed_mutex, IDXGIKeyedMutex, own> {
+class _Keyed_mutex : public _TKeyed_mutex<IKeyed_mutex, IDXGIKeyedMutex, own> {
 public:
 	explicit _Keyed_mutex(IDXGIKeyedMutex* handle)
 		: _TKeyed_mutex<IKeyed_mutex, IDXGIKeyedMutex, own>(handle) {
@@ -5549,7 +5549,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TInfo_queue : public _TBase<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TInfo_queue : public _TBase<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IInfo_queue, Interface> && _HW_3D_STD_ is_base_of_v<IDXGIInfoQueue, Ty>);
 public:
 	explicit _TInfo_queue(Ty* handle)
@@ -5894,7 +5894,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TSwap_chain : public _TDevice_subobject<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TSwap_chain : public _TDevice_subobject<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<ISwap_chain, Interface> && _HW_3D_STD_ is_base_of_v<IDXGISwapChain, Ty>);
 public:
 	explicit _TSwap_chain(Ty* handle)
@@ -6039,7 +6039,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TDevice : public _TObject<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TDevice : public _TObject<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IDevice, Interface> && _HW_3D_STD_ is_base_of_v<IDXGIDevice, Ty>);
 public:
 	explicit _TDevice(Ty* handle)
@@ -6142,7 +6142,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TFactory : public _TObject<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TFactory : public _TObject<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IFactory, Interface> && _HW_3D_STD_ is_base_of_v<IDXGIFactory, Ty>);
 public:
 	explicit _TFactory(Ty* handle)
@@ -6246,7 +6246,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TSwap_chain_media : public _TBase<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TSwap_chain_media : public _TBase<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<ISwap_chain_media, Interface> && _HW_3D_STD_ is_base_of_v<IDXGISwapChainMedia, Ty>);
 public:
 	explicit _TSwap_chain_media(Ty* handle)
@@ -6272,7 +6272,7 @@ public:
 		_HW_3D_STD_ tuple<Result, Frame_statistics_media> res;
 
 		auto&[r, media] = res;
-		r = static_cast<Result>(this->_handle->GetFrameStatisticsMedia(value(media)));
+		r = static_cast<Result>(this->_handle->GetFrameStatisticsMedia(value_ptr(media)));
 
 		return res;
 	}
@@ -6311,7 +6311,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TAdapter1 : public _TAdapter<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TAdapter1 : public _TAdapter<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IAdapter1, Interface> && _HW_3D_STD_ is_base_of_v<IDXGIAdapter1, Ty>);
 public:
 	explicit _TAdapter1(Ty* handle)
@@ -6357,7 +6357,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TAdapter2 : public _TAdapter1<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TAdapter2 : public _TAdapter1<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IAdapter2, Interface> && _HW_3D_STD_ is_base_of_v<IDXGIAdapter2, Ty>);
 public:
 	explicit _TAdapter2(Ty* handle)
@@ -6403,7 +6403,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TAdapter3 : public _TAdapter2<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TAdapter3 : public _TAdapter2<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IAdapter3, Interface> && _HW_3D_STD_ is_base_of_v<IDXGIAdapter3, Ty>);
 public:
 	explicit _TAdapter3(Ty* handle)
@@ -6419,7 +6419,7 @@ public:
 		_HW_3D_STD_ tuple<Result, Query_video_memory_info> res;
 
 		auto&[r, info] = res;
-		r = static_cast<Result>(this->_handle->Query_video_memory_info(node_index, DXGI_MEMORY_SEGMENT_GROUP(group), value_ptr(info)));
+		r = static_cast<Result>(this->_handle->QueryVideoMemoryInfo(node_index, DXGI_MEMORY_SEGMENT_GROUP(group), value_ptr(info)));
 
 		return res;
 	}
@@ -6498,7 +6498,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TAdapter4 : public _TAdapter3<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TAdapter4 : public _TAdapter3<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IAdapter4, Interface> && _HW_3D_STD_ is_base_of_v<IDXGIAdapter4, Ty>);
 public:
 	explicit _TAdapter4(Ty* handle)
@@ -6545,7 +6545,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TDebug1 : public _TDebug<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TDebug1 : public _TDebug<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IDebug1, Interface> && _HW_3D_STD_ is_base_of_v<IDXGIDebug1, Ty>);
 public:
 	explicit _TDebug1(Ty* handle)
@@ -6598,7 +6598,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TDevice1 : public _TDevice<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TDevice1 : public _TDevice<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IDevice1, Interface> && _HW_3D_STD_ is_base_of_v<IDXGIDevice1, Ty>);
 public:
 	explicit _TDevice1(Ty* handle)
@@ -6651,7 +6651,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TDevice2 : public _TDevice1<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TDevice2 : public _TDevice1<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IDevice2, Interface> && _HW_3D_STD_ is_base_of_v<IDXGIDevice2, Ty>);
 public:
 	explicit _TDevice2(Ty* handle)
@@ -6716,7 +6716,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TDevice3 : public _TDevice2<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TDevice3 : public _TDevice2<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IDevice3, Interface> && _HW_3D_STD_ is_base_of_v<IDXGIDevice3, Ty>);
 public:
 	explicit _TDevice3(Ty* handle)
@@ -6757,7 +6757,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TDevice4 : public _TDevice3<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TDevice4 : public _TDevice3<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IDevice4, Interface> && _HW_3D_STD_ is_base_of_v<IDXGIDevice4, Ty>);
 public:
 	explicit _TDevice4(Ty* handle)
@@ -6817,7 +6817,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TOutput1 : public _TOutput<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TOutput1 : public _TOutput<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IOutput1, Interface> && _HW_3D_STD_ is_base_of_v<IDXGIOutput1, Ty>);
 public:
 	explicit _TOutput1(Ty* handle)
@@ -6906,7 +6906,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TOutput2 : public _TOutput1<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TOutput2 : public _TOutput1<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IOutput2, Interface> && _HW_3D_STD_ is_base_of_v<IDXGIOutput2, Ty>);
 public:
 	explicit _TOutput2(Ty* handle)
@@ -6947,7 +6947,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TOutput3 : public _TOutput2<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TOutput3 : public _TOutput2<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IOutput3, Interface> && _HW_3D_STD_ is_base_of_v<IDXGIOutput3, Ty>);
 public:
 	explicit _TOutput3(Ty* handle)
@@ -6999,7 +6999,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TOutput4 : public _TOutput3<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TOutput4 : public _TOutput3<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IOutput4, Interface> && _HW_3D_STD_ is_base_of_v<IDXGIOutput4, Ty>);
 public:
 	explicit _TOutput4(Ty* handle)
@@ -7052,7 +7052,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TOutput5 : public _TOutput4<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TOutput5 : public _TOutput4<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IOutput5, Interface> && _HW_3D_STD_ is_base_of_v<IDXGIOutput5, Ty>);
 public:
 	explicit _TOutput5(Ty* handle)
@@ -7105,7 +7105,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TOutput6 : public _TOutput5<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TOutput6 : public _TOutput5<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IOutput6, Interface> && _HW_3D_STD_ is_base_of_v<IDXGIOutput6, Ty>);
 public:
 	explicit _TOutput6(Ty* handle)
@@ -7151,7 +7151,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TSurface1 : public _TSurface<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TSurface1 : public _TSurface<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<ISurface1, Interface> && _HW_3D_STD_ is_base_of_v<IDXGISurface1, Ty>);
 public:
 	explicit _TSurface1(Ty* handle)
@@ -7205,7 +7205,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TSurface2 : public _TSurface1<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TSurface2 : public _TSurface1<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<ISurface2, Interface> && _HW_3D_STD_ is_base_of_v<IDXGISurface2, Ty>);
 public:
 	explicit _TSurface2(Ty* handle)
@@ -7249,7 +7249,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TResource1 : public _TResource<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TResource1 : public _TResource<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IResource1, Interface> && _HW_3D_STD_ is_base_of_v<IDXGIResource1, Ty>);
 public:
 	explicit _TResource1(Ty* handle)
@@ -7314,7 +7314,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TSwap_chain1 : public _TSwap_chain<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TSwap_chain1 : public _TSwap_chain<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<ISwap_chain1, Interface> && _HW_3D_STD_ is_base_of_v<IDXGISwapChain1, Ty>);
 public:
 	explicit _TSwap_chain1(Ty* handle)
@@ -7456,7 +7456,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TSwap_chain2 : public _TSwap_chain1<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TSwap_chain2 : public _TSwap_chain1<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<ISwap_chain2, Interface> && _HW_3D_STD_ is_base_of_v<IDXGISwapChain2, Ty>);
 public:
 	explicit _TSwap_chain2(Ty* handle)
@@ -7552,7 +7552,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TSwap_chain3 : public _TSwap_chain2<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TSwap_chain3 : public _TSwap_chain2<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<ISwap_chain3, Interface> && _HW_3D_STD_ is_base_of_v<IDXGISwapChain3, Ty>);
 public:
 	explicit _TSwap_chain3(Ty* handle)
@@ -7640,7 +7640,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TSwap_chain4 : public _TSwap_chain3<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TSwap_chain4 : public _TSwap_chain3<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<ISwap_chain4, Interface> && _HW_3D_STD_ is_base_of_v<IDXGISwapChain4, Ty>);
 public:
 	explicit _TSwap_chain4(Ty* handle)
@@ -7684,7 +7684,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TFactory1 : public _TFactory<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TFactory1 : public _TFactory<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IFactory1, Interface> && _HW_3D_STD_ is_base_of_v<IDXGIFactory1, Ty>);
 public:
 	explicit _TFactory1(Ty* handle)
@@ -7740,7 +7740,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TFactory2 : public _TFactory1<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TFactory2 : public _TFactory1<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IFactory2, Interface> && _HW_3D_STD_ is_base_of_v<IDXGIFactory2, Ty>);
 public:
 	explicit _TFactory2(Ty* handle)
@@ -7914,7 +7914,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TFactory3 : public _TFactory2<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TFactory3 : public _TFactory2<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IFactory3, Interface> && _HW_3D_STD_ is_base_of_v<IDXGIFactory3, Ty>);
 public:
 	explicit _TFactory3(Ty* handle)
@@ -7955,7 +7955,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TFactory4 : public _TFactory3<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TFactory4 : public _TFactory3<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IFactory4, Interface> && _HW_3D_STD_ is_base_of_v<IDXGIFactory4, Ty>);
 public:
 	explicit _TFactory4(Ty* handle)
@@ -8023,7 +8023,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TFactory5 : public _TFactory4<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TFactory5 : public _TFactory4<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IFactory5, Interface> && _HW_3D_STD_ is_base_of_v<IDXGIFactory5, Ty>);
 public:
 	explicit _TFactory5(Ty* handle)
@@ -8066,7 +8066,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TFactory_media : public _TBase<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TFactory_media : public _TBase<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IFactory_media, Interface> && _HW_3D_STD_ is_base_of_v<IDXGIFactoryMedia, Ty>);
 public:
 	explicit _TFactory_media(Ty* handle)
@@ -8150,7 +8150,7 @@ template <bool own> class _Class_linkage;
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TDevice_child : public _TBase<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TDevice_child : public _TBase<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IDevice_child, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11DeviceChild, Ty>);
 public:
 	explicit _TDevice_child(Ty* handle)
@@ -8198,7 +8198,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TAsynchronous : public _TDevice_child<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TAsynchronous : public _TDevice_child<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IAsynchronous, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11Asynchronous, Ty>);
 public:
 	explicit _TAsynchronous(Ty* handle)
@@ -8218,7 +8218,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TBlend_state : public _TDevice_child<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TBlend_state : public _TDevice_child<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IBlend_state, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11BlendState, Ty>);
 public:
 	explicit _TBlend_state(Ty* handle)
@@ -8261,7 +8261,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TBlend_state1 : public _TBlend_state<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TBlend_state1 : public _TBlend_state<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IBlend_state1, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11BlendState1, Ty>);
 public:
 	explicit _TBlend_state1(Ty* handle)
@@ -8304,7 +8304,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TCommand_list : public _TDevice_child<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TCommand_list : public _TDevice_child<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<ICommand_list, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11CommandList, Ty>);
 public:
 	explicit _TCommand_list(Ty* handle)
@@ -8345,7 +8345,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TCounter : public _TAsynchronous<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TCounter : public _TAsynchronous<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<ICounter, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11Counter, Ty>);
 public:
 	explicit _TCounter(Ty* handle)
@@ -8389,7 +8389,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TDepth_stencil_state : public _TDevice_child<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TDepth_stencil_state : public _TDevice_child<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IDepth_stencil_state, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11DepthStencilState, Ty>);
 public:
 	explicit _TDepth_stencil_state(Ty* handle)
@@ -8433,7 +8433,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TDevice_context_state : public _TDevice_child<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TDevice_context_state : public _TDevice_child<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IDevice_context_state, Interface> && _HW_3D_STD_ is_base_of_v<ID3DDeviceContextState, Ty>);
 public:
 	explicit _TDevice_context_state(Ty* handle)
@@ -8468,7 +8468,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TFence : public _TDevice_child<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TFence : public _TDevice_child<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IFence, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11Fence, Ty>);
 public:
 	explicit _TFence(Ty* handle)
@@ -8531,7 +8531,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TInput_layout : public _TDevice_child<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TInput_layout : public _TDevice_child<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IInput_layout, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11InputLayout, Ty>);
 public:
 	explicit _TInput_layout(Ty* handle)
@@ -8566,7 +8566,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TMultithread : public _TBase<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TMultithread : public _TBase<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IMultithread, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11Multithread, Ty>);
 public:
 	explicit _TMultithread(Ty* handle)
@@ -8626,7 +8626,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TQuery : public _TAsynchronous<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TQuery : public _TAsynchronous<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IQuery, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11Query, Ty>);
 public:
 	explicit _TQuery(Ty* handle)
@@ -8670,7 +8670,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TQuery1 : public _TQuery<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TQuery1 : public _TQuery<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IQuery1, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11Query1, Ty>);
 public:
 	explicit _TQuery1(Ty* handle)
@@ -8714,7 +8714,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TPredicate : public _TQuery<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TPredicate : public _TQuery<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IPredicate, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11Predicate, Ty>);
 public:
 	explicit _TPredicate(Ty* handle)
@@ -8748,7 +8748,7 @@ public:
 
 //
 template <typename Interface, typename Ty, bool own>
-class _TRasterizer_state : public _TDevice_child<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TRasterizer_state : public _TDevice_child<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IRasterizer_state, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11RasterizerState, Ty>);
 public:
 	explicit _TRasterizer_state(Ty* handle)
@@ -8792,7 +8792,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TRasterizer_state1 : public _TRasterizer_state<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TRasterizer_state1 : public _TRasterizer_state<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IRasterizer_state1, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11RasterizerState1, Ty>);
 public:
 	explicit _TRasterizer_state1(Ty* handle)
@@ -8835,7 +8835,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TRasterizer_state2 : public _TRasterizer_state1<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TRasterizer_state2 : public _TRasterizer_state1<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IRasterizer_state2, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11RasterizerState2, Ty>);
 public:
 	explicit _TRasterizer_state2(Ty* handle)
@@ -8879,7 +8879,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TSampler_state : public _TDevice_child<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TSampler_state : public _TDevice_child<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<ISampler_state, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11SamplerState, Ty>);
 public:
 	explicit _TSampler_state(Ty* handle)
@@ -8923,7 +8923,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TResource : public _TDevice_child<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TResource : public _TDevice_child<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IResource, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11Resource, Ty>);
 public:
 	explicit _TResource(Ty* handle)
@@ -8980,7 +8980,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TBuffer : public _TResource<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TBuffer : public _TResource<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IBuffer, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11Buffer, Ty>);
 public:
 	explicit _TBuffer(Ty* handle)
@@ -9024,7 +9024,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TTexture1d : public _TResource<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TTexture1d : public _TResource<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<ITexture1d, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11Texture1D, Ty>);
 public:
 	explicit _TTexture1d(Ty* handle)
@@ -9068,7 +9068,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TTexture2d : public _TResource<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TTexture2d : public _TResource<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<ITexture2d, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11Texture2D, Ty>);
 public:
 	explicit _TTexture2d(Ty* handle)
@@ -9112,7 +9112,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TTexture2d1 : public _TTexture2d<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TTexture2d1 : public _TTexture2d<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<ITexture2d1, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11Texture2D1, Ty>);
 public:
 	explicit _TTexture2d1(Ty* handle)
@@ -9156,7 +9156,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TTexture3d : public _TResource<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TTexture3d : public _TResource<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<ITexture3d, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11Texture3D, Ty>);
 public:
 	explicit _TTexture3d(Ty* handle)
@@ -9200,7 +9200,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TTexture3d1 : public _TTexture3d<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TTexture3d1 : public _TTexture3d<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<ITexture3d1, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11Texture3D1, Ty>);
 public:
 	explicit _TTexture3d1(Ty* handle)
@@ -9244,7 +9244,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TView : public _TDevice_child<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TView : public _TDevice_child<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IView, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11View, Ty>);
 public:
 	explicit _TView(Ty* handle)
@@ -9267,7 +9267,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TDepth_stencil_view : public _TView<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TDepth_stencil_view : public _TView<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IDepth_stencil_view, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11DepthStencilView, Ty>);
 public:
 	explicit _TDepth_stencil_view(Ty* handle)
@@ -9311,7 +9311,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TRender_target_view : public _TView<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TRender_target_view : public _TView<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IRender_target_view, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11RenderTargetView, Ty>);
 public:
 	explicit _TRender_target_view(Ty* handle)
@@ -9355,7 +9355,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TRender_target_view1 : public _TRender_target_view<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TRender_target_view1 : public _TRender_target_view<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IRender_target_view1, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11RenderTargetView1, Ty>);
 public:
 	explicit _TRender_target_view1(Ty* handle)
@@ -9398,7 +9398,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TShader_resource_view : public _TView<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TShader_resource_view : public _TView<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IShader_resource_view, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11ShaderResourceView, Ty>);
 public:
 	explicit _TShader_resource_view(Ty* handle)
@@ -9442,7 +9442,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TShader_resource_view1 : public _TShader_resource_view<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TShader_resource_view1 : public _TShader_resource_view<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IShader_resource_view1, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11ShaderResourceView1, Ty>);
 public:
 	explicit _TShader_resource_view1(Ty* handle)
@@ -9485,7 +9485,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TUnordered_access_view : public _TView<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TUnordered_access_view : public _TView<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IUnordered_access_view, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11UnorderedAccessView, Ty>);
 public:
 	explicit _TUnordered_access_view(Ty* handle)
@@ -9529,7 +9529,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TUnordered_access_view1 : public _TUnordered_access_view<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TUnordered_access_view1 : public _TUnordered_access_view<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IUnordered_access_view1, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11UnorderedAccessView1, Ty>);
 public:
 	explicit _TUnordered_access_view1(Ty* handle)
@@ -9572,7 +9572,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TClass_instance : public _TDevice_child<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TClass_instance : public _TDevice_child<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IClass_instance, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11ClassInstance, Ty>);
 public:
 	explicit  _TClass_instance(Ty* handle)
@@ -9653,7 +9653,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TClass_linkage : public _TDevice_child<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TClass_linkage : public _TDevice_child<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IClass_linkage, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11ClassLinkage, Ty>);
 public:
 	explicit _TClass_linkage(Ty* handle)
@@ -9725,7 +9725,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TCompute_shader : public _TDevice_child<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TCompute_shader : public _TDevice_child<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<ICompute_shader, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11ComputeShader, Ty>);
 public:
 	explicit _TCompute_shader(Ty* handle)
@@ -9760,7 +9760,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TDomain_shader : public _TDevice_child<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TDomain_shader : public _TDevice_child<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IDomain_shader, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11DomainShader, Ty>);
 public:
 	explicit _TDomain_shader(Ty* handle)
@@ -9795,7 +9795,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TGeometry_shader : public _TDevice_child<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TGeometry_shader : public _TDevice_child<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IGeometry_shader, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11GeometryShader, Ty>);
 public:
 	explicit _TGeometry_shader(Ty* handle)
@@ -9830,7 +9830,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _THull_shader : public _TDevice_child<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _THull_shader : public _TDevice_child<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IHull_shader, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11HullShader, Ty>);
 public:
 	explicit _THull_shader(Ty* handle)
@@ -9865,7 +9865,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TPixel_shader : public _TDevice_child<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TPixel_shader : public _TDevice_child<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IPixel_shader, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11PixelShader, Ty>);
 public:
 	explicit _TPixel_shader(Ty* handle)
@@ -9900,7 +9900,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TVertex_shader : public _TDevice_child<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TVertex_shader : public _TDevice_child<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IVertex_shader, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11VertexShader, Ty>);
 public:
 	explicit _TVertex_shader(Ty* handle)
@@ -9935,7 +9935,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TLinking_node : public _TBase<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TLinking_node : public _TBase<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<ILinking_node, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11LinkingNode, Ty>);
 public:
 	explicit _TLinking_node(Ty* handle)
@@ -9970,7 +9970,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TModule_instance : public _TBase<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TModule_instance : public _TBase<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IModule_instance, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11ModuleInstance, Ty>);
 public:
 	explicit _TModule_instance(Ty* handle)
@@ -10095,7 +10095,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TModule : public _TBase<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TModule : public _TBase<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IModule, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11Module, Ty>);
 public:
 	explicit _TModule(Ty* handle)
@@ -10146,7 +10146,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TBlob : public _TBase<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TBlob : public _TBase<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IBlob, Interface> && _HW_3D_STD_ is_base_of_v<ID3DBlob, Ty>);
 public:
 	explicit _TBlob(Ty* handle)
@@ -10193,7 +10193,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TUser_defined_annotation : public _TBase<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TUser_defined_annotation : public _TBase<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IUser_defined_annotation, Interface> && _HW_3D_STD_ is_base_of_v<ID3DUserDefinedAnnotation, Ty>);
 public:
 	explicit _TUser_defined_annotation(Ty* handle)
@@ -10254,7 +10254,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TLinker : public _TBase<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TLinker : public _TBase<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<ILinker, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11Linker, Ty>);
 public:
 	explicit _TLinker(Ty* handle)
@@ -10325,7 +10325,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TLibrary_reflection : public _TBase<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TLibrary_reflection : public _TBase<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<ILibrary_reflection, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11LibraryReflection, Ty>);
 public:
 	explicit _TLibrary_reflection(Ty* handle)
@@ -10378,7 +10378,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TShader_reflection : public _TBase<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TShader_reflection : public _TBase<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IShader_reflection, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11ShaderReflection, Ty>);
 public:
 	explicit _TShader_reflection(Ty* handle)
@@ -10575,7 +10575,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TShader_trace : public _TBase<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TShader_trace : public _TBase<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IShader_trace, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11ShaderTrace, Ty>);
 public:
 	explicit _TShader_trace(Ty* handle)
@@ -10695,7 +10695,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TShader_trace_factory : public _TBase<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TShader_trace_factory : public _TBase<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IShader_trace_factory, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11ShaderTraceFactory, Ty>);
 public:
 	explicit _TShader_trace_factory(Ty* handle)
@@ -10747,7 +10747,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TFunction_linking_graph : public _TBase<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TFunction_linking_graph : public _TBase<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IFunction_linking_graph, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11FunctionLinkingGraph, Ty>);
 public:
 	explicit _TFunction_linking_graph(Ty* handle)
@@ -10902,7 +10902,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TDevice : public _TBase<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TDevice : public _TBase<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IDevice, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11Device, Ty>);
 public:
 	explicit _TDevice(Ty* handle)
@@ -11526,7 +11526,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TDevice_context : public _TDevice_child<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TDevice_context : public _TDevice_child<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IDevice_context, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11DeviceContext, Ty>);
 public:
 	explicit _TDevice_context(Ty* handle)
@@ -12800,7 +12800,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TDevice_context1 : public _TDevice_context<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TDevice_context1 : public _TDevice_context<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IDevice_context1, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11DeviceContext1, Ty>);
 public:
 	explicit _TDevice_context1(Ty* handle)
@@ -13100,7 +13100,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TDevice_context2 : public _TDevice_context1<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TDevice_context2 : public _TDevice_context1<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IDevice_context2, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11DeviceContext2, Ty>);
 public:
 	explicit _TDevice_context2(Ty* handle)
@@ -13253,7 +13253,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TDevice_context3 : public _TDevice_context2<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TDevice_context3 : public _TDevice_context2<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IDevice_context3, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11DeviceContext3, Ty>);
 public:
 	explicit _TDevice_context3(Ty* handle)
@@ -13312,7 +13312,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TDevice_context4 : public _TDevice_context3<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TDevice_context4 : public _TDevice_context3<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IDevice_context4, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11DeviceContext4, Ty>);
 public:
 	explicit _TDevice_context4(Ty* handle)
@@ -13363,7 +13363,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TDevice1 : public _TDevice<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TDevice1 : public _TDevice<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IDevice1, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11Device1, Ty>);
 public:
 	explicit _TDevice1(Ty* handle)
@@ -13509,7 +13509,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TDevice2 : public _TDevice1<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TDevice2 : public _TDevice1<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IDevice2, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11Device2, Ty>);
 public:
 	explicit _TDevice2(Ty* handle)
@@ -13608,7 +13608,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TDevice3 : public _TDevice2<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TDevice3 : public _TDevice2<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IDevice3, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11Device3, Ty>);
 public:
 	explicit _TDevice3(Ty* handle)
@@ -13827,7 +13827,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TDevice4 : public _TDevice3<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TDevice4 : public _TDevice3<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IDevice4, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11Device4, Ty>);
 public:
 	explicit _TDevice4(Ty* handle)
@@ -13881,7 +13881,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TDevice5 : public _TDevice4<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TDevice5 : public _TDevice4<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IDevice5, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11Device5, Ty>);
 public:
 	explicit _TDevice5(Ty* handle)
@@ -13952,7 +13952,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TDebug : public _TBase<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TDebug : public _TBase<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IDebug, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11Debug, Ty>);
 public:
 	explicit _TDebug(Ty* handle)
@@ -14057,7 +14057,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TInfo_queue : public _TBase<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TInfo_queue : public _TBase<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IInfo_queue, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11InfoQueue, Ty>);
 public:
 	explicit _TInfo_queue(Ty* handle)
@@ -14349,7 +14349,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TRef_default_tracking_options : public _TBase<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TRef_default_tracking_options : public _TBase<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IRef_default_tracking_options, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11RefDefaultTrackingOptions, Ty>);
 public:
 	explicit _TRef_default_tracking_options(Ty* handle)
@@ -14393,7 +14393,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TRef_tracking_options : public _TBase<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TRef_tracking_options : public _TBase<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<IRef_tracking_options, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11RefTrackingOptions, Ty>);
 public:
 	explicit _TRef_tracking_options(Ty* handle)
@@ -14435,7 +14435,7 @@ public:
 //
 //
 template <typename Interface, typename Ty, bool own>
-class _TTracing_device : public _TBase<Interface, Ty, own> {
+class _HW_3D_NO_VTABLE_ _TTracing_device : public _TBase<Interface, Ty, own> {
 	static_assert(_HW_3D_STD_ is_base_of_v<ITracing_device, Interface> && _HW_3D_STD_ is_base_of_v<ID3D11TracingDevice, Ty>);
 public:
 	explicit _TTracing_device(Ty* handle)

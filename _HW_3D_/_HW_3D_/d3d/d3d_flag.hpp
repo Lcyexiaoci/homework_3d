@@ -14,7 +14,7 @@ enum class Display_mode_bit {
 	stereo = DXGI_ENUM_MODES_STEREO,
 	disabeld_stereo = DXGI_ENUM_MODES_DISABLED_STEREO,
 };
-_HW_3D_D3D_FLAG_TYPE_(Display_mode, Display_mode_bit);
+_HW_3D_HW_FLAG_TYPE_(Display_mode, Display_mode_bit);
 
 //
 //
@@ -29,7 +29,7 @@ enum class Present_mode_bit {
 	use_duration = DXGI_PRESENT_USE_DURATION,
 	allow_tearing = DXGI_PRESENT_ALLOW_TEARING,
 };
-_HW_3D_D3D_FLAG_TYPE_(Present_mode, Present_mode_bit);
+_HW_3D_HW_FLAG_TYPE_(Present_mode, Present_mode_bit);
 
 //
 //
@@ -38,7 +38,7 @@ enum class Adapter_flag_bit : Underlying_type_t<DXGI_ADAPTER_FLAG> {
 	remote = DXGI_ADAPTER_FLAG::DXGI_ADAPTER_FLAG_REMOTE,
 	software = DXGI_ADAPTER_FLAG::DXGI_ADAPTER_FLAG_SOFTWARE,
 };
-_HW_3D_D3D_FLAG_TYPE_(Adapter_flag, Adapter_flag_bit);
+_HW_3D_HW_FLAG_TYPE_(Adapter_flag, Adapter_flag_bit);
 
 //
 //
@@ -51,7 +51,7 @@ enum class Adapter_flag3_bit : Underlying_type_t<DXGI_ADAPTER_FLAG3> {
 	suuport_non_monitored_fences = DXGI_ADAPTER_FLAG3::DXGI_ADAPTER_FLAG3_SUPPORT_NON_MONITORED_FENCES,
 	keyed_mutex_conformance = DXGI_ADAPTER_FLAG3::DXGI_ADAPTER_FLAG3_KEYED_MUTEX_CONFORMANCE,
 };
-_HW_3D_D3D_FLAG_TYPE_(Adapter_flag3, Adapter_flag3_bit);
+_HW_3D_HW_FLAG_TYPE_(Adapter_flag3, Adapter_flag3_bit);
 
 //
 //
@@ -61,7 +61,7 @@ enum class Debug_rlo_flag_bit : Underlying_type_t<DXGI_DEBUG_RLO_FLAGS> {
 	ignore_internal = DXGI_DEBUG_RLO_FLAGS::DXGI_DEBUG_RLO_IGNORE_INTERNAL,
 	all = DXGI_DEBUG_RLO_FLAGS::DXGI_DEBUG_RLO_ALL,
 };
-_HW_3D_D3D_FLAG_TYPE_(Debug_rlo_flag, Debug_rlo_flag_bit);
+_HW_3D_HW_FLAG_TYPE_(Debug_rlo_flag, Debug_rlo_flag_bit);
 
 
 //
@@ -71,21 +71,21 @@ enum class Multiplane_overlay_ycbcr_flag_bit : Underlying_type_t<DXGI_MULTIPLANE
 	bt709 = DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAGS::DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAG_BT709,
 	xvycc = DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAGS::DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAG_xvYCC,
 };
-_HW_3D_D3D_FLAG_TYPE_(Multiplane_overlay_ycbcr_flag, Multiplane_overlay_ycbcr_flag_bit);
+_HW_3D_HW_FLAG_TYPE_(Multiplane_overlay_ycbcr_flag, Multiplane_overlay_ycbcr_flag_bit);
 
 //
 //
 enum class Offer_resource_flag_bit : Underlying_type_t<DXGI_OFFER_RESOURCE_FLAGS> {
 	allow_decommit = DXGI_OFFER_RESOURCE_FLAGS::DXGI_OFFER_RESOURCE_FLAG_ALLOW_DECOMMIT,
 };
-_HW_3D_D3D_FLAG_TYPE_(Offer_resource_flag, Offer_resource_flag_bit);
+_HW_3D_HW_FLAG_TYPE_(Offer_resource_flag, Offer_resource_flag_bit);
 
 //
 //
 enum class Overlay_color_space_support_flag_bit : Underlying_type_t<DXGI_OVERLAY_COLOR_SPACE_SUPPORT_FLAG> {
 	present = DXGI_OVERLAY_COLOR_SPACE_SUPPORT_FLAG::DXGI_OVERLAY_COLOR_SPACE_SUPPORT_FLAG_PRESENT,
 };
-_HW_3D_D3D_FLAG_TYPE_(Overlay_color_space_support_flag, Overlay_color_space_support_flag_bit);
+_HW_3D_HW_FLAG_TYPE_(Overlay_color_space_support_flag, Overlay_color_space_support_flag_bit);
 
 //
 //
@@ -93,7 +93,7 @@ enum class Overlay_support_flag_bit : Underlying_type_t<DXGI_OVERLAY_SUPPORT_FLA
 	direct = DXGI_OVERLAY_SUPPORT_FLAG::DXGI_OVERLAY_SUPPORT_FLAG_DIRECT,
 	scaling = DXGI_OVERLAY_SUPPORT_FLAG::DXGI_OVERLAY_SUPPORT_FLAG_SCALING,
 };
-_HW_3D_D3D_FLAG_TYPE_(Overlay_support_flag, Overlay_support_flag_bit);
+_HW_3D_HW_FLAG_TYPE_(Overlay_support_flag, Overlay_support_flag_bit);
 
 //
 //
@@ -101,7 +101,7 @@ enum class Swap_chain_color_space_support_flag_bit : Underlying_type_t<DXGI_SWAP
 	present = DXGI_SWAP_CHAIN_COLOR_SPACE_SUPPORT_FLAG::DXGI_SWAP_CHAIN_COLOR_SPACE_SUPPORT_FLAG_PRESENT,
 	overlay_present = DXGI_SWAP_CHAIN_COLOR_SPACE_SUPPORT_FLAG::DXGI_SWAP_CHAIN_COLOR_SPACE_SUPPORT_FLAG_OVERLAY_PRESENT,
 };
-_HW_3D_D3D_FLAG_TYPE_(Swap_chain_color_space_support_flag, Swap_chain_color_space_support_flag_bit);
+_HW_3D_HW_FLAG_TYPE_(Swap_chain_color_space_support_flag, Swap_chain_color_space_support_flag_bit);
 
 //
 //
@@ -120,7 +120,7 @@ enum class Swap_chain_flag_bit : Underlying_type_t<DXGI_SWAP_CHAIN_FLAG> {
 	allow_tearing = DXGI_SWAP_CHAIN_FLAG::DXGI_SWAP_CHAIN_FLAG_ALLOW_TEARING,
 	restricted_to_all_holographic_displays = DXGI_SWAP_CHAIN_FLAG::DXGI_SWAP_CHAIN_FLAG_RESTRICTED_TO_ALL_HOLOGRAPHIC_DISPLAYS,
 };
-_HW_3D_D3D_FLAG_TYPE_(Swap_chain_flag, Swap_chain_flag_bit);
+_HW_3D_HW_FLAG_TYPE_(Swap_chain_flag, Swap_chain_flag_bit);
 
 //
 //
@@ -129,7 +129,7 @@ enum class Map_flag_bit {
 	write = DXGI_MAP_WRITE,
 	discard = DXGI_MAP_DISCARD
 };
-_HW_3D_D3D_FLAG_TYPE_(Map_flag, Map_flag_bit);
+_HW_3D_HW_FLAG_TYPE_(Map_flag, Map_flag_bit);
 
 
 //
@@ -143,7 +143,7 @@ enum class Usage_bit : Underlying_type_t<DXGI_USAGE> {
 	discard_on_present = DXGI_USAGE_DISCARD_ON_PRESENT,
 	unordered_access = DXGI_USAGE_UNORDERED_ACCESS,
 };
-_HW_3D_D3D_FLAG_TYPE_(Usage, Usage_bit);
+_HW_3D_HW_FLAG_TYPE_(Usage, Usage_bit);
 
 _HW_3D_CLOSE_DXGI_NAMESPACE_
 
@@ -154,7 +154,7 @@ _HW_3D_OPEN_D3D_NAMESPACE_
 enum class Async_get_data_flag_bit : Underlying_type_t<D3D11_ASYNC_GETDATA_FLAG> {
 	donoflush = D3D11_ASYNC_GETDATA_FLAG::D3D11_ASYNC_GETDATA_DONOTFLUSH
 };
-_HW_3D_D3D_FLAG_TYPE_(Async_get_data_flag, Async_get_data_flag_bit);
+_HW_3D_HW_FLAG_TYPE_(Async_get_data_flag, Async_get_data_flag_bit);
 
 //
 //
@@ -162,7 +162,7 @@ enum class Clear_flag_bit : Underlying_type_t<D3D11_CLEAR_FLAG> {
 	depth = D3D11_CLEAR_FLAG::D3D11_CLEAR_DEPTH,
 	stencil = D3D11_CLEAR_FLAG::D3D11_CLEAR_STENCIL,
 };
-_HW_3D_D3D_FLAG_TYPE_(Clear_flag, Clear_flag_bit);
+_HW_3D_HW_FLAG_TYPE_(Clear_flag, Clear_flag_bit);
 
 //
 //
@@ -173,7 +173,7 @@ enum class Color_write_mask_bit : Underlying_type_t<D3D11_COLOR_WRITE_ENABLE> {
 	alpha = D3D11_COLOR_WRITE_ENABLE::D3D11_COLOR_WRITE_ENABLE_ALPHA,
 	all = D3D11_COLOR_WRITE_ENABLE::D3D11_COLOR_WRITE_ENABLE_ALL,
 };
-_HW_3D_D3D_FLAG_TYPE_(Color_write_mask, Color_write_mask_bit);
+_HW_3D_HW_FLAG_TYPE_(Color_write_mask, Color_write_mask_bit);
 
 //
 //
@@ -181,7 +181,7 @@ enum class Copy_flag_bit : Underlying_type_t<D3D11_COPY_FLAGS> {
 	no_overwrite = D3D11_COPY_FLAGS::D3D11_COPY_NO_OVERWRITE,
 	discard = D3D11_COPY_FLAGS::D3D11_COPY_DISCARD,
 };
-_HW_3D_D3D_FLAG_TYPE_(Copy_flag, Copy_flag_bit);
+_HW_3D_HW_FLAG_TYPE_(Copy_flag, Copy_flag_bit);
 
 //
 //
@@ -196,14 +196,14 @@ enum class Create_device_flag_bit : Underlying_type_t<D3D11_CREATE_DEVICE_FLAG> 
 	disable_gpu_timeout = D3D11_CREATE_DEVICE_FLAG::D3D11_CREATE_DEVICE_DISABLE_GPU_TIMEOUT,
 	video_support = D3D11_CREATE_DEVICE_FLAG::D3D11_CREATE_DEVICE_VIDEO_SUPPORT,
 };
-_HW_3D_D3D_FLAG_TYPE_(Create_device_flag, Create_device_flag_bit);
+_HW_3D_HW_FLAG_TYPE_(Create_device_flag, Create_device_flag_bit);
 
 //
 //
 enum class Create_device_context_state_flag_bit : Underlying_type_t<D3D11_1_CREATE_DEVICE_CONTEXT_STATE_FLAG> {
 	single_threaded = D3D11_1_CREATE_DEVICE_CONTEXT_STATE_FLAG::D3D11_1_CREATE_DEVICE_CONTEXT_STATE_SINGLETHREADED
 };
-_HW_3D_D3D_FLAG_TYPE_(Create_device_context_state_flag, Create_device_context_state_flag_bit);
+_HW_3D_HW_FLAG_TYPE_(Create_device_context_state_flag, Create_device_context_state_flag_bit);
 
 //
 //
@@ -212,7 +212,7 @@ enum class Fence_flag_bit : Underlying_type_t<D3D11_FENCE_FLAG> {
 	shared = D3D11_FENCE_FLAG::D3D11_FENCE_FLAG_SHARED,
 	shared_cross_adapter = D3D11_FENCE_FLAG::D3D11_FENCE_FLAG_SHARED_CROSS_ADAPTER,
 };
-_HW_3D_D3D_FLAG_TYPE_(Fence_flag, Fence_flag_bit);
+_HW_3D_HW_FLAG_TYPE_(Fence_flag, Fence_flag_bit);
 
 //
 //
@@ -249,7 +249,7 @@ enum class Format_support_bit : Underlying_type_t<D3D11_FORMAT_SUPPORT> {
 	video_processor_input = D3D11_FORMAT_SUPPORT::D3D11_FORMAT_SUPPORT_VIDEO_PROCESSOR_INPUT,
 	video_encoder = D3D11_FORMAT_SUPPORT::D3D11_FORMAT_SUPPORT_VIDEO_ENCODER,
 };
-_HW_3D_D3D_FLAG_TYPE_(Format_support, Format_support_bit);
+_HW_3D_HW_FLAG_TYPE_(Format_support, Format_support_bit);
 
 //
 //
@@ -267,21 +267,21 @@ enum class Format_support2_bit : Underlying_type_t<D3D11_FORMAT_SUPPORT2> {
 	shareable = D3D11_FORMAT_SUPPORT2::D3D11_FORMAT_SUPPORT2_SHAREABLE,
 	multiplane_overlay = D3D11_FORMAT_SUPPORT2::D3D11_FORMAT_SUPPORT2_MULTIPLANE_OVERLAY,
 };
-_HW_3D_D3D_FLAG_TYPE_(Format_support2, Format_support2_bit);
+_HW_3D_HW_FLAG_TYPE_(Format_support2, Format_support2_bit);
 
 //
 //
 enum class Query_misc_flag_bit : Underlying_type_t<D3D11_QUERY_MISC_FLAG> {
 	predicate = D3D11_QUERY_MISC_FLAG::D3D11_QUERY_MISC_PREDICATEHINT,
 };
-_HW_3D_D3D_FLAG_TYPE_(Query_misc_flag, Query_misc_flag_bit);
+_HW_3D_HW_FLAG_TYPE_(Query_misc_flag, Query_misc_flag_bit);
 
 //
 //
 enum class Raise_flag_bit : Underlying_type_t<D3D11_RAISE_FLAG> {
 	driver_internal_error = D3D11_RAISE_FLAG::D3D11_RAISE_FLAG_DRIVER_INTERNAL_ERROR,
 };
-_HW_3D_D3D_FLAG_TYPE_(Raise_flag, Raise_flag_bit);
+_HW_3D_HW_FLAG_TYPE_(Raise_flag, Raise_flag_bit);
 
 //
 //
@@ -290,14 +290,14 @@ enum class Shader_cache_support_flag_bit : Underlying_type_t<D3D11_SHADER_CACHE_
 	automatic_inproc_cache = D3D11_SHADER_CACHE_SUPPORT_FLAGS::D3D11_SHADER_CACHE_SUPPORT_AUTOMATIC_INPROC_CACHE,
 	automatic_disk_cache = D3D11_SHADER_CACHE_SUPPORT_FLAGS::D3D11_SHADER_CACHE_SUPPORT_AUTOMATIC_DISK_CACHE,
 };
-_HW_3D_D3D_FLAG_TYPE_(Shader_cache_support_flag, Shader_cache_support_flag_bit);
+_HW_3D_HW_FLAG_TYPE_(Shader_cache_support_flag, Shader_cache_support_flag_bit);
 
 //
 //
 enum class Counter_bit : Underlying_type_t<D3D11_COUNTER> {
 	device_dependent = D3D11_COUNTER::D3D11_COUNTER_DEVICE_DEPENDENT_0,
 };
-_HW_3D_D3D_FLAG_TYPE_(Counter, Counter_bit);
+_HW_3D_HW_FLAG_TYPE_(Counter, Counter_bit);
 
 //
 //
@@ -306,7 +306,7 @@ enum class Rldo_flag_bit : Underlying_type_t<D3D11_RLDO_FLAGS> {
 	detail = D3D11_RLDO_FLAGS::D3D11_RLDO_DETAIL,
 	ignore_interanl = D3D11_RLDO_FLAGS::D3D11_RLDO_IGNORE_INTERNAL,
 };
-_HW_3D_D3D_FLAG_TYPE_(Rldo_flag, Rldo_flag_bit);
+_HW_3D_HW_FLAG_TYPE_(Rldo_flag, Rldo_flag_bit);
 
 //
 //
@@ -327,7 +327,7 @@ enum class Shader_tracking_option_bit : Underlying_type_t<D3D11_SHADER_TRACKING_
 	all_hazards_allow_same = D3D11_SHADER_TRACKING_OPTION::D3D11_SHADER_TRACKING_OPTION_ALL_HAZARDS_ALLOWING_SAME,
 	all_options = D3D11_SHADER_TRACKING_OPTION::D3D11_SHADER_TRACKING_OPTION_ALL_OPTIONS,
 };
-_HW_3D_D3D_FLAG_TYPE_(Shader_tracking_option, Shader_tracking_option_bit);
+_HW_3D_HW_FLAG_TYPE_(Shader_tracking_option, Shader_tracking_option_bit);
 
 //
 //
@@ -343,14 +343,14 @@ enum class Bind_flag_bit : Underlying_type_t<D3D11_BIND_FLAG> {
 	decoder = D3D11_BIND_FLAG::D3D11_BIND_DECODER,
 	video_encoder = D3D11_BIND_FLAG::D3D11_BIND_VIDEO_ENCODER,
 };
-_HW_3D_D3D_FLAG_TYPE_(Bind_flag, Bind_flag_bit);
+_HW_3D_HW_FLAG_TYPE_(Bind_flag, Bind_flag_bit);
 
 //
 //
 enum class Buffer_ex_srv_flag_bit : Underlying_type_t<D3D11_BUFFEREX_SRV_FLAG> {
 	raw = D3D11_BUFFEREX_SRV_FLAG::D3D11_BUFFEREX_SRV_FLAG_RAW,
 };
-_HW_3D_D3D_FLAG_TYPE_(Buffer_ex_srv_flag, Buffer_ex_srv_flag_bit);
+_HW_3D_HW_FLAG_TYPE_(Buffer_ex_srv_flag, Buffer_ex_srv_flag_bit);
 
 //
 //
@@ -359,14 +359,14 @@ enum class Buffer_uav_flag_bit : Underlying_type_t<D3D11_BUFFER_UAV_FLAG> {
 	append = D3D11_BUFFER_UAV_FLAG::D3D11_BUFFER_UAV_FLAG_APPEND,
 	counter = D3D11_BUFFER_UAV_FLAG::D3D11_BUFFER_UAV_FLAG_COUNTER,
 };
-_HW_3D_D3D_FLAG_TYPE_(Buffer_uav_flag, Buffer_uav_flag_bit);
+_HW_3D_HW_FLAG_TYPE_(Buffer_uav_flag, Buffer_uav_flag_bit);
 
 //
 //
 enum class Check_multisample_quality_levels_flag_bit : Underlying_type_t<D3D11_CHECK_MULTISAMPLE_QUALITY_LEVELS_FLAG> {
 	tiled_resource = D3D11_CHECK_MULTISAMPLE_QUALITY_LEVELS_FLAG::D3D11_CHECK_MULTISAMPLE_QUALITY_LEVELS_TILED_RESOURCE,
 };
-_HW_3D_D3D_FLAG_TYPE_(Check_multisample_quality_levels_flag, Check_multisample_quality_levels_flag_bit);
+_HW_3D_HW_FLAG_TYPE_(Check_multisample_quality_levels_flag, Check_multisample_quality_levels_flag_bit);
 
 //
 //
@@ -374,7 +374,7 @@ enum class Cpu_access_flag_bit : Underlying_type_t<D3D11_CPU_ACCESS_FLAG> {
 	write = D3D11_CPU_ACCESS_FLAG::D3D11_CPU_ACCESS_WRITE,
 	read = D3D11_CPU_ACCESS_FLAG::D3D11_CPU_ACCESS_READ,
 };
-_HW_3D_D3D_FLAG_TYPE_(Cpu_access_flag, Cpu_access_flag_bit);
+_HW_3D_HW_FLAG_TYPE_(Cpu_access_flag, Cpu_access_flag_bit);
 
 //
 //
@@ -382,14 +382,14 @@ enum class Dsv_flag_bit : Underlying_type_t<D3D11_DSV_FLAG> {
 	depth = D3D11_DSV_FLAG::D3D11_DSV_READ_ONLY_DEPTH,
 	stencil = D3D11_DSV_FLAG::D3D11_DSV_READ_ONLY_STENCIL,
 };
-_HW_3D_D3D_FLAG_TYPE_(Dsv_flag, Dsv_flag_bit);
+_HW_3D_HW_FLAG_TYPE_(Dsv_flag, Dsv_flag_bit);
 
 //
 //
 enum class Map_flag_bit : Underlying_type_t<D3D11_MAP_FLAG> {
 	do_not_wait = D3D11_MAP_FLAG::D3D11_MAP_FLAG_DO_NOT_WAIT,
 };
-_HW_3D_D3D_FLAG_TYPE_(Map_flag, Map_flag_bit);
+_HW_3D_HW_FLAG_TYPE_(Map_flag, Map_flag_bit);
 
 //
 //
@@ -412,7 +412,7 @@ enum class Resource_misc_flag_bit : Underlying_type_t<D3D11_RESOURCE_MISC_FLAG> 
 	tiled = D3D11_RESOURCE_MISC_FLAG::D3D11_RESOURCE_MISC_TILED,
 	hw_protected = D3D11_RESOURCE_MISC_FLAG::D3D11_RESOURCE_MISC_HW_PROTECTED,
 };
-_HW_3D_D3D_FLAG_TYPE_(Resource_misc_flag, Resource_misc_flag_bit);
+_HW_3D_HW_FLAG_TYPE_(Resource_misc_flag, Resource_misc_flag_bit);
 
 //
 //
@@ -421,14 +421,14 @@ enum class Tile_copy_flag_bit : Underlying_type_t<D3D11_TILE_COPY_FLAG> {
 	linear_buffer_to_swizzled_tiled_resource = D3D11_TILE_COPY_FLAG::D3D11_TILE_COPY_LINEAR_BUFFER_TO_SWIZZLED_TILED_RESOURCE,
 	swizzled_tiled_resource_to_linear_buffer = D3D11_TILE_COPY_FLAG::D3D11_TILE_COPY_SWIZZLED_TILED_RESOURCE_TO_LINEAR_BUFFER,
 };
-_HW_3D_D3D_FLAG_TYPE_(Tile_copy_flag, Tile_copy_flag_bit);
+_HW_3D_HW_FLAG_TYPE_(Tile_copy_flag, Tile_copy_flag_bit);
 
 //
 //
 enum class Tile_mapping_flag_bit : Underlying_type_t<D3D11_TILE_MAPPING_FLAG> {
 	no_overwrite = D3D11_TILE_MAPPING_FLAG::D3D11_TILE_MAPPING_NO_OVERWRITE,
 };
-_HW_3D_D3D_FLAG_TYPE_(Tile_mapping_flag, Tile_mapping_flag_bit);
+_HW_3D_HW_FLAG_TYPE_(Tile_mapping_flag, Tile_mapping_flag_bit);
 
 //
 //
@@ -437,7 +437,7 @@ enum class Tile_range_flag_bit : Underlying_type_t<D3D11_TILE_RANGE_FLAG> {
 	skip = D3D11_TILE_RANGE_FLAG::D3D11_TILE_RANGE_SKIP,
 	reuse_single_tile = D3D11_TILE_RANGE_FLAG::D3D11_TILE_RANGE_REUSE_SINGLE_TILE,
 };
-_HW_3D_D3D_FLAG_TYPE_(Tile_range_flag, Tile_range_flag_bit);
+_HW_3D_HW_FLAG_TYPE_(Tile_range_flag, Tile_range_flag_bit);
 
 //
 //
@@ -446,14 +446,14 @@ enum class Parameter_flag_bit : Underlying_type_t<D3D_PARAMETER_FLAGS> {
 	in = D3D_PARAMETER_FLAGS::D3D_PF_IN,
 	out = D3D_PARAMETER_FLAGS::D3D_PF_OUT,
 };
-_HW_3D_D3D_FLAG_TYPE_(Parameter_flag, Parameter_flag_bit);
+_HW_3D_HW_FLAG_TYPE_(Parameter_flag, Parameter_flag_bit);
 
 //
 //
 enum class Shader_cbuffer_flag_bit : Underlying_type_t<D3D_SHADER_CBUFFER_FLAGS> {
 	userpacked = D3D_SHADER_CBUFFER_FLAGS::D3D_CBF_USERPACKED,
 };
-_HW_3D_D3D_FLAG_TYPE_(Shader_cbuffer_flag, Shader_cbuffer_flag_bit);
+_HW_3D_HW_FLAG_TYPE_(Shader_cbuffer_flag, Shader_cbuffer_flag_bit);
 
 //
 //
@@ -465,7 +465,7 @@ enum class Shader_input_flag_bit : Underlying_type_t<D3D_SHADER_INPUT_FLAGS> {
 	texutre_components = D3D_SHADER_INPUT_FLAGS::D3D_SIF_TEXTURE_COMPONENTS,
 	unused = D3D_SHADER_INPUT_FLAGS::D3D_SIF_UNUSED,
 };
-_HW_3D_D3D_FLAG_TYPE_(Shader_input_flag, Shader_input_flag_bit);
+_HW_3D_HW_FLAG_TYPE_(Shader_input_flag, Shader_input_flag_bit);
 
 //
 //
@@ -475,7 +475,7 @@ enum class Shader_variable_flag_bit : Underlying_type_t<D3D_SHADER_VARIABLE_FLAG
 	interface_pointer = D3D_SHADER_VARIABLE_FLAGS::D3D_SVF_INTERFACE_POINTER,
 	interface_parameter = D3D_SHADER_VARIABLE_FLAGS::D3D_SVF_INTERFACE_PARAMETER,
 };
-_HW_3D_D3D_FLAG_TYPE_(Shader_variable_flag, Shader_variable_flag_bit);
+_HW_3D_HW_FLAG_TYPE_(Shader_variable_flag, Shader_variable_flag_bit);
 
 //
 //
@@ -485,7 +485,7 @@ enum class Trace_component_mask_bit : Underlying_type_t<D3D11_TRACE_COMPONENT_MA
 	z = D3D11_TRACE_COMPONENT_Z,
 	w = D3D11_TRACE_COMPONENT_W,
 };
-_HW_3D_D3D_FLAG_TYPE_(Trace_component_mask, Trace_component_mask_bit);
+_HW_3D_HW_FLAG_TYPE_(Trace_component_mask, Trace_component_mask_bit);
 
 //
 //
@@ -498,7 +498,7 @@ enum class Trace_misc_operations_mask_bit : Underlying_type_t<D3D11_TRACE_MISC_O
 	halt = D3D11_TRACE_MISC_HALT,
 	message = D3D11_TRACE_MISC_MESSAGE,
 };
-_HW_3D_D3D_FLAG_TYPE_(Trace_misc_operations_mask, Trace_misc_operations_mask_bit);
+_HW_3D_HW_FLAG_TYPE_(Trace_misc_operations_mask, Trace_misc_operations_mask_bit);
 
 //
 //
@@ -506,7 +506,7 @@ enum class Shader_min_precision_support_bit : Underlying_type_t<D3D11_SHADER_MIN
 	_10_bit = D3D11_SHADER_MIN_PRECISION_SUPPORT::D3D11_SHADER_MIN_PRECISION_10_BIT,
 	_16_bit = D3D11_SHADER_MIN_PRECISION_SUPPORT::D3D11_SHADER_MIN_PRECISION_16_BIT,
 };
-_HW_3D_D3D_FLAG_TYPE_(Shader_min_precision_support, Shader_min_precision_support_bit);
+_HW_3D_HW_FLAG_TYPE_(Shader_min_precision_support, Shader_min_precision_support_bit);
 
 //
 //
@@ -538,7 +538,7 @@ enum class Compile_constant_bit {
 	debug_name_for_source = D3DCOMPILE_DEBUG_NAME_FOR_SOURCE,
 	debug_name_for_binary = D3DCOMPILE_DEBUG_NAME_FOR_BINARY,
 };
-_HW_3D_D3D_FLAG_TYPE_(Compile_constant, Compile_constant_bit);
+_HW_3D_HW_FLAG_TYPE_(Compile_constant, Compile_constant_bit);
 
 //
 //
@@ -558,7 +558,7 @@ enum class Shader_require_bit {
 	requires_rovs = D3D_SHADER_REQUIRES_ROVS,
 	viewport_and_rt_array_index_from_any_shader_feeding_rasterizer = D3D_SHADER_REQUIRES_VIEWPORT_AND_RT_ARRAY_INDEX_FROM_ANY_SHADER_FEEDING_RASTERIZER,
 };
-_HW_3D_D3D_FLAG_TYPE_(Shader_require, Shader_require_bit);
+_HW_3D_HW_FLAG_TYPE_(Shader_require, Shader_require_bit);
 
 //
 //
@@ -568,14 +568,14 @@ enum class Component_mask_bit {
 	z = D3D_COMPONENT_MASK_Z,
 	w = D3D_COMPONENT_MASK_W,
 };
-_HW_3D_D3D_FLAG_TYPE_(Component_mask, Component_mask_bit);
+_HW_3D_HW_FLAG_TYPE_(Component_mask, Component_mask_bit);
 
 //
 //
 enum class Trace_register_flag_bit {
 	relative_indexing = D3D11_TRACE_REGISTER_FLAGS_RELATIVE_INDEXING,
 };
-_HW_3D_D3D_FLAG_TYPE_(Trace_register_flag, Trace_register_flag_bit);
+_HW_3D_HW_FLAG_TYPE_(Trace_register_flag, Trace_register_flag_bit);
 
 //
 //
@@ -583,7 +583,7 @@ enum class Shader_trace_flag_bit {
 	record_register_writes = D3D11_SHADER_TRACE_FLAG_RECORD_REGISTER_WRITES,
 	record_register_reads = D3D11_SHADER_TRACE_FLAG_RECORD_REGISTER_READS,
 };
-_HW_3D_D3D_FLAG_TYPE_(Shader_trace_flag, Shader_trace_flag_bit);
+_HW_3D_HW_FLAG_TYPE_(Shader_trace_flag, Shader_trace_flag_bit);
 
 //
 //
@@ -596,7 +596,7 @@ enum class Debug_feature_mask_bit {
 	avoid_behavior_changing_debug_aids = D3D11_DEBUG_FEATURE_AVOID_BEHAVIOR_CHANGING_DEBUG_AIDS,
 	disable_tiled_resource_mapping_tracking_and_validation = D3D11_DEBUG_FEATURE_DISABLE_TILED_RESOURCE_MAPPING_TRACKING_AND_VALIDATION,
 };
-_HW_3D_D3D_FLAG_TYPE_(Debug_feature_mask, Debug_feature_mask_bit);
+_HW_3D_HW_FLAG_TYPE_(Debug_feature_mask, Debug_feature_mask_bit);
 
 //
 //
@@ -607,7 +607,7 @@ enum class Compiler_strip_flag_bit : Underlying_type_t<D3DCOMPILER_STRIP_FLAGS> 
 	private_data = D3DCOMPILER_STRIP_FLAGS::D3DCOMPILER_STRIP_PRIVATE_DATA,
 	root_signature = D3DCOMPILER_STRIP_FLAGS::D3DCOMPILER_STRIP_ROOT_SIGNATURE
 };
-_HW_3D_D3D_FLAG_TYPE_(Compiler_strip_flag, Compiler_strip_flag_bit);
+_HW_3D_HW_FLAG_TYPE_(Compiler_strip_flag, Compiler_strip_flag_bit);
 
 _HW_3D_CLOSE_D3D_NAMESPACE_
 

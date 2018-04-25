@@ -70,7 +70,28 @@ for concurrency
 #define _HW_3D_DEFAULT_MUTEX_NAME_ _default_mtx
 #define _HW_3D_AUTO_SCOPED_LOCK_() _HW_3D_SCOPED_LOCK_(_HW_3D_DEFAULT_MUTEX_NAME_)
 
+/*
+
+*/
+
 #define _HW_3D_TRHOW_EXCEPTION_(error_type, msg) throw ::hw::Hw_exception(error_type, msg, __FILE__, __LINE__)
+
+#define _HW_3D_NO_VTABLE_ __declspec(novtable)
+
+/*
+
+*/
+//flag type def macro
+#define _HW_3D_HW_FLAG_TYPE_(Flag_type, Bit_type)											\
+using Flag_type = _HW_3D_HW_ Flags<Bit_type, _HW_3D_HW_ Underlying_type_t<Bit_type>>;		\
+																							\
+inline Flag_type operator|(Bit_type bit0, Bit_type bit1) {									\
+	return Flag_type (bit0) | bit1;															\
+}																							\
+																							\
+inline Flag_type operator~(Bit_type bit) {													\
+	return ~Flag_type (bit);																\
+}
 
 //type def
 _HW_3D_OPEN_HW_NAMESPACE_

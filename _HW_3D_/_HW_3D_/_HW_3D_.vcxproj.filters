@@ -16,6 +16,9 @@
     <Filter Include="头文件\d3d">
       <UniqueIdentifier>{13b825cc-8da9-43c4-968b-f50af85cd0fd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\rs">
+      <UniqueIdentifier>{db8a5c6e-6f59-4155-972b-d69294813248}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="d3d\d3d_wrapper.hpp">
@@ -44,6 +47,18 @@
     </ClInclude>
     <ClInclude Include="utils.hpp">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="rs\rs_fwd.h">
+      <Filter>头文件\rs</Filter>
+    </ClInclude>
+    <ClInclude Include="rs\rs_utils.hpp">
+      <Filter>头文件\rs</Filter>
+    </ClInclude>
+    <ClInclude Include="rs\rs_shader.hpp">
+      <Filter>头文件\rs</Filter>
+    </ClInclude>
+    <ClInclude Include="rs\rs_render_manager.h">
+      <Filter>头文件\rs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

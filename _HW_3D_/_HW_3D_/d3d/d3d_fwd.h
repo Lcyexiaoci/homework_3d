@@ -13,17 +13,7 @@
 #define _HW_3D_OPEN_DXGI_NAMESPACE_		namespace dxgi {
 #define _HW_3D_CLOSE_DXGI_NAMESPACE_	}
 
-//flag type def macro
-#define _HW_3D_D3D_FLAG_TYPE_(Flag_type, Bit_type)								\
-using Flag_type = ::hw::Flags<Bit_type, ::hw::Underlying_type_t<Bit_type>>;		\
-																				\
-inline Flag_type operator|(Bit_type bit0, Bit_type bit1) {						\
-	return Flag_type (bit0) | bit1;												\
-}																				\
-																				\
-inline Flag_type operator~(Bit_type bit) {										\
-	return ~Flag_type (bit);													\
-}
+
 
 //struct
 #define _HW_3D_D3D_STRUCT_WRAPPER_(Wrapper, D3d_type)							\
