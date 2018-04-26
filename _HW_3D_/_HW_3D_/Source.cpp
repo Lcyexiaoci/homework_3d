@@ -7,25 +7,17 @@
 #include "d3d\d3d_func.hpp"
 
 #include "rs\rs_utils.hpp"
-
-enum class T : uint8_t {
-	
-};
+#include "rs\rs_render_manager.h"
+#include "rs\rs_shader.hpp"
+#include "rs\rs_view.hpp"
 
 void test_d3d_wrapper();
 void test_rs_utils();
+void test_rs_view_base();
 
 int main() {
-	using namespace hw;
-
-	Underlying_type_t<int> a{ 0 };
-	std::cout << sizeof(a) << std::endl;
-
-	Underlying_type_t<T> b;
-	std::cout << sizeof(b) << std::endl;
-
-	//test_d3d_wrapper();
-	test_rs_utils();
+	test_rs_view_base();
+	std::getchar();
 }
 
 void test_d3d_wrapper() {
@@ -161,4 +153,23 @@ void test_rs_utils() {
 	std::cout << x.width << std::endl;
 	std::cout << y.width << ", " << y.height << std::endl;
 	std::cout << z.width << ", " << y.height << ", " << z.depth << std::endl;
+}
+
+void test_rs_view_base() {
+#define _TEST_VIEW_BASE_(type) \
+	std::cout << #type << ": " << sizeof(_HW_3D_RS_ _D3d_view_base<_HW_3D_RS_ _D3d_ ##type ##_view_helper>) <<"\n" << std::endl
+
+	_TEST_VIEW_BASE_(buffer);
+	_TEST_VIEW_BASE_(buffer_ex);
+	_TEST_VIEW_BASE_(texture1d);
+	_TEST_VIEW_BASE_(texture1d_array);
+	_TEST_VIEW_BASE_(texture2d);
+	_TEST_VIEW_BASE_(texture2d_array);
+	_TEST_VIEW_BASE_(texture2dms);
+	_TEST_VIEW_BASE_(texture2dms_array);
+	_TEST_VIEW_BASE_(texture3d);
+	_TEST_VIEW_BASE_(texture_cube);
+	_TEST_VIEW_BASE_(texture_cube_array);
+
+#undef _TEST_VIEW_BASE_
 }

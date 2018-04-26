@@ -10,7 +10,7 @@ enum class Error_type {
 	alloc,
 	logic,
 	runtime,
-	unkown,
+	unknown,
 };
 
 //exception for log
@@ -22,7 +22,7 @@ private:
 			{ Error_type::d3d11, "Direct3D 11" },
 			{ Error_type::logic, "Logic" },
 			{ Error_type::runtime, "Runtime" },
-			{ Error_type::unkown, "Unkown" },
+			{ Error_type::unknown, "Unkown" },
 		};
 
 		auto iter = _HW_3D_STD_ find_if(

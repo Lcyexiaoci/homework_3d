@@ -10,8 +10,12 @@
 #define _HW_3D_OPEN_RS_NAMESPACE_	namespace rs {
 #define _HW_3D_CLOSE_RS_NAMESPACE_	}
 
-#define _HW_3D_RS_ASSERT_D3DCALL_SUCCESS_(res, msg)	\
-	if (res != decltype(res)::ok)					\
+#define _HW_3D_RS_ASSERT_D3DCALL_SUCCESS_(res, msg)					\
+	if (res != _HW_3D_D3D_ Result::ok)								\
+		_HW_3D_TRHOW_EXCEPTION_(_HW_3D_HW_ Error_type::d3d11, msg)
+
+#define _HW_3D_RS_ASSERT_DXGICALL_SUCCESS_(res, msg)				\
+	if (res != _HW_3D_DXGI_ Result::ok)								\
 		_HW_3D_TRHOW_EXCEPTION_(_HW_3D_HW_ Error_type::d3d11, msg)
 
 
@@ -47,6 +51,12 @@ using Blend_factor = _HW_3D_D3D_ Blend;
 using Blend_op = _HW_3D_D3D_ Blend_op;
 using Texture_filter = _HW_3D_D3D_ Filter;
 using Texture_address_mode = _HW_3D_D3D_ Texture_address_mode;
+
+//forward declaration
+class Hardware_buffer;
+class Hardware_texture1d;
+class Hardware_texture2d;
+class Hardware_texture3d;
 
 
 _HW_3D_CLOSE_RS_NAMESPACE_

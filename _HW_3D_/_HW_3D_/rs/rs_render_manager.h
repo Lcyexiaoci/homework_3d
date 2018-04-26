@@ -42,11 +42,15 @@ private:
 
 	using _Viewports = _HW_3D_STD_ vector<_HW_3D_D3D_ Viewport>;
 public:
+	static Render_manager* current_render_manager();
+public:
 	Render_manager();
 
 	~Render_manager();
 
+	Native_device* native_device();
 
+	Native_context* native_context();
 };
 
 

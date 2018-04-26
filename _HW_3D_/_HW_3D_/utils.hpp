@@ -126,6 +126,7 @@ Flags<Bit_type, Mask_type> operator^(Bit_type bit, const Flags<Bit_type, Mask_ty
 	return flags ^ bit;
 }
 
+
 ///
 ///
 ///
@@ -177,5 +178,30 @@ struct Underlying_type<Ty, true> {
 
 template <typename Ty>
 using Underlying_type_t = typename Underlying_type<Ty>::type;
+
+///
+///
+///
+///helper function
+inline _HW_3D_STD_ vector<_HW_3D_STD_ byte>
+read_binary_file(
+	_HW_3D_IN_ const Path& path
+) {
+	_HW_3D_STD_ vector<_HW_3D_STD_ byte> res;
+
+	if (!path.has_filename())
+		return res;
+
+	if (_HW_3D_STD_ ifstream ifs(path.wstring(), _HW_3D_STD_ ios::binary | _HW_3D_STD_ ios::ate); ifs.is_open()) {
+		auto length = ifs.tellg();
+		res.resize(length);
+
+		ifs.seekg(0, _HW_3D_STD_ ios::beg);
+		ifs.read(reinterpret_cast<char*>(res.data()), length);
+		ifs.close();
+	}
+
+	return res;
+}
 
 _HW_3D_CLOSE_HW_NAMESPACE_

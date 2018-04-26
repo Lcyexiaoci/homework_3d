@@ -131,10 +131,12 @@
     <ClInclude Include="d3d\d3d_wrapper.hpp" />
     <ClInclude Include="fwd.h" />
     <ClInclude Include="log.hpp" />
+    <ClInclude Include="rs\rs_buffer.hpp" />
     <ClInclude Include="rs\rs_fwd.h" />
     <ClInclude Include="rs\rs_render_manager.h" />
     <ClInclude Include="rs\rs_shader.hpp" />
     <ClInclude Include="rs\rs_utils.hpp" />
+    <ClInclude Include="rs\rs_view.hpp" />
     <ClInclude Include="utils.hpp" />
   </ItemGroup>
   <ItemGroup>

@@ -60,6 +60,12 @@
     <ClInclude Include="rs\rs_render_manager.h">
       <Filter>头文件\rs</Filter>
     </ClInclude>
+    <ClInclude Include="rs\rs_buffer.hpp">
+      <Filter>头文件\rs</Filter>
+    </ClInclude>
+    <ClInclude Include="rs\rs_view.hpp">
+      <Filter>头文件\rs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
