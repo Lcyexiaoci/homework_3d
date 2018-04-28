@@ -160,7 +160,7 @@ protected:
 };
 
 template <typename _Ty>
-inline _Ty* _Singleton<_Ty>::_instance = nullptr;
+_HW_3D_INLINE_VARIABLE_ _Ty* _Singleton<_Ty>::_instance = nullptr;
 
 ///
 ///
@@ -183,7 +183,7 @@ using Underlying_type_t = typename Underlying_type<Ty>::type;
 ///
 ///
 ///helper function
-inline _HW_3D_STD_ vector<_HW_3D_STD_ byte>
+_HW_3D_INLINE_FUNCTION_ _HW_3D_STD_ vector<_HW_3D_STD_ byte>
 read_binary_file(
 	_HW_3D_IN_ const Path& path
 ) {

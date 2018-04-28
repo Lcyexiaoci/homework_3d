@@ -26,14 +26,14 @@ public:
 };
 static_assert(sizeof(Color_value) == sizeof(D3DCOLORVALUE));
 
-inline bool operator==(const Color_value& lhs, const Color_value& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Color_value& lhs, const Color_value& rhs) noexcept {
 	return (lhs.r == rhs.r)
 		&& (lhs.g == rhs.g)
 		&& (lhs.b == rhs.b)
 		&& (lhs.a == rhs.a);
 }
 
-inline bool operator!=(const Color_value& lhs, const Color_value& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Color_value& lhs, const Color_value& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -51,12 +51,12 @@ public:
 };
 static_assert(sizeof(Rational) == sizeof(DXGI_RATIONAL));
 
-inline bool operator==(const Rational& lhs, const Rational& rhs) noexcept { //assert gcd(n, d) == 1
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Rational& lhs, const Rational& rhs) noexcept { //assert gcd(n, d) == 1
 	return ((lhs.Numerator == rhs.Numerator)
 		&& (lhs.Denominator == rhs.Denominator));
 }
 
-inline bool operator!=(const Rational& lhs, const Rational& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Rational& lhs, const Rational& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -76,13 +76,13 @@ public:
 };
 static_assert(sizeof(Rgb) == sizeof(DXGI_RGB));
 
-inline bool operator==(const Rgb& lhs, const Rgb& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Rgb& lhs, const Rgb& rhs) noexcept {
 	return (lhs.Red == rhs.Red)
 		&& (lhs.Green == rhs.Green)
 		&& (lhs.Blue == rhs.Blue);
 }
 
-inline bool operator!=(const Rgb& lhs, const Rgb& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Rgb& lhs, const Rgb& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -103,14 +103,14 @@ public:
 };
 static_assert(sizeof(Rgba) == sizeof(DXGI_RGBA));
 
-inline bool operator==(const Rgba& lhs, const Rgba& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Rgba& lhs, const Rgba& rhs) noexcept {
 	return (lhs.r == rhs.r)
 		&& (lhs.g == rhs.g)
 		&& (lhs.b == rhs.b)
 		&& (lhs.a == rhs.a);
 }
 
-inline bool operator!=(const Rgba& lhs, const Rgba& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Rgba& lhs, const Rgba& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -146,7 +146,7 @@ public:
 };
 static_assert(sizeof(Adapter_desc) == sizeof(DXGI_ADAPTER_DESC));
 
-inline bool operator==(const Adapter_desc& lhs, const Adapter_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Adapter_desc& lhs, const Adapter_desc& rhs) noexcept {
 	return (lhs.Description == rhs.Description)
 		&& (lhs.VendorId == rhs.VendorId)
 		&& (lhs.DeviceId == rhs.DeviceId)
@@ -159,7 +159,7 @@ inline bool operator==(const Adapter_desc& lhs, const Adapter_desc& rhs) noexcep
 		&& (lhs.AdapterLuid.HighPart == rhs.AdapterLuid.HighPart);
 }
 
-inline bool operator!=(const Adapter_desc& lhs, const Adapter_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Adapter_desc& lhs, const Adapter_desc& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -201,7 +201,7 @@ public:
 };
 static_assert(sizeof(Adapter_desc1) == sizeof(DXGI_ADAPTER_DESC1));
 
-inline bool operator==(const Adapter_desc1& lhs, const Adapter_desc1& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Adapter_desc1& lhs, const Adapter_desc1& rhs) noexcept {
 	return (lhs.Description == rhs.Description)
 		&& (lhs.VendorId == rhs.VendorId)
 		&& (lhs.DeviceId == rhs.DeviceId)
@@ -215,7 +215,7 @@ inline bool operator==(const Adapter_desc1& lhs, const Adapter_desc1& rhs) noexc
 		&& (lhs.Flags == rhs.Flags);
 }
 
-inline bool operator!=(const Adapter_desc1& lhs, const Adapter_desc1& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Adapter_desc1& lhs, const Adapter_desc1& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -261,7 +261,7 @@ public:
 };
 static_assert(sizeof(Adapter_desc2) == sizeof(DXGI_ADAPTER_DESC2));
 
-inline bool operator==(const Adapter_desc2& lhs, const Adapter_desc2& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Adapter_desc2& lhs, const Adapter_desc2& rhs) noexcept {
 	return (lhs.Description == rhs.Description)
 		&& (lhs.VendorId == rhs.VendorId)
 		&& (lhs.DeviceId == rhs.DeviceId)
@@ -277,7 +277,7 @@ inline bool operator==(const Adapter_desc2& lhs, const Adapter_desc2& rhs) noexc
 		&& (lhs.ComputePreemptionGranularity == rhs.ComputePreemptionGranularity);
 }
 
-inline bool operator!=(const Adapter_desc2& lhs, const Adapter_desc2& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Adapter_desc2& lhs, const Adapter_desc2& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -319,7 +319,7 @@ public:
 };
 static_assert(sizeof(Adapter_desc3) == sizeof(DXGI_ADAPTER_DESC3));
 
-inline bool operator==(const Adapter_desc3& lhs, const Adapter_desc3& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Adapter_desc3& lhs, const Adapter_desc3& rhs) noexcept {
 	return (lhs.Description == rhs.Description)
 		&& (lhs.VendorId == rhs.VendorId)
 		&& (lhs.DeviceId == rhs.DeviceId)
@@ -335,7 +335,7 @@ inline bool operator==(const Adapter_desc3& lhs, const Adapter_desc3& rhs) noexc
 		&& (lhs.ComputePreemptionGranularity == rhs.ComputePreemptionGranularity);
 }
 
-inline bool operator!=(const Adapter_desc3& lhs, const Adapter_desc3& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Adapter_desc3& lhs, const Adapter_desc3& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -349,11 +349,11 @@ public:
 };
 static_assert(sizeof(Decode_swap_chain_desc) == sizeof(DXGI_DECODE_SWAP_CHAIN_DESC));
 
-inline bool operator==(const Decode_swap_chain_desc& lhs, const Decode_swap_chain_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Decode_swap_chain_desc& lhs, const Decode_swap_chain_desc& rhs) noexcept {
 	return true;
 }
 
-inline bool operator!=(const Decode_swap_chain_desc& lhs, const Decode_swap_chain_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Decode_swap_chain_desc& lhs, const Decode_swap_chain_desc& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -389,11 +389,11 @@ public:
 };
 static_assert(sizeof(Frame_statistics) == sizeof(DXGI_FRAME_STATISTICS));
 
-inline bool operator==(const Frame_statistics& lhs, const Frame_statistics& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Frame_statistics& lhs, const Frame_statistics& rhs) noexcept {
 	return (::memcmp(&lhs, &rhs, sizeof(Frame_statistics)) == 0);
 }
 
-inline bool operator!=(const Frame_statistics& lhs, const Frame_statistics& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Frame_statistics& lhs, const Frame_statistics& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -421,11 +421,11 @@ public:
 };
 static_assert(sizeof(Frame_statistics_media) == sizeof(DXGI_FRAME_STATISTICS_MEDIA));
 
-inline bool operator==(const Frame_statistics_media& lhs, const Frame_statistics_media& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Frame_statistics_media& lhs, const Frame_statistics_media& rhs) noexcept {
 	return ::memcmp(&lhs, &rhs, sizeof(Frame_statistics_media)) == 0;
 }
 
-inline bool operator!=(const Frame_statistics_media& lhs, const Frame_statistics_media& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Frame_statistics_media& lhs, const Frame_statistics_media& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -454,13 +454,13 @@ public:
 };
 static_assert(sizeof(Gamma_control) == sizeof(DXGI_GAMMA_CONTROL));
 
-inline bool operator==(const Gamma_control& lhs, const Gamma_control& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Gamma_control& lhs, const Gamma_control& rhs) noexcept {
 	return (lhs.Scale == rhs.Scale)
 		&& (lhs.Offset == rhs.Offset)
 		&& (lhs.GammaCurve == rhs.GammaCurve);
 }
 
-inline bool operator!=(const Gamma_control& lhs, const Gamma_control& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Gamma_control& lhs, const Gamma_control& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -488,7 +488,7 @@ public:
 };
 static_assert(sizeof(Gamma_control_capabilities) == sizeof(DXGI_GAMMA_CONTROL_CAPABILITIES));
 
-inline bool operator==(const Gamma_control_capabilities& lhs, const Gamma_control_capabilities& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Gamma_control_capabilities& lhs, const Gamma_control_capabilities& rhs) noexcept {
 	return (lhs.ScaleAndOffsetSupported == rhs.ScaleAndOffsetSupported)
 		&& (lhs.MaxConvertedValue == rhs.MaxConvertedValue)
 		&& (lhs.MinConvertedValue == rhs.MinConvertedValue)
@@ -496,7 +496,7 @@ inline bool operator==(const Gamma_control_capabilities& lhs, const Gamma_contro
 		&& (::memcmp(lhs.ControlPointPositions.data(), rhs.ControlPointPositions.data(), sizeof(float) * lhs.NumGammaControlPoints) == 0);
 }
 
-inline bool operator!=(const Gamma_control_capabilities& lhs, const Gamma_control_capabilities& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Gamma_control_capabilities& lhs, const Gamma_control_capabilities& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -561,7 +561,7 @@ public:
 };
 static_assert(sizeof(Hdr_metadata_hdr10) == sizeof(DXGI_HDR_METADATA_HDR10));
 
-inline bool operator==(const Hdr_metadata_hdr10& lhs, const Hdr_metadata_hdr10& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Hdr_metadata_hdr10& lhs, const Hdr_metadata_hdr10& rhs) noexcept {
 	return (lhs.RedPrimary == rhs.RedPrimary)
 		&& (lhs.GreenPrimary == rhs.GreenPrimary)
 		&& (lhs.BluePrimary == rhs.BluePrimary)
@@ -572,7 +572,7 @@ inline bool operator==(const Hdr_metadata_hdr10& lhs, const Hdr_metadata_hdr10& 
 		&& (lhs.MaxFrameAverageLightLevel == rhs.MaxFrameAverageLightLevel);
 }
 
-inline bool operator!=(const Hdr_metadata_hdr10& lhs, const Hdr_metadata_hdr10& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Hdr_metadata_hdr10& lhs, const Hdr_metadata_hdr10& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -590,12 +590,12 @@ public:
 };
 static_assert(sizeof(Sample_desc) == sizeof(DXGI_SAMPLE_DESC));
 
-inline bool operator==(const Sample_desc& lhs, const Sample_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Sample_desc& lhs, const Sample_desc& rhs) noexcept {
 	return (lhs.Count == rhs.Count)
 		&& (lhs.Quality == rhs.Quality);
 }
 
-inline bool operator!=(const Sample_desc& lhs, const Sample_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Sample_desc& lhs, const Sample_desc& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -620,7 +620,7 @@ public:
 };
 static_assert(sizeof(Info_queue_message) == sizeof(DXGI_INFO_QUEUE_MESSAGE));
 
-inline bool operator==(const Info_queue_message& lhs, const Info_queue_message& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Info_queue_message& lhs, const Info_queue_message& rhs) noexcept {
 	return (lhs.Category == rhs.Category)
 		&& (lhs.Severity == rhs.Severity)
 		&& (lhs.ID == rhs.ID)
@@ -629,7 +629,7 @@ inline bool operator==(const Info_queue_message& lhs, const Info_queue_message& 
 		&& (::memcmp(lhs.pDescription, rhs.pDescription, lhs.DescriptionByteLength) == 0);
 }
 
-inline bool operator!=(const Info_queue_message& lhs, const Info_queue_message& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Info_queue_message& lhs, const Info_queue_message& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -698,7 +698,7 @@ public:
 };
 static_assert(sizeof(Info_queue_filter_desc) == sizeof(D3D11_INFO_QUEUE_FILTER_DESC));
 
-inline bool operator==(const Info_queue_filter_desc& lhs, const Info_queue_filter_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Info_queue_filter_desc& lhs, const Info_queue_filter_desc& rhs) noexcept {
 	return (lhs.NumCategories == rhs.NumCategories)
 		&& (lhs.NumIDs == rhs.NumIDs)
 		&& (lhs.NumSeverities == rhs.NumSeverities)
@@ -707,7 +707,7 @@ inline bool operator==(const Info_queue_filter_desc& lhs, const Info_queue_filte
 		&& (memcmp(lhs.pSeverityList, rhs.pSeverityList, sizeof(Info_queue_message_severity) * lhs.NumSeverities) == 0);
 }
 
-inline bool operator!=(const Info_queue_filter_desc& lhs, const Info_queue_filter_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Info_queue_filter_desc& lhs, const Info_queue_filter_desc& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -725,12 +725,12 @@ public:
 };
 static_assert(sizeof(Info_queue_filter) == sizeof(DXGI_INFO_QUEUE_FILTER));
 
-inline bool operator==(const Info_queue_filter& lhs, const Info_queue_filter& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Info_queue_filter& lhs, const Info_queue_filter& rhs) noexcept {
 	return (lhs.AllowList == rhs.AllowList)
 		&& (lhs.DenyList == rhs.DenyList);
 }
 
-inline bool operator!=(const Info_queue_filter& lhs, const Info_queue_filter& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Info_queue_filter& lhs, const Info_queue_filter& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -766,12 +766,12 @@ public:
 };
 static_assert(sizeof(Jpeg_ac_huffman_table) == sizeof(DXGI_JPEG_AC_HUFFMAN_TABLE));
 
-inline bool operator==(const Jpeg_ac_huffman_table& lhs, const Jpeg_ac_huffman_table& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Jpeg_ac_huffman_table& lhs, const Jpeg_ac_huffman_table& rhs) noexcept {
 	return (lhs.CodeCounts == rhs.CodeCounts)
 		&& (lhs.CodeValues == rhs.CodeValues);
 }
 
-inline bool operator!=(const Jpeg_ac_huffman_table& lhs, const Jpeg_ac_huffman_table& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Jpeg_ac_huffman_table& lhs, const Jpeg_ac_huffman_table& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -807,12 +807,12 @@ public:
 };
 static_assert(sizeof(Jpeg_dc_huffman_table) == sizeof(DXGI_JPEG_DC_HUFFMAN_TABLE));
 
-inline bool operator==(const Jpeg_dc_huffman_table& lhs, const Jpeg_dc_huffman_table& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Jpeg_dc_huffman_table& lhs, const Jpeg_dc_huffman_table& rhs) noexcept {
 	return (lhs.CodeCounts == rhs.CodeCounts)
 		&& (lhs.CodeValues == rhs.CodeValues);
 }
 
-inline bool operator!=(const Jpeg_dc_huffman_table& lhs, const Jpeg_dc_huffman_table& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Jpeg_dc_huffman_table& lhs, const Jpeg_dc_huffman_table& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -837,11 +837,11 @@ public:
 };
 static_assert(sizeof(Jepg_quantization_table) == sizeof(DXGI_JPEG_QUANTIZATION_TABLE));
 
-inline bool operator==(const Jepg_quantization_table& lhs, const Jepg_quantization_table& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Jepg_quantization_table& lhs, const Jepg_quantization_table& rhs) noexcept {
 	return (lhs.Elements == rhs.Elements);
 }
 
-inline bool operator!=(const Jepg_quantization_table& lhs, const Jepg_quantization_table& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Jepg_quantization_table& lhs, const Jepg_quantization_table& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -859,12 +859,12 @@ public:
 };
 static_assert(sizeof(Mapped_rect) == sizeof(DXGI_MAPPED_RECT));
 
-inline bool operator==(const Mapped_rect& lhs, const Mapped_rect& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Mapped_rect& lhs, const Mapped_rect& rhs) noexcept {
 	return (lhs.Pitch == rhs.Pitch)
 		&& (lhs.pBits == rhs.pBits);
 }
 
-inline bool operator!=(const Mapped_rect& lhs, const Mapped_rect& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Mapped_rect& lhs, const Mapped_rect& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -890,7 +890,7 @@ public:
 };
 static_assert(sizeof(Mode_desc) == sizeof(DXGI_MODE_DESC));
 
-inline bool operator==(const Mode_desc& lhs, const Mode_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Mode_desc& lhs, const Mode_desc& rhs) noexcept {
 	return (lhs.Width == rhs.Width)
 		&& (lhs.Height == rhs.Height)
 		&& (lhs.RefreshRate == rhs.RefreshRate)
@@ -899,7 +899,7 @@ inline bool operator==(const Mode_desc& lhs, const Mode_desc& rhs) noexcept {
 		&& (lhs.Scaling == rhs.Scaling);
 }
 
-inline bool operator!=(const Mode_desc& lhs, const Mode_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Mode_desc& lhs, const Mode_desc& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -927,7 +927,7 @@ public:
 };
 static_assert(sizeof(Mode_desc1) == sizeof(DXGI_MODE_DESC1));
 
-inline bool operator==(const Mode_desc1& lhs, const Mode_desc1& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Mode_desc1& lhs, const Mode_desc1& rhs) noexcept {
 	return (lhs.Width == rhs.Width)
 		&& (lhs.Height == rhs.Height)
 		&& (lhs.RefreshRate == rhs.RefreshRate)
@@ -937,7 +937,7 @@ inline bool operator==(const Mode_desc1& lhs, const Mode_desc1& rhs) noexcept {
 		&& (lhs.Stereo == rhs.Stereo);
 }
 
-inline bool operator!=(const Mode_desc1& lhs, const Mode_desc1& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Mode_desc1& lhs, const Mode_desc1& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -965,7 +965,7 @@ public:
 };
 static_assert(sizeof(Output_desc) == sizeof(DXGI_OUTPUT_DESC));
 
-inline bool operator==(const Output_desc& lhs, const Output_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Output_desc& lhs, const Output_desc& rhs) noexcept {
 	return (lhs.DeviceName == rhs.DeviceName)
 		&& (lhs.DesktopCoordinates == rhs.DesktopCoordinates)
 		&& (lhs.AttachedToDesktop == rhs.AttachedToDesktop)
@@ -973,7 +973,7 @@ inline bool operator==(const Output_desc& lhs, const Output_desc& rhs) noexcept 
 		&& (lhs.Monitor == rhs.Monitor);
 }
 
-inline bool operator!=(const Output_desc& lhs, const Output_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Output_desc& lhs, const Output_desc& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -1038,7 +1038,7 @@ public:
 };
 static_assert(sizeof(Output_desc1) == sizeof(DXGI_OUTPUT_DESC1));
 
-inline bool operator==(const Output_desc1& lhs, const Output_desc1& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Output_desc1& lhs, const Output_desc1& rhs) noexcept {
 	return (lhs.DeviceName == rhs.DeviceName)
 		&& (lhs.DesktopCoordinates == rhs.DesktopCoordinates)
 		&& (lhs.AttachedToDesktop == rhs.AttachedToDesktop)
@@ -1055,7 +1055,7 @@ inline bool operator==(const Output_desc1& lhs, const Output_desc1& rhs) noexcep
 		&& (lhs.MaxFullFrameLuminance == rhs.MaxFullFrameLuminance);
 }
 
-inline bool operator!=(const Output_desc1& lhs, const Output_desc1& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Output_desc1& lhs, const Output_desc1& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -1075,13 +1075,13 @@ public:
 };
 static_assert(sizeof(Outdupl_desc) == sizeof(DXGI_OUTDUPL_DESC));
 
-inline bool operator==(const Outdupl_desc& lhs, const Outdupl_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Outdupl_desc& lhs, const Outdupl_desc& rhs) noexcept {
 	return (lhs.ModeDesc == rhs.ModeDesc)
 		&& (lhs.Rotation == rhs.Rotation)
 		&& (lhs.DesktopImageInSystemMemory == rhs.DesktopImageInSystemMemory);
 }
 
-inline bool operator!=(const Outdupl_desc& lhs, const Outdupl_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Outdupl_desc& lhs, const Outdupl_desc& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -1099,13 +1099,13 @@ public:
 };
 static_assert(sizeof(Outdupl_pointer_position) == sizeof(DXGI_OUTDUPL_POINTER_POSITION));
 
-inline bool operator==(const Outdupl_pointer_position& lhs, const Outdupl_pointer_position& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Outdupl_pointer_position& lhs, const Outdupl_pointer_position& rhs) noexcept {
 	return (lhs.Position.x == rhs.Position.x)
 		&& (lhs.Position.y == rhs.Position.y)
 		&& (lhs.Visible == rhs.Visible);
 }
 
-inline bool operator!=(const Outdupl_pointer_position& lhs, const Outdupl_pointer_position& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Outdupl_pointer_position& lhs, const Outdupl_pointer_position& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -1135,7 +1135,7 @@ public:
 };
 static_assert(sizeof(Outdupl_frame_info) == sizeof(DXGI_OUTDUPL_FRAME_INFO));
 
-inline bool operator==(const Outdupl_frame_info& lhs, const Outdupl_frame_info& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Outdupl_frame_info& lhs, const Outdupl_frame_info& rhs) noexcept {
 	return (::memcmp(&lhs.LastPresentTime, &rhs.LastPresentTime, sizeof(LARGE_INTEGER)) == 0) //compare a tempary variable, not a problem
 		&& (::memcmp(&lhs.LastMouseUpdateTime, &rhs.LastMouseUpdateTime, sizeof(LARGE_INTEGER)) == 0)
 		&& (lhs.AccumulatedFrames == rhs.AccumulatedFrames)
@@ -1146,7 +1146,7 @@ inline bool operator==(const Outdupl_frame_info& lhs, const Outdupl_frame_info& 
 		&& (lhs.PointerShapeBufferSize == rhs.PointerShapeBufferSize);
 }
 
-inline bool operator!=(const Outdupl_frame_info& lhs, const Outdupl_frame_info& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Outdupl_frame_info& lhs, const Outdupl_frame_info& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -1164,13 +1164,13 @@ public:
 };
 static_assert(sizeof(Outdupl_move_rect) == sizeof(DXGI_OUTDUPL_MOVE_RECT));
 
-inline bool operator==(const Outdupl_move_rect& lhs, const Outdupl_move_rect& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Outdupl_move_rect& lhs, const Outdupl_move_rect& rhs) noexcept {
 	return (lhs.SourcePoint.x == rhs.SourcePoint.x)
 		&& (lhs.SourcePoint.y == rhs.SourcePoint.y)
 		&& (rhs.DestinationRect == rhs.DestinationRect);
 }
 
-inline bool operator!=(const Outdupl_move_rect& lhs, const Outdupl_move_rect& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Outdupl_move_rect& lhs, const Outdupl_move_rect& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -1198,7 +1198,7 @@ public:
 };
 static_assert(sizeof(Outdupl_pointer_shape_info) == sizeof(DXGI_OUTDUPL_POINTER_SHAPE_INFO));
 
-inline bool operator==(const Outdupl_pointer_shape_info& lhs, const Outdupl_pointer_shape_info& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Outdupl_pointer_shape_info& lhs, const Outdupl_pointer_shape_info& rhs) noexcept {
 	return (lhs.Type == rhs.Type)
 		&& (lhs.Width == rhs.Width)
 		&& (lhs.Height == rhs.Height)
@@ -1207,7 +1207,7 @@ inline bool operator==(const Outdupl_pointer_shape_info& lhs, const Outdupl_poin
 		&& (lhs.HotSpot.y == rhs.HotSpot.y);
 }
 
-inline bool operator!=(const Outdupl_pointer_shape_info& lhs, const Outdupl_pointer_shape_info& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Outdupl_pointer_shape_info& lhs, const Outdupl_pointer_shape_info& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -1243,14 +1243,14 @@ public:
 };
 static_assert(sizeof(Present_parameters) == sizeof(DXGI_PRESENT_PARAMETERS));
 
-inline bool operator==(const Present_parameters& lhs, const Present_parameters& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Present_parameters& lhs, const Present_parameters& rhs) noexcept {
 	return (lhs.DirtyRectsCount == rhs.DirtyRectsCount)
 		&& (::memcmp(lhs.pDirtyRects, rhs.pDirtyRects, sizeof(RECT) * lhs.DirtyRectsCount) == 0)
 		&& (::memcmp(lhs.pScrollOffset, rhs.pScrollRect, sizeof(RECT)) == 0)
 		&& (::memcmp(lhs.pScrollOffset, rhs.pScrollOffset, sizeof(POINT)) == 0);
 }
 
-inline bool operator!=(const Present_parameters& lhs, const Present_parameters& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Present_parameters& lhs, const Present_parameters& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -1272,14 +1272,14 @@ public:
 };
 static_assert(sizeof(Query_video_memory_info) == sizeof(DXGI_QUERY_VIDEO_MEMORY_INFO));
 
-inline bool operator==(const Query_video_memory_info& lhs, const Query_video_memory_info& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Query_video_memory_info& lhs, const Query_video_memory_info& rhs) noexcept {
 	return (lhs.Budget == rhs.Budget)
 		&& (lhs.CurrentReservation == rhs.CurrentReservation)
 		&& (lhs.CurrentUsage == rhs.CurrentUsage)
 		&& (lhs.AvailableForReservation == rhs.AvailableForReservation);
 }
 
-inline bool operator!=(const Query_video_memory_info& lhs, const Query_video_memory_info& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Query_video_memory_info& lhs, const Query_video_memory_info& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -1295,11 +1295,11 @@ public:
 };
 static_assert(sizeof(Shared_resource) == sizeof(DXGI_SHARED_RESOURCE));
 
-inline bool operator==(const Shared_resource& lhs, const Shared_resource& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Shared_resource& lhs, const Shared_resource& rhs) noexcept {
 	return (lhs.Handle == rhs.Handle);
 }
 
-inline bool operator!=(const Shared_resource& lhs, const Shared_resource& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Shared_resource& lhs, const Shared_resource& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -1321,14 +1321,14 @@ public:
 };
 static_assert(sizeof(Surface_desc) == sizeof(DXGI_SURFACE_DESC));
 
-inline bool operator==(const Surface_desc& lhs, const Surface_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Surface_desc& lhs, const Surface_desc& rhs) noexcept {
 	return (lhs.Width == rhs.Width)
 		&& (lhs.Height == rhs.Height)
 		&& (lhs.Format == rhs.Format)
 		&& (lhs.SampleDesc == rhs.SampleDesc);
 }
 
-inline bool operator!=(const Surface_desc& lhs, const Surface_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Surface_desc& lhs, const Surface_desc& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -1367,7 +1367,7 @@ public:
 };
 static_assert(sizeof(Swap_chain_desc) == sizeof(DXGI_SWAP_CHAIN_DESC));
 
-inline bool operator==(const Swap_chain_desc& lhs, const Swap_chain_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Swap_chain_desc& lhs, const Swap_chain_desc& rhs) noexcept {
 	return (lhs.BufferDesc == rhs.BufferDesc)
 		&& (lhs.SampleDesc == rhs.SampleDesc)
 		&& (lhs.BufferUsage == rhs.BufferUsage)
@@ -1378,7 +1378,7 @@ inline bool operator==(const Swap_chain_desc& lhs, const Swap_chain_desc& rhs) n
 		&& (lhs.Flags == rhs.Flags);
 }
 
-inline bool operator!=(const Swap_chain_desc& lhs, const Swap_chain_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Swap_chain_desc& lhs, const Swap_chain_desc& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -1423,7 +1423,7 @@ public:
 };
 static_assert(sizeof(Swap_chain_desc1) == sizeof(DXGI_SWAP_CHAIN_DESC1));
 
-inline bool operator==(const Swap_chain_desc1& lhs, const Swap_chain_desc1& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Swap_chain_desc1& lhs, const Swap_chain_desc1& rhs) noexcept {
 	return (lhs.Width == rhs.Width)
 		&& (lhs.Height == rhs.Height)
 		&& (lhs.Format == rhs.Format)
@@ -1437,7 +1437,7 @@ inline bool operator==(const Swap_chain_desc1& lhs, const Swap_chain_desc1& rhs)
 		&& (lhs.Flags == rhs.Flags);
 }
 
-inline bool operator!=(const Swap_chain_desc1& lhs, const Swap_chain_desc1& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Swap_chain_desc1& lhs, const Swap_chain_desc1& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -1459,14 +1459,14 @@ public:
 };
 static_assert(sizeof(Swap_chain_fullscreen_desc) == sizeof(DXGI_SWAP_CHAIN_FULLSCREEN_DESC));
 
-inline bool operator==(const Swap_chain_fullscreen_desc& lhs, const Swap_chain_fullscreen_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Swap_chain_fullscreen_desc& lhs, const Swap_chain_fullscreen_desc& rhs) noexcept {
 	return (lhs.RefreshRate == rhs.RefreshRate)
 		&& (lhs.ScanlineOrdering == rhs.ScanlineOrdering)
 		&& (lhs.Scaling == rhs.Scaling)
 		&& (lhs.Windowed == rhs.Windowed);
 }
 
-inline bool operator!=(const Swap_chain_fullscreen_desc& lhs, const Swap_chain_fullscreen_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Swap_chain_fullscreen_desc& lhs, const Swap_chain_fullscreen_desc& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -1496,7 +1496,7 @@ public:
 };
 static_assert(sizeof(Box) == sizeof(D3D11_BOX));
 
-inline bool operator==(const Box& lhs, const Box& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Box& lhs, const Box& rhs) noexcept {
 	return (lhs.left == rhs.left)
 		&& (lhs.top == rhs.top)
 		&& (lhs.front == rhs.front)
@@ -1505,7 +1505,7 @@ inline bool operator==(const Box& lhs, const Box& rhs) noexcept {
 		&& (lhs.back == rhs.back);
 }
 
-inline bool operator!=(const Box& lhs, const Box& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Box& lhs, const Box& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -1525,13 +1525,13 @@ public:
 };
 static_assert(sizeof(Counter_info) == sizeof(D3D11_COUNTER_INFO));
 
-inline bool operator==(const Counter_info& lhs, const Counter_info& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Counter_info& lhs, const Counter_info& rhs) noexcept {
 	return (lhs.LastDeviceDependentCounter == rhs.LastDeviceDependentCounter)
 		&& (lhs.NumSimultaneousCounters == rhs.NumSimultaneousCounters)
 		&& (lhs.NumDetectableParallelUnits == rhs.NumDetectableParallelUnits);
 }
 
-inline bool operator!=(const Counter_info& lhs, const Counter_info& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Counter_info& lhs, const Counter_info& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -1553,14 +1553,14 @@ public:
 };
 static_assert(sizeof(Draw_instanced_indirect_args) == sizeof(D3D11_DRAW_INSTANCED_INDIRECT_ARGS));
 
-inline bool operator==(const Draw_instanced_indirect_args& lhs, const Draw_instanced_indirect_args& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Draw_instanced_indirect_args& lhs, const Draw_instanced_indirect_args& rhs) noexcept {
 	return (lhs.VertexCountPerInstance == rhs.VertexCountPerInstance)
 		&& (lhs.InstanceCount == rhs.InstanceCount)
 		&& (lhs.StartVertexLocation == rhs.StartVertexLocation)
 		&& (lhs.StartInstanceLocation == rhs.StartInstanceLocation);
 }
 
-inline bool operator!=(const Draw_instanced_indirect_args& lhs, const Draw_instanced_indirect_args& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Draw_instanced_indirect_args& lhs, const Draw_instanced_indirect_args& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -1584,7 +1584,7 @@ public:
 };
 static_assert(sizeof(Draw_indexed_instanced_indirect_args) == sizeof(D3D11_DRAW_INDEXED_INSTANCED_INDIRECT_ARGS));
 
-inline bool operator==(const Draw_indexed_instanced_indirect_args& lhs, const Draw_indexed_instanced_indirect_args& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Draw_indexed_instanced_indirect_args& lhs, const Draw_indexed_instanced_indirect_args& rhs) noexcept {
 	return (lhs.IndexCountPerInstance == rhs.IndexCountPerInstance)
 		&& (lhs.InstanceCount == rhs.InstanceCount)
 		&& (lhs.StartIndexLocation == rhs.StartIndexLocation)
@@ -1592,7 +1592,7 @@ inline bool operator==(const Draw_indexed_instanced_indirect_args& lhs, const Dr
 		&& (lhs.StartInstanceLocation == rhs.StartInstanceLocation);
 }
 
-inline bool operator!=(const Draw_indexed_instanced_indirect_args& lhs, const Draw_indexed_instanced_indirect_args& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Draw_indexed_instanced_indirect_args& lhs, const Draw_indexed_instanced_indirect_args& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -1608,11 +1608,11 @@ public:
 };
 static_assert(sizeof(Feature_data_architecture_info) == sizeof(D3D11_FEATURE_DATA_ARCHITECTURE_INFO));
 
-inline bool operator==(const Feature_data_architecture_info& lhs, const Feature_data_architecture_info& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Feature_data_architecture_info& lhs, const Feature_data_architecture_info& rhs) noexcept {
 	return lhs.TileBasedDeferredRenderer == rhs.TileBasedDeferredRenderer;
 }
 
-inline bool operator!=(const Feature_data_architecture_info& lhs, const Feature_data_architecture_info& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Feature_data_architecture_info& lhs, const Feature_data_architecture_info& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -1628,11 +1628,11 @@ public:
 };
 static_assert(sizeof(Feature_data_d3d9_options) == sizeof(D3D11_FEATURE_DATA_D3D9_OPTIONS));
 
-inline bool operator==(const Feature_data_d3d9_options& lhs, const Feature_data_d3d9_options& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Feature_data_d3d9_options& lhs, const Feature_data_d3d9_options& rhs) noexcept {
 	return lhs.FullNonPow2TextureSupport == rhs.FullNonPow2TextureSupport;
 }
 
-inline bool operator!=(const Feature_data_d3d9_options& lhs, const Feature_data_d3d9_options& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Feature_data_d3d9_options& lhs, const Feature_data_d3d9_options& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -1654,14 +1654,14 @@ public:
 };
 static_assert(sizeof(Feature_data_d3d9_options1) == sizeof(D3D11_FEATURE_DATA_D3D9_OPTIONS1));
 
-inline bool operator==(const Feature_data_d3d9_options1& lhs, const Feature_data_d3d9_options1& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Feature_data_d3d9_options1& lhs, const Feature_data_d3d9_options1& rhs) noexcept {
 	return (lhs.FullNonPow2TextureSupported == rhs.FullNonPow2TextureSupported)
 		&& (lhs.DepthAsTextureWithLessEqualComparisonFilterSupported == rhs.DepthAsTextureWithLessEqualComparisonFilterSupported)
 		&& (lhs.SimpleInstancingSupported == rhs.SimpleInstancingSupported)
 		&& (lhs.TextureCubeFaceRenderTargetWithNonCubeDepthStencilSupported == rhs.TextureCubeFaceRenderTargetWithNonCubeDepthStencilSupported);
 }
 
-inline bool operator!=(const Feature_data_d3d9_options1& lhs, const Feature_data_d3d9_options1& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Feature_data_d3d9_options1& lhs, const Feature_data_d3d9_options1& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -1677,11 +1677,11 @@ public:
 };
 static_assert(sizeof(Feature_data_d3d9_shadow_support) == sizeof(D3D11_FEATURE_DATA_D3D9_SHADOW_SUPPORT));
 
-inline bool operator==(const Feature_data_d3d9_shadow_support& lhs, const Feature_data_d3d9_shadow_support& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Feature_data_d3d9_shadow_support& lhs, const Feature_data_d3d9_shadow_support& rhs) noexcept {
 	return (lhs.SupportsDepthAsTextureWithLessEqualComparisonFilter == rhs.SupportsDepthAsTextureWithLessEqualComparisonFilter);
 }
 
-inline bool operator!=(const Feature_data_d3d9_shadow_support& lhs, const Feature_data_d3d9_shadow_support& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Feature_data_d3d9_shadow_support& lhs, const Feature_data_d3d9_shadow_support& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -1697,11 +1697,11 @@ public:
 };
 static_assert(sizeof(Feature_data_d3d9_simple_instancing_support) == sizeof(D3D11_FEATURE_DATA_D3D9_SIMPLE_INSTANCING_SUPPORT));
 
-inline bool operator==(const Feature_data_d3d9_simple_instancing_support& lhs, const Feature_data_d3d9_simple_instancing_support& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Feature_data_d3d9_simple_instancing_support& lhs, const Feature_data_d3d9_simple_instancing_support& rhs) noexcept {
 	return lhs.SimpleInstancingSupported == rhs.SimpleInstancingSupported;
 }
 
-inline bool operator!=(const Feature_data_d3d9_simple_instancing_support& lhs, const Feature_data_d3d9_simple_instancing_support& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Feature_data_d3d9_simple_instancing_support& lhs, const Feature_data_d3d9_simple_instancing_support& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -1717,11 +1717,11 @@ public:
 };
 static_assert(sizeof(Feature_data_d3d10x_hardaware_options) == sizeof(D3D11_FEATURE_DATA_D3D10_X_HARDWARE_OPTIONS));
 
-inline bool operator==(const Feature_data_d3d10x_hardaware_options& lhs, const Feature_data_d3d10x_hardaware_options& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Feature_data_d3d10x_hardaware_options& lhs, const Feature_data_d3d10x_hardaware_options& rhs) noexcept {
 	return lhs.ComputeShaders_Plus_RawAndStructuredBuffers_Via_Shader_4_x == rhs.ComputeShaders_Plus_RawAndStructuredBuffers_Via_Shader_4_x;
 }
 
-inline bool operator!=(const Feature_data_d3d10x_hardaware_options& lhs, const Feature_data_d3d10x_hardaware_options& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Feature_data_d3d10x_hardaware_options& lhs, const Feature_data_d3d10x_hardaware_options& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -1763,7 +1763,7 @@ public:
 };
 static_assert(sizeof(Feature_data_d3d11_options) == sizeof(D3D11_FEATURE_DATA_D3D11_OPTIONS));
 
-inline bool operator==(const Feature_data_d3d11_options& lhs, const Feature_data_d3d11_options& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Feature_data_d3d11_options& lhs, const Feature_data_d3d11_options& rhs) noexcept {
 	return (lhs.ClearView == rhs.ClearView)
 		&& (lhs.ConstantBufferOffsetting == rhs.ConstantBufferOffsetting)
 		&& (lhs.ConstantBufferPartialUpdate == rhs.ConstantBufferPartialUpdate)
@@ -1780,7 +1780,7 @@ inline bool operator==(const Feature_data_d3d11_options& lhs, const Feature_data
 		&& (lhs.UAVOnlyRenderingForcedSampleCount == rhs.UAVOnlyRenderingForcedSampleCount);
 }
 
-inline bool operator!=(const Feature_data_d3d11_options& lhs, const Feature_data_d3d11_options& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Feature_data_d3d11_options& lhs, const Feature_data_d3d11_options& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -1802,14 +1802,14 @@ public:
 };
 static_assert(sizeof(Feature_data_d3d11_options1) == sizeof(D3D11_FEATURE_DATA_D3D11_OPTIONS1));
 
-inline bool operator==(const Feature_data_d3d11_options1& lhs, const Feature_data_d3d11_options1& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Feature_data_d3d11_options1& lhs, const Feature_data_d3d11_options1& rhs) noexcept {
 	return (lhs.ClearViewAlsoSupportsDepthOnlyFormats == rhs.ClearViewAlsoSupportsDepthOnlyFormats)
 		&& (lhs.MapOnDefaultBuffers == rhs.MapOnDefaultBuffers)
 		&& (lhs.MinMaxFiltering == rhs.MinMaxFiltering)
 		&& (lhs.TiledResourcesTier == rhs.TiledResourcesTier);
 }
 
-inline bool operator!=(const Feature_data_d3d11_options1& lhs, const Feature_data_d3d11_options1& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Feature_data_d3d11_options1& lhs, const Feature_data_d3d11_options1& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -1839,7 +1839,7 @@ public:
 };
 static_assert(sizeof(Feature_data_d3d11_options2) == sizeof(D3D11_FEATURE_DATA_D3D11_OPTIONS2));
 
-inline bool operator==(const Feature_data_d3d11_options2& lhs, const Feature_data_d3d11_options2& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Feature_data_d3d11_options2& lhs, const Feature_data_d3d11_options2& rhs) noexcept {
 	return (lhs.ConservativeRasterizationTier == rhs.ConservativeRasterizationTier)
 		&& (lhs.MapOnDefaultTextures == rhs.MapOnDefaultTextures)
 		&& (lhs.PSSpecifiedStencilRefSupported == rhs.PSSpecifiedStencilRefSupported)
@@ -1850,7 +1850,7 @@ inline bool operator==(const Feature_data_d3d11_options2& lhs, const Feature_dat
 		&& (lhs.UnifiedMemoryArchitecture == rhs.UnifiedMemoryArchitecture);
 }
 
-inline bool operator!=(const Feature_data_d3d11_options2& lhs, const Feature_data_d3d11_options2& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Feature_data_d3d11_options2& lhs, const Feature_data_d3d11_options2& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -1866,11 +1866,11 @@ public:
 };
 static_assert(sizeof(Feature_data_d3d11_options3) == sizeof(D3D11_FEATURE_DATA_D3D11_OPTIONS3));
 
-inline bool operator==(const Feature_data_d3d11_options3& lhs, const Feature_data_d3d11_options3& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Feature_data_d3d11_options3& lhs, const Feature_data_d3d11_options3& rhs) noexcept {
 	return lhs.VPAndRTArrayIndexFromAnyShaderFeedingRasterizer == rhs.VPAndRTArrayIndexFromAnyShaderFeedingRasterizer;
 }
 
-inline bool operator!=(const Feature_data_d3d11_options3& lhs, const Feature_data_d3d11_options3& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Feature_data_d3d11_options3& lhs, const Feature_data_d3d11_options3& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -1886,11 +1886,11 @@ public:
 };
 static_assert(sizeof(Feature_data_d3d11_options4) == sizeof(D3D11_FEATURE_DATA_D3D11_OPTIONS4));
 
-inline bool operator==(const Feature_data_d3d11_options4& lhs, const Feature_data_d3d11_options4& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Feature_data_d3d11_options4& lhs, const Feature_data_d3d11_options4& rhs) noexcept {
 	return lhs.ExtendedNV12SharedTextureSupported == rhs.ExtendedNV12SharedTextureSupported;
 }
 
-inline bool operator!=(const Feature_data_d3d11_options4& lhs, const Feature_data_d3d11_options4& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Feature_data_d3d11_options4& lhs, const Feature_data_d3d11_options4& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -1906,11 +1906,11 @@ public:
 };
 static_assert(sizeof(Feature_data_doubles) == sizeof(D3D11_FEATURE_DATA_DOUBLES));
 
-inline bool operator==(const Feature_data_doubles& lhs, const Feature_data_doubles& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Feature_data_doubles& lhs, const Feature_data_doubles& rhs) noexcept {
 	return lhs.DoublePrecisionFloatShaderOps == rhs.DoublePrecisionFloatShaderOps;
 }
 
-inline bool operator!=(const Feature_data_doubles& lhs, const Feature_data_doubles& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Feature_data_doubles& lhs, const Feature_data_doubles& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -1932,12 +1932,12 @@ public:
 };
 static_assert(sizeof(Feature_data_format_support) == sizeof(D3D11_FEATURE_DATA_FORMAT_SUPPORT));
 
-inline bool operator==(const Feature_data_format_support& lhs, const Feature_data_format_support& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Feature_data_format_support& lhs, const Feature_data_format_support& rhs) noexcept {
 	return (lhs.InFormat == rhs.InFormat)
 		&& (lhs.OutFormatSupport == rhs.OutFormatSupport);
 }
 
-inline bool operator!=(const Feature_data_format_support& lhs, const Feature_data_format_support& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Feature_data_format_support& lhs, const Feature_data_format_support& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -1959,12 +1959,12 @@ public:
 };
 static_assert(sizeof(Feature_data_format_support2) == sizeof(D3D11_FEATURE_DATA_FORMAT_SUPPORT2));
 
-inline bool operator==(const Feature_data_format_support2& lhs, const Feature_data_format_support2& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Feature_data_format_support2& lhs, const Feature_data_format_support2& rhs) noexcept {
 	return (lhs.InFormat == rhs.InFormat)
 		&& (lhs.OutFormatSupport2 == rhs.OutFormatSupport2);
 }
 
-inline bool operator!=(const Feature_data_format_support2& lhs, const Feature_data_format_support2& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Feature_data_format_support2& lhs, const Feature_data_format_support2& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -1982,12 +1982,12 @@ public:
 };
 static_assert(sizeof(Feature_data_gpu_virtual_address_support) == sizeof(D3D11_FEATURE_DATA_GPU_VIRTUAL_ADDRESS_SUPPORT));
 
-inline bool operator==(const Feature_data_gpu_virtual_address_support& lhs, const Feature_data_gpu_virtual_address_support& rhs) {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Feature_data_gpu_virtual_address_support& lhs, const Feature_data_gpu_virtual_address_support& rhs) {
 	return (lhs.MaxGPUVirtualAddressBitsPerProcess == rhs.MaxGPUVirtualAddressBitsPerProcess)
 		&& (lhs.MaxGPUVirtualAddressBitsPerResource == rhs.MaxGPUVirtualAddressBitsPerResource);
 }
 
-inline bool operator!=(const Feature_data_gpu_virtual_address_support& lhs, const Feature_data_gpu_virtual_address_support& rhs) {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Feature_data_gpu_virtual_address_support& lhs, const Feature_data_gpu_virtual_address_support& rhs) {
 	return !operator==(lhs, rhs);
 }
 
@@ -2003,11 +2003,11 @@ public:
 };
 static_assert(sizeof(Feature_data_marker_support) == sizeof(D3D11_FEATURE_DATA_MARKER_SUPPORT));
 
-inline bool operator==(const Feature_data_marker_support& lhs, const Feature_data_marker_support& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Feature_data_marker_support& lhs, const Feature_data_marker_support& rhs) noexcept {
 	return lhs.Profile == rhs.Profile;
 }
 
-inline bool operator!=(const Feature_data_marker_support& lhs, const Feature_data_marker_support& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Feature_data_marker_support& lhs, const Feature_data_marker_support& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -2027,11 +2027,11 @@ public:
 };
 static_assert(sizeof(Feature_data_shader_cache) == sizeof(D3D11_FEATURE_DATA_SHADER_CACHE));
 
-inline bool operator==(const Feature_data_shader_cache& lhs, const Feature_data_shader_cache& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Feature_data_shader_cache& lhs, const Feature_data_shader_cache& rhs) noexcept {
 	return lhs.SupportFlags == rhs.SupportFlags;
 }
 
-inline bool operator!=(const Feature_data_shader_cache& lhs, const Feature_data_shader_cache& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Feature_data_shader_cache& lhs, const Feature_data_shader_cache& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -2058,12 +2058,12 @@ public:
 };
 static_assert(sizeof(Feature_data_shader_min_precision_support) == sizeof(D3D11_FEATURE_DATA_SHADER_MIN_PRECISION_SUPPORT));
 
-inline bool operator==(const Feature_data_shader_min_precision_support& lhs, const Feature_data_shader_min_precision_support& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Feature_data_shader_min_precision_support& lhs, const Feature_data_shader_min_precision_support& rhs) noexcept {
 	return (lhs.AllOtherShaderStagesMinPrecision == rhs.AllOtherShaderStagesMinPrecision)
 		&& (lhs.PixelShaderMinPrecision == rhs.PixelShaderMinPrecision);
 }
 
-inline bool operator!=(const Feature_data_shader_min_precision_support& lhs, const Feature_data_shader_min_precision_support& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Feature_data_shader_min_precision_support& lhs, const Feature_data_shader_min_precision_support& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -2081,12 +2081,12 @@ public:
 };
 static_assert(sizeof(Feature_data_threading) == sizeof(D3D11_FEATURE_DATA_THREADING));
 
-inline bool operator==(const Feature_data_threading& lhs, const Feature_data_threading& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Feature_data_threading& lhs, const Feature_data_threading& rhs) noexcept {
 	return (lhs.DriverConcurrentCreates == rhs.DriverConcurrentCreates)
 		&& (lhs.DriverCommandLists == rhs.DriverCommandLists);
 }
 
-inline bool operator!=(const Feature_data_threading& lhs, const Feature_data_threading& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Feature_data_threading& lhs, const Feature_data_threading& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -2122,7 +2122,7 @@ public:
 };
 static_assert(sizeof(Query_data_pipeline_statistics) == sizeof(D3D11_QUERY_DATA_PIPELINE_STATISTICS));
 
-inline bool operator==(const Query_data_pipeline_statistics& lhs, const Query_data_pipeline_statistics& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Query_data_pipeline_statistics& lhs, const Query_data_pipeline_statistics& rhs) noexcept {
 	return (lhs.IAVertices == rhs.IAVertices)
 		&& (lhs.IAPrimitives == rhs.IAPrimitives)
 		&& (lhs.VSInvocations == rhs.VSInvocations)
@@ -2136,7 +2136,7 @@ inline bool operator==(const Query_data_pipeline_statistics& lhs, const Query_da
 		&& (lhs.CSInvocations == rhs.CSInvocations);
 }
 
-inline bool operator!=(const Query_data_pipeline_statistics& lhs, const Query_data_pipeline_statistics& rhs) {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Query_data_pipeline_statistics& lhs, const Query_data_pipeline_statistics& rhs) {
 	return !operator==(lhs, rhs);
 }
 
@@ -2154,12 +2154,12 @@ public:
 };
 static_assert(sizeof(Query_data_so_statistics) == sizeof(D3D11_QUERY_DATA_SO_STATISTICS));
 
-inline bool operator==(const Query_data_so_statistics& lhs, const Query_data_so_statistics& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Query_data_so_statistics& lhs, const Query_data_so_statistics& rhs) noexcept {
 	return (lhs.NumPrimitivesWritten == rhs.NumPrimitivesWritten)
 		&& (lhs.PrimitivesStorageNeeded == rhs.PrimitivesStorageNeeded);
 }
 
-inline bool operator!=(const Query_data_so_statistics& lhs, const Query_data_so_statistics& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Query_data_so_statistics& lhs, const Query_data_so_statistics& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -2177,12 +2177,12 @@ public:
 };
 static_assert(sizeof(Query_data_timestamp_disjoint) == sizeof(D3D11_QUERY_DATA_TIMESTAMP_DISJOINT));
 
-inline bool operator==(const Query_data_timestamp_disjoint& lhs, const Query_data_timestamp_disjoint& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Query_data_timestamp_disjoint& lhs, const Query_data_timestamp_disjoint& rhs) noexcept {
 	return (lhs.Frequency == rhs.Frequency)
 		&& (lhs.Disjoint == rhs.Disjoint);
 }
 
-inline bool operator!=(const Query_data_timestamp_disjoint& lhs, const Query_data_timestamp_disjoint& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Query_data_timestamp_disjoint& lhs, const Query_data_timestamp_disjoint& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -2204,14 +2204,14 @@ public:
 };
 static_assert(sizeof(Rect) == sizeof(D3D11_RECT));
 
-inline bool operator==(const Rect& lhs, const Rect& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Rect& lhs, const Rect& rhs) noexcept {
 	return (lhs.left == rhs.left)
 		&& (lhs.right == rhs.right)
 		&& (lhs.top == rhs.top)
 		&& (lhs.bottom == rhs.bottom);
 }
 
-inline bool operator!=(const Rect& lhs, const Rect& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Rect& lhs, const Rect& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -2237,7 +2237,7 @@ public:
 };
 static_assert(sizeof(So_declaration_entry) == sizeof(D3D11_SO_DECLARATION_ENTRY));
 
-inline bool operator==(const So_declaration_entry& lhs, const So_declaration_entry& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const So_declaration_entry& lhs, const So_declaration_entry& rhs) noexcept {
 	return (lhs.Stream == rhs.Stream)
 		&& (lhs.SemanticIndex == rhs.SemanticIndex)
 		&& (lhs.SemanticName == rhs.SemanticName)
@@ -2245,7 +2245,7 @@ inline bool operator==(const So_declaration_entry& lhs, const So_declaration_ent
 		&& (lhs.OutputSlot == rhs.OutputSlot);
 }
 
-inline bool operator!=(const So_declaration_entry& lhs, const So_declaration_entry& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const So_declaration_entry& lhs, const So_declaration_entry& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -2271,7 +2271,7 @@ public:
 };
 static_assert(sizeof(Viewport) == sizeof(D3D11_VIEWPORT));
 
-inline bool operator==(const Viewport& lhs, const Viewport& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Viewport& lhs, const Viewport& rhs) noexcept {
 	return (lhs.TopLeftX == rhs.TopLeftX)
 		&& (lhs.TopLeftY == rhs.TopLeftY)
 		&& (lhs.Width == rhs.Width)
@@ -2280,7 +2280,7 @@ inline bool operator==(const Viewport& lhs, const Viewport& rhs) noexcept {
 		&& (lhs.MaxDepth == rhs.MaxDepth);
 }
 
-inline bool operator!=(const Viewport& lhs, const Viewport& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Viewport& lhs, const Viewport& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -2304,7 +2304,7 @@ public:
 };
 static_assert(sizeof(Message) == sizeof(D3D11_MESSAGE));
 
-inline bool operator==(const Message& lhs, const Message& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Message& lhs, const Message& rhs) noexcept {
 	return (lhs.Category == rhs.Category)
 		&& (lhs.Severity == rhs.Severity)
 		&& (lhs.ID == rhs.ID)
@@ -2312,7 +2312,7 @@ inline bool operator==(const Message& lhs, const Message& rhs) noexcept {
 		&& (memcmp(lhs.pDescription, rhs.pDescription, lhs.DescriptionByteLength) == 0);
 }
 
-inline bool operator!=(const Message& lhs, const Message& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Message& lhs, const Message& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -2338,12 +2338,12 @@ public:
 };
 static_assert(sizeof(Buffer_rtv) == sizeof(D3D11_BUFFER_RTV));
 
-inline bool operator==(const Buffer_rtv& lhs, const Buffer_rtv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Buffer_rtv& lhs, const Buffer_rtv& rhs) noexcept {
 	return (lhs.FirstElement == rhs.FirstElement)
 		&& (lhs.ElementWidth == rhs.ElementWidth);
 }
 
-inline bool operator!=(const Buffer_rtv& lhs, const Buffer_rtv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Buffer_rtv& lhs, const Buffer_rtv& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -2369,12 +2369,12 @@ public:
 };
 static_assert(sizeof(Buffer_srv) == sizeof(D3D11_BUFFER_SRV));
 
-inline bool operator==(const Buffer_srv& lhs, const Buffer_srv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Buffer_srv& lhs, const Buffer_srv& rhs) noexcept {
 	return (lhs.FirstElement == rhs.FirstElement)
 		&& (lhs.ElementWidth == rhs.ElementWidth);
 }
 
-inline bool operator!=(const Buffer_srv& lhs, const Buffer_srv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Buffer_srv& lhs, const Buffer_srv& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -2402,13 +2402,13 @@ public:
 };
 static_assert(sizeof(Buffer_uav) == sizeof(D3D11_BUFFER_UAV));
 
-inline bool operator==(const Buffer_uav& lhs, const Buffer_uav& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Buffer_uav& lhs, const Buffer_uav& rhs) noexcept {
 	return (lhs.FirstElement == rhs.FirstElement)
 		&& (lhs.NumElements == rhs.NumElements)
 		&& (lhs.Flags == rhs.Flags);
 }
 
-inline bool operator!=(const Buffer_uav& lhs, const Buffer_uav& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Buffer_uav& lhs, const Buffer_uav& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -2437,13 +2437,13 @@ public:
 };
 static_assert(sizeof(Buffer_ex_srv) == sizeof(D3D11_BUFFEREX_SRV));
 
-inline bool operator==(const Buffer_ex_srv& lhs, const Buffer_ex_srv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Buffer_ex_srv& lhs, const Buffer_ex_srv& rhs) noexcept {
 	return (lhs.FirstElement == rhs.FirstElement)
 		&& (lhs.NumElements == rhs.NumElements)
 		&& (lhs.Flags == rhs.Flags);
 }
 
-inline bool operator!=(const Buffer_ex_srv& lhs, const Buffer_ex_srv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Buffer_ex_srv& lhs, const Buffer_ex_srv& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -2464,13 +2464,13 @@ public:
 };
 static_assert(sizeof(Mapped_subresource) == sizeof(D3D11_MAPPED_SUBRESOURCE));
 
-inline bool operator==(const Mapped_subresource& lhs, const Mapped_subresource& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Mapped_subresource& lhs, const Mapped_subresource& rhs) noexcept {
 	return (lhs.pData == rhs.pData)
 		&& (lhs.RowPitch == rhs.RowPitch)
 		&& (lhs.DepthPitch == rhs.DepthPitch);
 }
 
-inline bool operator!=(const Mapped_subresource& lhs, const Mapped_subresource& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Mapped_subresource& lhs, const Mapped_subresource& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -2490,13 +2490,13 @@ public:
 };
 static_assert(sizeof(Subresource_data) == sizeof(D3D11_SUBRESOURCE_DATA));
 
-inline bool operator==(const Subresource_data& lhs, const Subresource_data& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Subresource_data& lhs, const Subresource_data& rhs) noexcept {
 	return (lhs.pSysMem == rhs.pSysMem)
 		&& (lhs.SysMemPitch == rhs.SysMemPitch)
 		&& (lhs.SysMemSlicePitch == rhs.SysMemSlicePitch);
 }
 
-inline bool operator!=(const Subresource_data& lhs, const Subresource_data& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Subresource_data& lhs, const Subresource_data& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -2518,14 +2518,14 @@ public:
 };
 static_assert(sizeof(Subresource_tiling) == sizeof(D3D11_SUBRESOURCE_TILING));
 
-inline bool operator==(const Subresource_tiling& lhs, const Subresource_tiling& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Subresource_tiling& lhs, const Subresource_tiling& rhs) noexcept {
 	return (lhs.WidthInTiles == rhs.WidthInTiles)
 		&& (lhs.HeightInTiles == rhs.HeightInTiles)
 		&& (lhs.DepthInTiles == rhs.DepthInTiles)
 		&& (lhs.StartTileIndexInOverallResource == rhs.StartTileIndexInOverallResource);
 }
 
-inline bool operator!=(const Subresource_tiling& lhs, const Subresource_tiling& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Subresource_tiling& lhs, const Subresource_tiling& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -2545,13 +2545,13 @@ public:
 };
 static_assert(sizeof(Tex1d_array_dsv) == sizeof(D3D11_TEX1D_ARRAY_DSV));
 
-inline bool operator==(const Tex1d_array_dsv& lhs, const Tex1d_array_dsv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Tex1d_array_dsv& lhs, const Tex1d_array_dsv& rhs) noexcept {
 	return (lhs.MipSlice == rhs.MipSlice)
 		&& (lhs.FirstArraySlice == rhs.FirstArraySlice)
 		&& (lhs.ArraySize == rhs.ArraySize);
 }
 
-inline bool operator!=(const Tex1d_array_dsv& lhs, const Tex1d_array_dsv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Tex1d_array_dsv& lhs, const Tex1d_array_dsv& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -2571,13 +2571,13 @@ public:
 };
 static_assert(sizeof(Tex1d_array_rtv) == sizeof(D3D11_TEX1D_ARRAY_RTV));
 
-inline bool operator==(const Tex1d_array_rtv& lhs, const Tex1d_array_rtv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Tex1d_array_rtv& lhs, const Tex1d_array_rtv& rhs) noexcept {
 	return (lhs.MipSlice == rhs.MipSlice)
 		&& (lhs.FirstArraySlice == rhs.FirstArraySlice)
 		&& (lhs.ArraySize == rhs.ArraySize);
 }
 
-inline bool operator!=(const Tex1d_array_rtv& lhs, const Tex1d_array_rtv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Tex1d_array_rtv& lhs, const Tex1d_array_rtv& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -2599,14 +2599,14 @@ public:
 };
 static_assert(sizeof(Tex1d_array_srv) == sizeof(D3D11_TEX1D_ARRAY_SRV));
 
-inline bool operator==(const Tex1d_array_srv& lhs, const Tex1d_array_srv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Tex1d_array_srv& lhs, const Tex1d_array_srv& rhs) noexcept {
 	return (lhs.MostDetailedMip == rhs.MostDetailedMip)
 		&& (lhs.MipLevels == rhs.MipLevels)
 		&& (lhs.FirstArraySlice == rhs.FirstArraySlice)
 		&& (lhs.ArraySize == rhs.ArraySize);
 }
 
-inline bool operator!=(const Tex1d_array_srv& lhs, const Tex1d_array_srv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Tex1d_array_srv& lhs, const Tex1d_array_srv& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -2626,13 +2626,13 @@ public:
 };
 static_assert(sizeof(Tex1d_array_uav) == sizeof(D3D11_TEX1D_ARRAY_UAV));
 
-inline bool operator==(const Tex1d_array_uav& lhs, const Tex1d_array_uav& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Tex1d_array_uav& lhs, const Tex1d_array_uav& rhs) noexcept {
 	return (lhs.MipSlice == rhs.MipSlice)
 		&& (lhs.FirstArraySlice == rhs.FirstArraySlice)
 		&& (lhs.ArraySize == rhs.ArraySize);
 }
 
-inline bool operator!=(const Tex1d_array_uav& lhs, const Tex1d_array_uav& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Tex1d_array_uav& lhs, const Tex1d_array_uav& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -2647,11 +2647,11 @@ public:
 };
 static_assert(sizeof(Tex1d_dsv) == sizeof(D3D11_TEX1D_DSV));
 
-inline bool operator==(const Tex1d_dsv& lhs, const Tex1d_dsv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Tex1d_dsv& lhs, const Tex1d_dsv& rhs) noexcept {
 	return (lhs.MipSlice == rhs.MipSlice);
 }
 
-inline bool operator!=(const Tex1d_dsv& lhs, const Tex1d_dsv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Tex1d_dsv& lhs, const Tex1d_dsv& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -2667,11 +2667,11 @@ public:
 };
 static_assert(sizeof(Tex1d_rtv) == sizeof(D3D11_TEX1D_RTV));
 
-inline bool operator==(const Tex1d_rtv& lhs, const Tex1d_rtv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Tex1d_rtv& lhs, const Tex1d_rtv& rhs) noexcept {
 	return (lhs.MipSlice == rhs.MipSlice);
 }
 
-inline bool operator!=(const Tex1d_rtv& lhs, const Tex1d_rtv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Tex1d_rtv& lhs, const Tex1d_rtv& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -2689,12 +2689,12 @@ public:
 };
 static_assert(sizeof(Tex1d_srv) == sizeof(D3D11_TEX1D_SRV));
 
-inline bool operator==(const Tex1d_srv& lhs, const Tex1d_srv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Tex1d_srv& lhs, const Tex1d_srv& rhs) noexcept {
 	return (lhs.MostDetailedMip == rhs.MostDetailedMip)
 		&& (lhs.MipLevels == rhs.MipLevels);
 }
 
-inline bool operator!=(const Tex1d_srv& lhs, const Tex1d_srv& rhs) {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Tex1d_srv& lhs, const Tex1d_srv& rhs) {
 	return !operator==(lhs, rhs);
 }
 
@@ -2709,11 +2709,11 @@ public:
 };
 static_assert(sizeof(Tex1d_uav) == sizeof(D3D11_TEX1D_UAV));
 
-inline bool operator==(const Tex1d_uav& lhs, const Tex1d_uav& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Tex1d_uav& lhs, const Tex1d_uav& rhs) noexcept {
 	return (lhs.MipSlice == rhs.MipSlice);
 }
 
-inline bool operator!=(const Tex1d_uav& lhs, const Tex1d_uav& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Tex1d_uav& lhs, const Tex1d_uav& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -2733,13 +2733,13 @@ public:
 };
 static_assert(sizeof(Tex2d_array_dsv) == sizeof(D3D11_TEX2D_ARRAY_DSV));
 
-inline bool operator==(const Tex2d_array_dsv& lhs, const Tex2d_array_dsv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Tex2d_array_dsv& lhs, const Tex2d_array_dsv& rhs) noexcept {
 	return (lhs.MipSlice == rhs.MipSlice)
 		&& (lhs.FirstArraySlice == rhs.FirstArraySlice)
 		&& (lhs.ArraySize == rhs.ArraySize);
 }
 
-inline bool operator!=(const Tex2d_array_dsv& lhs, const Tex2d_array_dsv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Tex2d_array_dsv& lhs, const Tex2d_array_dsv& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -2759,13 +2759,13 @@ public:
 };
 static_assert(sizeof(Tex2d_array_rtv) == sizeof(D3D11_TEX2D_ARRAY_RTV));
 
-inline bool operator==(const Tex2d_array_rtv& lhs, const Tex2d_array_rtv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Tex2d_array_rtv& lhs, const Tex2d_array_rtv& rhs) noexcept {
 	return (lhs.MipSlice == rhs.MipSlice)
 		&& (lhs.FirstArraySlice == rhs.FirstArraySlice)
 		&& (lhs.ArraySize == rhs.ArraySize);
 }
 
-inline bool operator!=(const Tex2d_array_rtv& lhs, const Tex2d_array_rtv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Tex2d_array_rtv& lhs, const Tex2d_array_rtv& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -2787,14 +2787,14 @@ public:
 };
 static_assert(sizeof(Tex2d_array_srv) == sizeof(D3D11_TEX2D_ARRAY_SRV));
 
-inline bool operator==(const Tex2d_array_srv& lhs, const Tex2d_array_srv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Tex2d_array_srv& lhs, const Tex2d_array_srv& rhs) noexcept {
 	return (lhs.MostDetailedMip == rhs.MostDetailedMip)
 		&& (lhs.MipLevels == rhs.MipLevels)
 		&& (lhs.FirstArraySlice == rhs.FirstArraySlice)
 		&& (lhs.ArraySize == rhs.ArraySize);
 }
 
-inline bool operator!=(const Tex2d_array_srv& lhs, const Tex2d_array_srv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Tex2d_array_srv& lhs, const Tex2d_array_srv& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -2814,13 +2814,13 @@ public:
 };
 static_assert(sizeof(Tex2d_array_uav) == sizeof(D3D11_TEX2D_ARRAY_UAV));
 
-inline bool operator==(const Tex2d_array_uav& lhs, const Tex2d_array_uav& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Tex2d_array_uav& lhs, const Tex2d_array_uav& rhs) noexcept {
 	return (lhs.MipSlice == rhs.MipSlice)
 		&& (lhs.FirstArraySlice == rhs.FirstArraySlice)
 		&& (lhs.ArraySize == rhs.ArraySize);
 }
 
-inline bool operator!=(const Tex2d_array_uav& lhs, const Tex2d_array_uav& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Tex2d_array_uav& lhs, const Tex2d_array_uav& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -2842,14 +2842,14 @@ public:
 };
 static_assert(sizeof(Tex2d_array_rtv1) == sizeof(D3D11_TEX2D_ARRAY_RTV1));
 
-inline bool operator==(const Tex2d_array_rtv1& lhs, const Tex2d_array_rtv1& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Tex2d_array_rtv1& lhs, const Tex2d_array_rtv1& rhs) noexcept {
 	return (lhs.MipSlice == rhs.MipSlice)
 		&& (lhs.FirstArraySlice == rhs.FirstArraySlice)
 		&& (lhs.ArraySize == rhs.ArraySize)
 		&& (lhs.PlaneSlice == rhs.PlaneSlice);
 }
 
-inline bool operator!=(const Tex2d_array_rtv1& lhs, const Tex2d_array_rtv1& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Tex2d_array_rtv1& lhs, const Tex2d_array_rtv1& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -2873,7 +2873,7 @@ public:
 };
 static_assert(sizeof(Tex2d_array_srv1) == sizeof(D3D11_TEX2D_ARRAY_SRV1));
 
-inline bool operator==(const Tex2d_array_srv1& lhs, const Tex2d_array_srv1& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Tex2d_array_srv1& lhs, const Tex2d_array_srv1& rhs) noexcept {
 	return (lhs.MostDetailedMip == rhs.MostDetailedMip)
 		&& (lhs.MipLevels == rhs.MipLevels)
 		&& (lhs.FirstArraySlice == rhs.FirstArraySlice)
@@ -2881,7 +2881,7 @@ inline bool operator==(const Tex2d_array_srv1& lhs, const Tex2d_array_srv1& rhs)
 		&& (lhs.PlaneSlice == rhs.PlaneSlice);
 }
 
-inline bool operator!=(const Tex2d_array_srv1& lhs, const Tex2d_array_srv1& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Tex2d_array_srv1& lhs, const Tex2d_array_srv1& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -2903,14 +2903,14 @@ public:
 };
 static_assert(sizeof(Tex2d_array_uav1) == sizeof(D3D11_TEX2D_ARRAY_UAV1));
 
-inline bool operator==(const Tex2d_array_uav1& lhs, const Tex2d_array_uav1& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Tex2d_array_uav1& lhs, const Tex2d_array_uav1& rhs) noexcept {
 	return (lhs.MipSlice == rhs.MipSlice)
 		&& (lhs.FirstArraySlice == rhs.FirstArraySlice)
 		&& (lhs.ArraySize == rhs.ArraySize)
 		&& (lhs.PlaneSlice == rhs.PlaneSlice);
 }
 
-inline bool operator!=(const Tex2d_array_uav1& lhs, const Tex2d_array_uav1& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Tex2d_array_uav1& lhs, const Tex2d_array_uav1& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -2927,11 +2927,11 @@ public:
 };
 static_assert(sizeof(Tex2d_dsv) == sizeof(D3D11_TEX2D_DSV));
 
-inline bool operator==(const Tex2d_dsv& lhs, const Tex2d_dsv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Tex2d_dsv& lhs, const Tex2d_dsv& rhs) noexcept {
 	return (lhs.MipSlice == rhs.MipSlice);
 }
 
-inline bool operator!=(const Tex2d_dsv& lhs, const Tex2d_dsv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Tex2d_dsv& lhs, const Tex2d_dsv& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -2947,11 +2947,11 @@ public:
 };
 static_assert(sizeof(Tex2d_rtv) == sizeof(D3D11_TEX2D_RTV));
 
-inline bool operator==(const Tex2d_rtv& lhs, const Tex2d_rtv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Tex2d_rtv& lhs, const Tex2d_rtv& rhs) noexcept {
 	return (lhs.MipSlice == rhs.MipSlice);
 }
 
-inline bool operator!=(const Tex2d_rtv& lhs, const Tex2d_rtv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Tex2d_rtv& lhs, const Tex2d_rtv& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -2969,12 +2969,12 @@ public:
 };
 static_assert(sizeof(Tex2d_srv) == sizeof(D3D11_TEX2D_SRV));
 
-inline bool operator==(const Tex2d_srv& lhs, const Tex2d_srv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Tex2d_srv& lhs, const Tex2d_srv& rhs) noexcept {
 	return (lhs.MostDetailedMip == rhs.MostDetailedMip)
 		&& (lhs.MipLevels == rhs.MipLevels);
 }
 
-inline bool operator!=(const Tex2d_srv& lhs, const Tex2d_srv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Tex2d_srv& lhs, const Tex2d_srv& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -2990,11 +2990,11 @@ public:
 };
 static_assert(sizeof(Tex2d_uav) == sizeof(D3D11_TEX2D_UAV));
 
-inline bool operator==(const Tex2d_uav& lhs, const Tex2d_uav& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Tex2d_uav& lhs, const Tex2d_uav& rhs) noexcept {
 	return (lhs.MipSlice == rhs.MipSlice);
 }
 
-inline bool operator!=(const Tex2d_uav& lhs, const Tex2d_uav& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Tex2d_uav& lhs, const Tex2d_uav& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -3012,12 +3012,12 @@ public:
 };
 static_assert(sizeof(Tex2d_rtv1) == sizeof(D3D11_TEX2D_RTV1));
 
-inline bool operator==(const Tex2d_rtv1& lhs, const Tex2d_rtv1& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Tex2d_rtv1& lhs, const Tex2d_rtv1& rhs) noexcept {
 	return (lhs.MipSlice == rhs.MipSlice)
 		&& (lhs.PlaneSlice == rhs.PlaneSlice);
 }
 
-inline bool operator!=(const Tex2d_rtv1& lhs, const Tex2d_rtv1& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Tex2d_rtv1& lhs, const Tex2d_rtv1& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -3037,13 +3037,13 @@ public:
 };
 static_assert(sizeof(Tex2d_srv1) == sizeof(D3D11_TEX2D_SRV1));
 
-inline bool operator==(const Tex2d_srv1& lhs, const Tex2d_srv1& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Tex2d_srv1& lhs, const Tex2d_srv1& rhs) noexcept {
 	return (lhs.MipLevels == rhs.MipLevels)
 		&& (lhs.PlaneSlice == rhs.PlaneSlice)
 		&& (lhs.MostDetailedMip == rhs.MostDetailedMip);
 }
 
-inline bool operator!=(const Tex2d_srv1& lhs, const Tex2d_srv1& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Tex2d_srv1& lhs, const Tex2d_srv1& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -3061,12 +3061,12 @@ public:
 };
 static_assert(sizeof(Tex2d_uav1) == sizeof(D3D11_TEX2D_UAV1));
 
-inline bool operator==(const Tex2d_uav1& lhs, const Tex2d_uav1& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Tex2d_uav1& lhs, const Tex2d_uav1& rhs) noexcept {
 	return (lhs.MipSlice == rhs.MipSlice)
 		&& (lhs.PlaneSlice == rhs.PlaneSlice);
 }
 
-inline bool operator!=(const Tex2d_uav1& lhs, const Tex2d_uav1& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Tex2d_uav1& lhs, const Tex2d_uav1& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -3085,12 +3085,12 @@ public:
 };
 static_assert(sizeof(Tex2dms_array_dsv) == sizeof(D3D11_TEX2DMS_ARRAY_DSV));
 
-inline bool operator==(const Tex2dms_array_dsv& lhs, const Tex2dms_array_dsv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Tex2dms_array_dsv& lhs, const Tex2dms_array_dsv& rhs) noexcept {
 	return (lhs.ArraySize == rhs.ArraySize)
 		&& (lhs.FirstArraySlice == rhs.FirstArraySlice);
 }
 
-inline bool operator!=(const Tex2dms_array_dsv& lhs, const Tex2dms_array_dsv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Tex2dms_array_dsv& lhs, const Tex2dms_array_dsv& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -3108,12 +3108,12 @@ public:
 };
 static_assert(sizeof(Tex2dms_array_rtv) == sizeof(D3D11_TEX2DMS_ARRAY_RTV));
 
-inline bool operator==(const Tex2dms_array_rtv& lhs, const Tex2dms_array_rtv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Tex2dms_array_rtv& lhs, const Tex2dms_array_rtv& rhs) noexcept {
 	return (lhs.ArraySize == rhs.ArraySize)
 		&& (lhs.FirstArraySlice == rhs.FirstArraySlice);
 }
 
-inline bool operator!=(const Tex2dms_array_rtv& lhs, const Tex2dms_array_rtv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Tex2dms_array_rtv& lhs, const Tex2dms_array_rtv& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -3131,12 +3131,12 @@ public:
 };
 static_assert(sizeof(Tex2dms_array_srv) == sizeof(D3D11_TEX2DMS_ARRAY_SRV));
 
-inline bool operator==(const Tex2dms_array_srv& lhs, const Tex2dms_array_srv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Tex2dms_array_srv& lhs, const Tex2dms_array_srv& rhs) noexcept {
 	return (lhs.ArraySize == rhs.ArraySize)
 		&& (lhs.FirstArraySlice == rhs.FirstArraySlice);
 }
 
-inline bool operator!=(const Tex2dms_array_srv& lhs, const Tex2dms_array_srv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Tex2dms_array_srv& lhs, const Tex2dms_array_srv& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -3151,11 +3151,11 @@ public:
 };
 static_assert(sizeof(Tex2dms_dsv) == sizeof(D3D11_TEX2DMS_DSV));
 
-inline bool operator==(const Tex2dms_dsv& lhs, const Tex2dms_dsv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Tex2dms_dsv& lhs, const Tex2dms_dsv& rhs) noexcept {
 	return true;
 }
 
-inline bool operator!=(const Tex2dms_dsv& lhs, const Tex2dms_dsv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Tex2dms_dsv& lhs, const Tex2dms_dsv& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -3169,11 +3169,11 @@ public:
 };
 static_assert(sizeof(Tex2dms_rtv) == sizeof(D3D11_TEX2DMS_RTV));
 
-inline bool operator==(const Tex2dms_rtv& lhs, const Tex2dms_rtv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Tex2dms_rtv& lhs, const Tex2dms_rtv& rhs) noexcept {
 	return true;
 }
 
-inline bool operator!=(const Tex2dms_rtv& lhs, const Tex2dms_rtv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Tex2dms_rtv& lhs, const Tex2dms_rtv& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -3188,11 +3188,11 @@ public:
 };
 static_assert(sizeof(Tex2dms_srv) == sizeof(D3D11_TEX2DMS_SRV));
 
-inline bool operator==(const Tex2dms_srv& lhs, const Tex2dms_srv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Tex2dms_srv& lhs, const Tex2dms_srv& rhs) noexcept {
 	return true;
 }
 
-inline bool operator!=(const Tex2dms_srv& lhs, const Tex2dms_srv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Tex2dms_srv& lhs, const Tex2dms_srv& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -3212,13 +3212,13 @@ public:
 };
 static_assert(sizeof(Tex3d_rtv) == sizeof(D3D11_TEX3D_RTV));
 
-inline bool operator==(const Tex3d_rtv& lhs, const Tex3d_rtv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Tex3d_rtv& lhs, const Tex3d_rtv& rhs) noexcept {
 	return (lhs.MipSlice == rhs.MipSlice)
 		&& (lhs.FirstWSlice == rhs.FirstWSlice)
 		&& (lhs.WSize == rhs.WSize);
 }
 
-inline bool operator!=(const Tex3d_rtv& lhs, const Tex3d_rtv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Tex3d_rtv& lhs, const Tex3d_rtv& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -3236,12 +3236,12 @@ public:
 };
 static_assert(sizeof(Tex3d_srv) == sizeof(D3D11_TEX3D_SRV));
 
-inline bool operator==(const Tex3d_srv& lhs, const Tex3d_srv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Tex3d_srv& lhs, const Tex3d_srv& rhs) noexcept {
 	return (lhs.MipLevels == rhs.MipLevels)
 		&& (lhs.MostDetailedMip == rhs.MostDetailedMip);
 }
 
-inline bool operator!=(const Tex3d_srv& lhs, const Tex3d_srv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Tex3d_srv& lhs, const Tex3d_srv& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -3261,13 +3261,13 @@ public:
 };
 static_assert(sizeof(Tex3d_uav) == sizeof(D3D11_TEX3D_UAV));
 
-inline bool operator==(const Tex3d_uav& lhs, const Tex3d_uav& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Tex3d_uav& lhs, const Tex3d_uav& rhs) noexcept {
 	return (lhs.MipSlice == rhs.MipSlice)
 		&& (lhs.FirstWSlice == rhs.FirstWSlice)
 		&& (lhs.WSize == rhs.WSize);
 }
 
-inline bool operator!=(const Tex3d_uav& lhs, const Tex3d_uav& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Tex3d_uav& lhs, const Tex3d_uav& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -3289,14 +3289,14 @@ public:
 };
 static_assert(sizeof(Texcube_array_srv) == sizeof(D3D11_TEXCUBE_ARRAY_SRV));
 
-inline bool operator==(const Texcube_array_srv& lhs, const Texcube_array_srv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Texcube_array_srv& lhs, const Texcube_array_srv& rhs) noexcept {
 	return (lhs.MipLevels == rhs.MipLevels)
 		&& (lhs.MostDetailedMip == rhs.MostDetailedMip)
 		&& (lhs.First2DArrayFace == rhs.First2DArrayFace)
 		&& (lhs.NumCubes == rhs.NumCubes);
 }
 
-inline bool operator!=(const Texcube_array_srv& lhs, const Texcube_array_srv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Texcube_array_srv& lhs, const Texcube_array_srv& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -3314,12 +3314,12 @@ public:
 };
 static_assert(sizeof(Texcube_srv) == sizeof(D3D11_TEXCUBE_SRV));
 
-inline bool operator==(const Texcube_srv& lhs, const Texcube_srv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Texcube_srv& lhs, const Texcube_srv& rhs) noexcept {
 	return (lhs.MipLevels == rhs.MipLevels)
 		&& (lhs.MostDetailedMip == rhs.MostDetailedMip);
 }
 
-inline bool operator!=(const Texcube_srv& lhs, const Texcube_srv& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Texcube_srv& lhs, const Texcube_srv& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -3344,7 +3344,7 @@ public:
 };
 static_assert(sizeof(Tile_region_size) == sizeof(D3D11_TILE_REGION_SIZE));
 
-inline bool operator==(const Tile_region_size& lhs, const Tile_region_size& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Tile_region_size& lhs, const Tile_region_size& rhs) noexcept {
 	return (lhs.NumTiles == rhs.NumTiles)
 		&& (lhs.bUseBox == rhs.bUseBox)
 		&& (lhs.Width == rhs.Width)
@@ -3352,7 +3352,7 @@ inline bool operator==(const Tile_region_size& lhs, const Tile_region_size& rhs)
 		&& (lhs.Depth == rhs.Depth);
 }
 
-inline bool operator!=(const Tile_region_size& lhs, const Tile_region_size& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Tile_region_size& lhs, const Tile_region_size& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -3374,14 +3374,14 @@ public:
 };
 static_assert(sizeof(Tiled_resource_coordinate) == sizeof(D3D11_TILED_RESOURCE_COORDINATE));
 
-inline bool operator==(const Tiled_resource_coordinate& lhs, const Tiled_resource_coordinate& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Tiled_resource_coordinate& lhs, const Tiled_resource_coordinate& rhs) noexcept {
 	return (lhs.X == rhs.X)
 		&& (lhs.Y == rhs.Y)
 		&& (lhs.Z == rhs.Z)
 		&& (lhs.Subresource == rhs.Subresource);
 }
 
-inline bool operator!=(const Tiled_resource_coordinate& lhs, const Tiled_resource_coordinate& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Tiled_resource_coordinate& lhs, const Tiled_resource_coordinate& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -3401,13 +3401,13 @@ public:
 };
 static_assert(sizeof(Tile_shape) == sizeof(D3D11_TILE_SHAPE));
 
-inline bool operator==(const Tile_shape& lhs, const Tile_shape& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Tile_shape& lhs, const Tile_shape& rhs) noexcept {
 	return (lhs.WidthInTexels == rhs.WidthInTexels)
 		&& (lhs.HeightInTexels == rhs.HeightInTexels)
 		&& (lhs.DepthInTexels == rhs.DepthInTexels);
 }
 
-inline bool operator!=(const Tile_shape& lhs, const Tile_shape& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Tile_shape& lhs, const Tile_shape& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -3425,12 +3425,12 @@ public:
 };
 static_assert(sizeof(Shader_macro) == sizeof(D3D_SHADER_MACRO));
 
-inline bool operator==(const Shader_macro& lhs, const Shader_macro& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Shader_macro& lhs, const Shader_macro& rhs) noexcept {
 	return (strcmp(lhs.Name, rhs.Name) == 0)
 		&& (strcmp(lhs.Definition, rhs.Definition) == 0);
 }
 
-inline bool operator!=(const Shader_macro& lhs, const Shader_macro& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Shader_macro& lhs, const Shader_macro& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -3469,7 +3469,7 @@ public:
 };
 static_assert(sizeof(Render_target_blend_desc) == sizeof(D3D11_RENDER_TARGET_BLEND_DESC));
 
-inline bool operator==(const Render_target_blend_desc& lhs, const Render_target_blend_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Render_target_blend_desc& lhs, const Render_target_blend_desc& rhs) noexcept {
 	return (lhs.BlendEnable == rhs.BlendEnable)
 		&& (lhs.SrcBlend == rhs.SrcBlend)
 		&& (lhs.DestBlend == rhs.DestBlend)
@@ -3480,7 +3480,7 @@ inline bool operator==(const Render_target_blend_desc& lhs, const Render_target_
 		&& (lhs.RenderTargetWriteMask == rhs.RenderTargetWriteMask);
 }
 
-inline bool operator!=(const Render_target_blend_desc& lhs, const Render_target_blend_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Render_target_blend_desc& lhs, const Render_target_blend_desc& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -3524,7 +3524,7 @@ public:
 };
 static_assert(sizeof(Render_target_blend_desc1) == sizeof(D3D11_RENDER_TARGET_BLEND_DESC1));
 
-inline bool operator==(const Render_target_blend_desc1& lhs, const Render_target_blend_desc1& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Render_target_blend_desc1& lhs, const Render_target_blend_desc1& rhs) noexcept {
 	return (lhs.BlendEnable == rhs.BlendEnable)
 		&& (lhs.LogicOpEnable == rhs.LogicOpEnable)
 		&& (lhs.SrcBlend == rhs.SrcBlend)
@@ -3537,7 +3537,7 @@ inline bool operator==(const Render_target_blend_desc1& lhs, const Render_target
 		&& (lhs.RenderTargetWriteMask == rhs.RenderTargetWriteMask);
 }
 
-inline bool operator!=(const Render_target_blend_desc1& lhs, const Render_target_blend_desc1& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Render_target_blend_desc1& lhs, const Render_target_blend_desc1& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -3568,13 +3568,13 @@ public:
 };
 static_assert(sizeof(Blend_desc) == sizeof(D3D11_BLEND_DESC));
 
-inline bool operator==(const Blend_desc& lhs, const Blend_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Blend_desc& lhs, const Blend_desc& rhs) noexcept {
 	return (lhs.AlphaToCoverageEnable == rhs.AlphaToCoverageEnable)
 		&& (lhs.IndependentBlendEnable == rhs.IndependentBlendEnable)
 		&& (lhs.RenderTarget == rhs.RenderTarget);
 }
 
-inline bool operator!=(const Blend_desc& lhs, const Blend_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Blend_desc& lhs, const Blend_desc& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -3604,13 +3604,13 @@ public:
 };
 static_assert(sizeof(Blend_desc1) == sizeof(D3D11_BLEND_DESC1));
 
-inline bool operator==(const Blend_desc1& lhs, const Blend_desc1& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Blend_desc1& lhs, const Blend_desc1& rhs) noexcept {
 	return (lhs.AlphaToCoverageEnable == rhs.AlphaToCoverageEnable)
 		&& (lhs.IndependentBlendEnable == rhs.IndependentBlendEnable)
 		&& (lhs.RenderTarget == rhs.RenderTarget);
 }
 
-inline bool operator!=(const Blend_desc1& lhs, const Blend_desc1& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Blend_desc1& lhs, const Blend_desc1& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -3627,11 +3627,11 @@ public:
 };
 static_assert(sizeof(Counter_desc) == sizeof(D3D11_COUNTER_DESC));
 
-inline bool operator==(const Counter_desc& lhs, const Counter_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Counter_desc& lhs, const Counter_desc& rhs) noexcept {
 	return (lhs.Counter == rhs.Counter);
 }
 
-inline bool operator!=(const Counter_desc& lhs, const Counter_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Counter_desc& lhs, const Counter_desc& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -3653,14 +3653,14 @@ public:
 };
 static_assert(sizeof(Depth_stencil_op_desc) == sizeof(D3D11_DEPTH_STENCILOP_DESC));
 
-inline bool operator==(const Depth_stencil_op_desc& lhs, const Depth_stencil_op_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Depth_stencil_op_desc& lhs, const Depth_stencil_op_desc& rhs) noexcept {
 	return (lhs.StencilDepthFailOp == rhs.StencilDepthFailOp)
 		&& (lhs.StencilFailOp == rhs.StencilFailOp)
 		&& (lhs.StencilPassOp == rhs.StencilPassOp)
 		&& (lhs.StencilFunc == rhs.StencilFunc);
 }
 
-inline bool operator!=(const Depth_stencil_op_desc& lhs, const Depth_stencil_op_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Depth_stencil_op_desc& lhs, const Depth_stencil_op_desc& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -3690,7 +3690,7 @@ public:
 };
 static_assert(sizeof(Depth_stencil_desc) == sizeof(D3D11_DEPTH_STENCIL_DESC));
 
-inline bool operator==(const Depth_stencil_desc& lhs, const Depth_stencil_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Depth_stencil_desc& lhs, const Depth_stencil_desc& rhs) noexcept {
 	return (lhs.BackFace == rhs.BackFace)
 		&& (lhs.DepthEnable == rhs.DepthEnable)
 		&& (lhs.DepthFunc == rhs.DepthFunc)
@@ -3701,7 +3701,7 @@ inline bool operator==(const Depth_stencil_desc& lhs, const Depth_stencil_desc& 
 		&& (lhs.StencilWriteMask == rhs.StencilWriteMask);
 }
 
-inline bool operator!=(const Depth_stencil_desc& lhs, const Depth_stencil_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Depth_stencil_desc& lhs, const Depth_stencil_desc& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -3729,7 +3729,7 @@ public:
 };
 static_assert(sizeof(Input_element_desc) == sizeof(D3D11_INPUT_ELEMENT_DESC));
 
-inline bool operator==(const Input_element_desc& lhs, const Input_element_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Input_element_desc& lhs, const Input_element_desc& rhs) noexcept {
 	return (lhs.AlignedByteOffset == rhs.AlignedByteOffset)
 		&& (lhs.Format == rhs.Format)
 		&& (lhs.SemanticIndex == rhs.SemanticIndex)
@@ -3739,7 +3739,7 @@ inline bool operator==(const Input_element_desc& lhs, const Input_element_desc& 
 		&& (lhs.InstanceDataStepRate == rhs.InstanceDataStepRate);
 }
 
-inline bool operator!=(const Input_element_desc& lhs, const Input_element_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Input_element_desc& lhs, const Input_element_desc& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -3766,12 +3766,12 @@ public:
 };
 static_assert(sizeof(Query_desc) == sizeof(D3D11_QUERY_DESC));
 
-inline bool operator==(const Query_desc& lhs, const Query_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Query_desc& lhs, const Query_desc& rhs) noexcept {
 	return (lhs.Query == rhs.Query)
 		&& (lhs.MiscFlags == rhs.MiscFlags);
 }
 
-inline bool operator!=(const Query_desc& lhs, const Query_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Query_desc& lhs, const Query_desc& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -3800,13 +3800,13 @@ public:
 };
 static_assert(sizeof(Query_desc1) == sizeof(D3D11_QUERY_DESC1));
 
-inline bool operator==(const Query_desc1& lhs, const Query_desc1& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Query_desc1& lhs, const Query_desc1& rhs) noexcept {
 	return (lhs.ContextType == rhs.ContextType)
 		&& (lhs.MiscFlags == rhs.MiscFlags)
 		&& (lhs.Query == rhs.Query);
 }
 
-inline bool operator!=(const Query_desc1& lhs, const Query_desc1& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Query_desc1& lhs, const Query_desc1& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -3840,7 +3840,7 @@ public:
 };
 static_assert(sizeof(Rasterizer_desc) == sizeof(D3D11_RASTERIZER_DESC));
 
-inline bool operator==(const Rasterizer_desc& lhs, const Rasterizer_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Rasterizer_desc& lhs, const Rasterizer_desc& rhs) noexcept {
 	return (lhs.FillMode == rhs.FillMode)
 		&& (lhs.CullMode == rhs.CullMode)
 		&& (lhs.FrontCounterClockwise == rhs.FrontCounterClockwise)
@@ -3853,7 +3853,7 @@ inline bool operator==(const Rasterizer_desc& lhs, const Rasterizer_desc& rhs) n
 		&& (lhs.AntialiasedLineEnable == rhs.AntialiasedLineEnable);
 }
 
-inline bool operator!=(const Rasterizer_desc& lhs, const Rasterizer_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Rasterizer_desc& lhs, const Rasterizer_desc& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -3889,7 +3889,7 @@ public:
 };
 static_assert(sizeof(Rasterizer_desc1) == sizeof(D3D11_RASTERIZER_DESC1));
 
-inline bool operator==(const Rasterizer_desc1& lhs, const Rasterizer_desc1& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Rasterizer_desc1& lhs, const Rasterizer_desc1& rhs) noexcept {
 	return (lhs.FillMode == rhs.FillMode)
 		&& (lhs.CullMode == rhs.CullMode)
 		&& (lhs.FrontCounterClockwise == rhs.FrontCounterClockwise)
@@ -3903,7 +3903,7 @@ inline bool operator==(const Rasterizer_desc1& lhs, const Rasterizer_desc1& rhs)
 		&& (lhs.ForcedSampleCount == rhs.ForcedSampleCount);
 }
 
-inline bool operator!=(const Rasterizer_desc1& lhs, const Rasterizer_desc1& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Rasterizer_desc1& lhs, const Rasterizer_desc1& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -3941,7 +3941,7 @@ public:
 };
 static_assert(sizeof(Rasterizer_desc2) == sizeof(D3D11_RASTERIZER_DESC2));
 
-inline bool operator==(const Rasterizer_desc2& lhs, const Rasterizer_desc2& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Rasterizer_desc2& lhs, const Rasterizer_desc2& rhs) noexcept {
 	return (lhs.FillMode == rhs.FillMode)
 		&& (lhs.CullMode == rhs.CullMode)
 		&& (lhs.FrontCounterClockwise == rhs.FrontCounterClockwise)
@@ -3956,7 +3956,7 @@ inline bool operator==(const Rasterizer_desc2& lhs, const Rasterizer_desc2& rhs)
 		&& (lhs.ConservativeRaster == rhs.ConservativeRaster);
 }
 
-inline bool operator!=(const Rasterizer_desc2& lhs, const Rasterizer_desc2& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Rasterizer_desc2& lhs, const Rasterizer_desc2& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -4001,7 +4001,7 @@ public:
 };
 static_assert(sizeof(Sampler_desc) == sizeof(D3D11_SAMPLER_DESC));
 
-inline bool operator==(const Sampler_desc& lhs, const Sampler_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Sampler_desc& lhs, const Sampler_desc& rhs) noexcept {
 	return (lhs.Filter == rhs.Filter)
 		&& (lhs.AddressU == rhs.AddressU)
 		&& (lhs.AddressV == rhs.AddressV)
@@ -4014,7 +4014,7 @@ inline bool operator==(const Sampler_desc& lhs, const Sampler_desc& rhs) noexcep
 		&& (lhs.MaxLOD == rhs.MaxLOD);
 }
 
-inline bool operator!=(const Sampler_desc& lhs, const Sampler_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Sampler_desc& lhs, const Sampler_desc& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -4083,7 +4083,7 @@ public:
 };
 static_assert(sizeof(Info_queue_filter_desc) == sizeof(D3D11_INFO_QUEUE_FILTER_DESC));
 
-inline bool operator==(const Info_queue_filter_desc& lhs, const Info_queue_filter_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Info_queue_filter_desc& lhs, const Info_queue_filter_desc& rhs) noexcept {
 	return (lhs.NumCategories == rhs.NumCategories)
 		&& (lhs.NumIDs == rhs.NumIDs)
 		&& (lhs.NumSeverities == rhs.NumSeverities)
@@ -4092,7 +4092,7 @@ inline bool operator==(const Info_queue_filter_desc& lhs, const Info_queue_filte
 		&& (memcmp(lhs.pSeverityList, rhs.pSeverityList, sizeof(Message_severity) * lhs.NumSeverities) == 0);
 }
 
-inline bool operator!=(const Info_queue_filter_desc& lhs, const Info_queue_filter_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Info_queue_filter_desc& lhs, const Info_queue_filter_desc& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -4146,7 +4146,7 @@ public:
 };
 static_assert(sizeof(Buffer_desc) == sizeof(D3D11_BUFFER_DESC));
 
-inline bool operator==(const Buffer_desc& lhs, const Buffer_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Buffer_desc& lhs, const Buffer_desc& rhs) noexcept {
 	return (lhs.ByteWidth == rhs.ByteWidth)
 		&& (lhs.Usage == rhs.Usage)
 		&& (lhs.BindFlags == rhs.BindFlags)
@@ -4155,7 +4155,7 @@ inline bool operator==(const Buffer_desc& lhs, const Buffer_desc& rhs) noexcept 
 		&& (lhs.StructureByteStride == rhs.StructureByteStride);
 }
 
-inline bool operator!=(const Buffer_desc& lhs, const Buffer_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Buffer_desc& lhs, const Buffer_desc& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -4254,7 +4254,7 @@ public:
 
 	_HW_3D_D3D_STRUCT_TRIVIAL_PROPERTY_(_format, _HW_3D_DXGI_ Format, Format);
 	_HW_3D_D3D_STRUCT_READONLY_TRIVIAL_PROPERTY_(_view_dimension, Dsv_dimension, ViewDimension);
-	__declspec(property(get = get_flags, put = put_flags)) Dsv_flag Flags;
+	__declspec(property(get = get_flags, put = set_flags)) Dsv_flag Flags;
 	__declspec(property(get = get_texture_1d, put = set_texture_1d)) Tex1d_dsv Texture1D;
 	__declspec(property(get = get_texture_1d_array, put = set_texture_1d_array)) Tex1d_array_dsv Texture1DArray;
 	__declspec(property(get = get_texture_2d, put = set_texture_2d)) Tex2d_dsv Texture2D;
@@ -4264,7 +4264,7 @@ public:
 };
 static_assert(sizeof(Depth_stencil_view_desc) == sizeof(D3D11_DEPTH_STENCIL_VIEW_DESC));
 
-inline bool operator==(const Depth_stencil_view_desc& lhs, const Depth_stencil_view_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Depth_stencil_view_desc& lhs, const Depth_stencil_view_desc& rhs) noexcept {
 	if (lhs.Format != rhs.Format || lhs.ViewDimension != rhs.ViewDimension || lhs.Flags != rhs.Flags)
 		return false;
 	switch (lhs.ViewDimension) {
@@ -4285,7 +4285,7 @@ inline bool operator==(const Depth_stencil_view_desc& lhs, const Depth_stencil_v
 	}
 }
 
-inline bool operator!=(const Depth_stencil_view_desc& lhs, const Depth_stencil_view_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Depth_stencil_view_desc& lhs, const Depth_stencil_view_desc& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -4307,14 +4307,14 @@ public:
 };
 static_assert(sizeof(Packed_mip_desc) == sizeof(D3D11_PACKED_MIP_DESC));
 
-inline bool operator==(const Packed_mip_desc& lhs, const Packed_mip_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Packed_mip_desc& lhs, const Packed_mip_desc& rhs) noexcept {
 	return (lhs.NumPackedMips == rhs.NumPackedMips)
 		&& (lhs.NumStandardMips == rhs.NumStandardMips)
 		&& (lhs.NumTilesForPackedMips == rhs.NumTilesForPackedMips)
 		&& (lhs.StartTileIndexInOverallResource == rhs.StartTileIndexInOverallResource);
 }
 
-inline bool operator!=(const Packed_mip_desc& lhs, const Packed_mip_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Packed_mip_desc& lhs, const Packed_mip_desc& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -4439,7 +4439,7 @@ public:
 };
 static_assert(sizeof(Render_target_view_desc) == sizeof(D3D11_RENDER_TARGET_VIEW_DESC));
 
-inline bool operator==(const Render_target_view_desc& lhs, const Render_target_view_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Render_target_view_desc& lhs, const Render_target_view_desc& rhs) noexcept {
 	if (lhs.Format != rhs.Format || lhs.ViewDimension != rhs.ViewDimension)
 		return false;
 	switch (lhs.ViewDimension) {
@@ -4464,7 +4464,7 @@ inline bool operator==(const Render_target_view_desc& lhs, const Render_target_v
 	}
 }
 
-inline bool operator!=(const Render_target_view_desc& lhs, const Render_target_view_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Render_target_view_desc& lhs, const Render_target_view_desc& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -4587,7 +4587,7 @@ public:
 };
 static_assert(sizeof(Render_target_view_desc1) == sizeof(D3D11_RENDER_TARGET_VIEW_DESC1));
 
-inline bool operator==(const Render_target_view_desc1& lhs, const Render_target_view_desc1& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Render_target_view_desc1& lhs, const Render_target_view_desc1& rhs) noexcept {
 	if (lhs.Format != rhs.Format || lhs.ViewDimension != rhs.ViewDimension)
 		return false;
 	switch (lhs.ViewDimension) {
@@ -4612,7 +4612,7 @@ inline bool operator==(const Render_target_view_desc1& lhs, const Render_target_
 	}
 }
 
-inline bool operator!=(const Render_target_view_desc1& lhs, const Render_target_view_desc1& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Render_target_view_desc1& lhs, const Render_target_view_desc1& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -4774,7 +4774,7 @@ public:
 };
 static_assert(sizeof(Shader_resource_view_desc) == sizeof(D3D11_SHADER_RESOURCE_VIEW_DESC));
 
-inline bool operator==(const Shader_resource_view_desc& lhs, const Shader_resource_view_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Shader_resource_view_desc& lhs, const Shader_resource_view_desc& rhs) noexcept {
 	if (lhs.Format != rhs.Format || lhs.ViewDimension != rhs.ViewDimension)
 		return false;
 	switch (lhs.ViewDimension) {
@@ -4805,7 +4805,7 @@ inline bool operator==(const Shader_resource_view_desc& lhs, const Shader_resour
 	}
 }
 
-inline bool operator!=(const Shader_resource_view_desc& lhs, const Shader_resource_view_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Shader_resource_view_desc& lhs, const Shader_resource_view_desc& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -4968,7 +4968,7 @@ public:
 };
 static_assert(sizeof(Shader_resource_view_desc1) == sizeof(D3D11_SHADER_RESOURCE_VIEW_DESC1));
 
-inline bool operator==(const Shader_resource_view_desc1& lhs, const Shader_resource_view_desc1& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Shader_resource_view_desc1& lhs, const Shader_resource_view_desc1& rhs) noexcept {
 	if (lhs.Format != rhs.Format || lhs.ViewDimension != rhs.ViewDimension)
 		return false;
 	switch (lhs.ViewDimension) {
@@ -4999,7 +4999,7 @@ inline bool operator==(const Shader_resource_view_desc1& lhs, const Shader_resou
 	}
 }
 
-inline bool operator!=(const Shader_resource_view_desc1& lhs, const Shader_resource_view_desc1& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Shader_resource_view_desc1& lhs, const Shader_resource_view_desc1& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -5056,7 +5056,7 @@ public:
 };
 static_assert(sizeof(Texture1d_desc) == sizeof(D3D11_TEXTURE1D_DESC));
 
-inline bool operator==(const Texture1d_desc& lhs, const Texture1d_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Texture1d_desc& lhs, const Texture1d_desc& rhs) noexcept {
 	return (lhs.Width == rhs.Width)
 		&& (lhs.MipLevels == rhs.MipLevels)
 		&& (lhs.ArraySize == rhs.ArraySize)
@@ -5067,7 +5067,7 @@ inline bool operator==(const Texture1d_desc& lhs, const Texture1d_desc& rhs) noe
 		&& (lhs.MiscFlags == rhs.MiscFlags);
 }
 
-inline bool operator!=(const Texture1d_desc& lhs, const Texture1d_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Texture1d_desc& lhs, const Texture1d_desc& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -5128,7 +5128,7 @@ public:
 };
 static_assert (sizeof(Texture2d_desc) == sizeof(D3D11_TEXTURE2D_DESC));
 
-inline bool operator==(const Texture2d_desc& lhs, const Texture2d_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Texture2d_desc& lhs, const Texture2d_desc& rhs) noexcept {
 	return (lhs.Width == rhs.Width)
 		&& (lhs.Height == rhs.Height)
 		&& (lhs.MipLevels == rhs.MipLevels)
@@ -5141,7 +5141,7 @@ inline bool operator==(const Texture2d_desc& lhs, const Texture2d_desc& rhs) noe
 		&& (lhs.MiscFlags == rhs.MiscFlags);
 }
 
-inline bool operator!=(const Texture2d_desc& lhs, const Texture2d_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Texture2d_desc& lhs, const Texture2d_desc& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -5204,7 +5204,7 @@ public:
 };
 static_assert (sizeof(Texture2d_desc1) == sizeof(D3D11_TEXTURE2D_DESC1));
 
-inline bool operator==(const Texture2d_desc1& lhs, const Texture2d_desc1& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Texture2d_desc1& lhs, const Texture2d_desc1& rhs) noexcept {
 	return (lhs.Width == rhs.Width)
 		&& (lhs.Height == rhs.Height)
 		&& (lhs.MipLevels == rhs.MipLevels)
@@ -5218,7 +5218,7 @@ inline bool operator==(const Texture2d_desc1& lhs, const Texture2d_desc1& rhs) n
 		&& (lhs.TextureLayout == rhs.TextureLayout);
 }
 
-inline bool operator!=(const Texture2d_desc1& lhs, const Texture2d_desc1& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Texture2d_desc1& lhs, const Texture2d_desc1& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -5277,7 +5277,7 @@ public:
 };
 static_assert (sizeof(Texture3d_desc) == sizeof(D3D11_TEXTURE3D_DESC));
 
-inline bool operator==(const Texture3d_desc& lhs, const Texture3d_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Texture3d_desc& lhs, const Texture3d_desc& rhs) noexcept {
 	return (lhs.Width == rhs.Width)
 		&& (lhs.Height == rhs.Height)
 		&& (lhs.Depth == rhs.Depth)
@@ -5289,7 +5289,7 @@ inline bool operator==(const Texture3d_desc& lhs, const Texture3d_desc& rhs) noe
 		&& (lhs.MiscFlags == rhs.MiscFlags);
 }
 
-inline bool operator!=(const Texture3d_desc& lhs, const Texture3d_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Texture3d_desc& lhs, const Texture3d_desc& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -5350,7 +5350,7 @@ public:
 };
 static_assert (sizeof(Texture3d_desc1) == sizeof(D3D11_TEXTURE3D_DESC1));
 
-inline bool operator==(const Texture3d_desc1& lhs, const Texture3d_desc1& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Texture3d_desc1& lhs, const Texture3d_desc1& rhs) noexcept {
 	return (lhs.Width == rhs.Width)
 		&& (lhs.Height == rhs.Height)
 		&& (lhs.Depth == rhs.Depth)
@@ -5363,7 +5363,7 @@ inline bool operator==(const Texture3d_desc1& lhs, const Texture3d_desc1& rhs) n
 		&& (lhs.TextureLayout == rhs.TextureLayout);
 }
 
-inline bool operator!=(const Texture3d_desc1& lhs, const Texture3d_desc1& rhs) {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Texture3d_desc1& lhs, const Texture3d_desc1& rhs) {
 	return !operator==(lhs, rhs);
 }
 
@@ -5461,7 +5461,7 @@ public:
 };
 static_assert(sizeof(Unordered_access_view_desc) == sizeof(D3D11_UNORDERED_ACCESS_VIEW_DESC));
 
-inline bool operator==(const Unordered_access_view_desc& lhs, const Unordered_access_view_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Unordered_access_view_desc& lhs, const Unordered_access_view_desc& rhs) noexcept {
 	if (lhs.Format != rhs.Format || lhs.ViewDimension != rhs.ViewDimension)
 		return false;
 
@@ -5483,7 +5483,7 @@ inline bool operator==(const Unordered_access_view_desc& lhs, const Unordered_ac
 	}
 }
 
-inline bool operator!=(const Unordered_access_view_desc& lhs, const Unordered_access_view_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Unordered_access_view_desc& lhs, const Unordered_access_view_desc& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -5581,7 +5581,7 @@ public:
 };
 static_assert(sizeof(Unordered_access_view_desc1) == sizeof(D3D11_UNORDERED_ACCESS_VIEW_DESC1));
 
-inline bool operator==(const Unordered_access_view_desc1& lhs, const Unordered_access_view_desc1& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Unordered_access_view_desc1& lhs, const Unordered_access_view_desc1& rhs) noexcept {
 	if (lhs.Format != rhs.Format || lhs.ViewDimension != rhs.ViewDimension)
 		return false;
 
@@ -5603,7 +5603,7 @@ inline bool operator==(const Unordered_access_view_desc1& lhs, const Unordered_a
 	}
 }
 
-inline bool operator!=(const Unordered_access_view_desc1& lhs, const Unordered_access_view_desc1& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Unordered_access_view_desc1& lhs, const Unordered_access_view_desc1& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -5634,7 +5634,7 @@ public:
 };
 static_assert(sizeof(Class_instance_desc) == sizeof(D3D11_CLASS_INSTANCE_DESC));
 
-inline bool operator==(const Class_instance_desc& lhs, const Class_instance_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Class_instance_desc& lhs, const Class_instance_desc& rhs) noexcept {
 	return (lhs.InstanceId == rhs.InstanceId)
 		&& (lhs.InstanceIndex == rhs.InstanceIndex)
 		&& (lhs.TypeId == rhs.TypeId)
@@ -5645,7 +5645,7 @@ inline bool operator==(const Class_instance_desc& lhs, const Class_instance_desc
 		&& (lhs.Created == rhs.Created);
 }
 
-inline bool operator!=(const Class_instance_desc& lhs, const Class_instance_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Class_instance_desc& lhs, const Class_instance_desc& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -5673,13 +5673,13 @@ public:
 };
 static_assert(sizeof(Compute_shader_trace_desc) == sizeof(D3D11_COMPUTE_SHADER_TRACE_DESC));
 
-inline bool operator==(const Compute_shader_trace_desc& lhs, const Compute_shader_trace_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Compute_shader_trace_desc& lhs, const Compute_shader_trace_desc& rhs) noexcept {
 	return (lhs.Invocation == rhs.Invocation)
 		&& (lhs.ThreadIDInGroup == rhs.ThreadIDInGroup)
 		&& (lhs.ThreadGroupID == rhs.ThreadGroupID);
 }
 
-inline bool operator!=(const Compute_shader_trace_desc& lhs, const Compute_shader_trace_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Compute_shader_trace_desc& lhs, const Compute_shader_trace_desc& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -5695,11 +5695,11 @@ public:
 };
 static_assert(sizeof(Domain_shader_trace_desc) == sizeof(D3D11_DOMAIN_SHADER_TRACE_DESC));
 
-inline bool operator==(const Domain_shader_trace_desc& lhs, const Domain_shader_trace_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Domain_shader_trace_desc& lhs, const Domain_shader_trace_desc& rhs) noexcept {
 	return (lhs.Invocation == rhs.Invocation);
 }
 
-inline bool operator!=(const Domain_shader_trace_desc& lhs, const Domain_shader_trace_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Domain_shader_trace_desc& lhs, const Domain_shader_trace_desc& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -5787,7 +5787,7 @@ public:
 };
 static_assert(sizeof(Function_desc) == sizeof(D3D11_FUNCTION_DESC));
 
-inline bool operator==(const Function_desc& lhs, const Function_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Function_desc& lhs, const Function_desc& rhs) noexcept {
 	return (lhs.Version == rhs.Version)
 		&& (strcmp(lhs.Creator, rhs.Creator) == 0)
 		&& (lhs.Flags == rhs.Flags)
@@ -5823,7 +5823,7 @@ inline bool operator==(const Function_desc& lhs, const Function_desc& rhs) noexc
 		&& (lhs.Has10Level9PixelShader == rhs.Has10Level9PixelShader);
 }
 
-inline bool operator!=(const Function_desc& lhs, const Function_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Function_desc& lhs, const Function_desc& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -5839,11 +5839,11 @@ public:
 };
 static_assert(sizeof(Geometry_shader_trace_desc) == sizeof(D3D11_GEOMETRY_SHADER_TRACE_DESC));
 
-inline bool operator==(const Geometry_shader_trace_desc& lhs, const Geometry_shader_trace_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Geometry_shader_trace_desc& lhs, const Geometry_shader_trace_desc& rhs) noexcept {
 	return (lhs.Invocation == rhs.Invocation);
 }
 
-inline bool operator!=(const Geometry_shader_trace_desc& lhs, const Geometry_shader_trace_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Geometry_shader_trace_desc& lhs, const Geometry_shader_trace_desc& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -5859,11 +5859,11 @@ public:
 };
 static_assert(sizeof(Hull_shader_trace_desc) == sizeof(D3D11_HULL_SHADER_TRACE_DESC));
 
-inline bool operator==(const Hull_shader_trace_desc& lhs, const Hull_shader_trace_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Hull_shader_trace_desc& lhs, const Hull_shader_trace_desc& rhs) noexcept {
 	return (lhs.Invocation == rhs.Invocation);
 }
 
-inline bool operator!=(const Hull_shader_trace_desc& lhs, const Hull_shader_trace_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Hull_shader_trace_desc& lhs, const Hull_shader_trace_desc& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -5887,13 +5887,13 @@ public:
 };
 static_assert(sizeof(Library_desc) == sizeof(D3D11_LIBRARY_DESC));
 
-inline bool operator==(const Library_desc& lhs, const Library_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Library_desc& lhs, const Library_desc& rhs) noexcept {
 	return (lhs.Flags == rhs.Flags)
 		&& (lhs.FunctionCount == rhs.FunctionCount)
 		&& (strcmp(lhs.Creator, rhs.Creator) == 0);
 }
 
-inline bool operator!=(const Library_desc& lhs, const Library_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Library_desc& lhs, const Library_desc& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -5931,7 +5931,7 @@ public:
 };
 static_assert(sizeof(Parameter_desc) == sizeof(D3D11_PARAMETER_DESC));
 
-inline bool operator==(const Parameter_desc& lhs, const Parameter_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Parameter_desc& lhs, const Parameter_desc& rhs) noexcept {
 	return (lhs.Type == rhs.Type)
 		&& (lhs.Class == rhs.Class)
 		&& (lhs.Rows == rhs.Rows)
@@ -5946,7 +5946,7 @@ inline bool operator==(const Parameter_desc& lhs, const Parameter_desc& rhs) noe
 		&& (strcmp(lhs.SemanticName, rhs.SemanticName) == 0);
 }
 
-inline bool operator!=(const Parameter_desc& lhs, const Parameter_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Parameter_desc& lhs, const Parameter_desc& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -5968,14 +5968,14 @@ public:
 };
 static_assert(sizeof(Pixel_shader_trace_desc) == sizeof(D3D11_PIXEL_SHADER_TRACE_DESC));
 
-inline bool operator==(const Pixel_shader_trace_desc& lhs, const Pixel_shader_trace_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Pixel_shader_trace_desc& lhs, const Pixel_shader_trace_desc& rhs) noexcept {
 	return (lhs.Invocation == rhs.Invocation)
 		&& (lhs.X == rhs.X)
 		&& (lhs.Y == rhs.Y)
 		&& (lhs.SampleMask == rhs.SampleMask);
 }
 
-inline bool operator!=(const Pixel_shader_trace_desc& lhs, const Pixel_shader_trace_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Pixel_shader_trace_desc& lhs, const Pixel_shader_trace_desc& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -6003,7 +6003,7 @@ public:
 };
 static_assert(sizeof(Shader_buffer_desc) == sizeof(D3D11_SHADER_BUFFER_DESC));
 
-inline bool operator==(const Shader_buffer_desc& lhs, const Shader_buffer_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Shader_buffer_desc& lhs, const Shader_buffer_desc& rhs) noexcept {
 	return (lhs.Type == rhs.Type)
 		&& (lhs.Variables == rhs.Variables)
 		&& (lhs.Size == rhs.Size)
@@ -6011,7 +6011,7 @@ inline bool operator==(const Shader_buffer_desc& lhs, const Shader_buffer_desc& 
 		&& (strcmp(lhs.Name, rhs.Name) == 0);
 }
 
-inline bool operator!=(const Shader_buffer_desc& lhs, const Shader_buffer_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Shader_buffer_desc& lhs, const Shader_buffer_desc& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -6105,7 +6105,7 @@ public:
 };
 static_assert(sizeof(Shader_desc) == sizeof(D3D11_SHADER_DESC));
 
-inline bool operator==(const Shader_desc& lhs, const Shader_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Shader_desc& lhs, const Shader_desc& rhs) noexcept {
 	return (lhs.Version == rhs.Version)
 		&& (lhs.Flags == rhs.Flags)
 		&& (lhs.ConstantBuffers == rhs.ConstantBuffers)
@@ -6144,7 +6144,7 @@ inline bool operator==(const Shader_desc& lhs, const Shader_desc& rhs) noexcept 
 		&& (strcmp(lhs.Creator, rhs.Creator) == 0);
 }
 
-inline bool operator!=(const Shader_desc& lhs, const Shader_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Shader_desc& lhs, const Shader_desc& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -6178,7 +6178,7 @@ public:
 };
 static_assert(sizeof(Shader_input_bind_desc) == sizeof(D3D11_SHADER_INPUT_BIND_DESC));
 
-inline bool operator==(const Shader_input_bind_desc& lhs, const Shader_input_bind_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Shader_input_bind_desc& lhs, const Shader_input_bind_desc& rhs) noexcept {
 	return (lhs.Type == rhs.Type)
 		&& (lhs.BindCount == rhs.BindCount)
 		&& (lhs.BindPoint == rhs.BindPoint)
@@ -6189,7 +6189,7 @@ inline bool operator==(const Shader_input_bind_desc& lhs, const Shader_input_bin
 		&& (strcmp(lhs.Name, rhs.Name) == 0);
 }
 
-inline bool operator!=(const Shader_input_bind_desc& lhs, const Shader_input_bind_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Shader_input_bind_desc& lhs, const Shader_input_bind_desc& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -6219,7 +6219,7 @@ public:
 };
 static_assert(sizeof(Shader_type_desc) == sizeof(D3D11_SHADER_TYPE_DESC));
 
-inline bool operator==(const Shader_type_desc& lhs, const Shader_type_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Shader_type_desc& lhs, const Shader_type_desc& rhs) noexcept {
 	return (lhs.Class == rhs.Class)
 		&& (lhs.Type == rhs.Type)
 		&& (lhs.Rows == rhs.Rows)
@@ -6230,7 +6230,7 @@ inline bool operator==(const Shader_type_desc& lhs, const Shader_type_desc& rhs)
 		&& (strcmp(lhs.Name, rhs.Name) == 0);
 }
 
-inline bool operator!=(const Shader_type_desc& lhs, const Shader_type_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Shader_type_desc& lhs, const Shader_type_desc& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -6267,7 +6267,7 @@ public:
 };
 static_assert(sizeof(Shader_variable_desc) == sizeof(D3D11_SHADER_VARIABLE_DESC));
 
-inline bool operator==(const Shader_variable_desc& lhs, const Shader_variable_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Shader_variable_desc& lhs, const Shader_variable_desc& rhs) noexcept {
 	return (lhs.StartOffset == rhs.StartOffset)
 		&& (lhs.Size == rhs.Size)
 		&& (lhs.uFlags == rhs.uFlags)
@@ -6279,7 +6279,7 @@ inline bool operator==(const Shader_variable_desc& lhs, const Shader_variable_de
 		&& (strcmp(lhs.Name, rhs.Name) == 0);
 }
 
-inline bool operator!=(const Shader_variable_desc& lhs, const Shader_variable_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Shader_variable_desc& lhs, const Shader_variable_desc& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -6319,7 +6319,7 @@ public:
 };
 static_assert(sizeof(Signature_parameter_desc) == sizeof(D3D11_SIGNATURE_PARAMETER_DESC));
 
-inline bool operator==(const Signature_parameter_desc& lhs, const Signature_parameter_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Signature_parameter_desc& lhs, const Signature_parameter_desc& rhs) noexcept {
 	return (lhs.SemanticIndex == rhs.SemanticIndex)
 		&& (lhs.Register == rhs.Register)
 		&& (lhs.SystemValueType == rhs.SystemValueType)
@@ -6331,7 +6331,7 @@ inline bool operator==(const Signature_parameter_desc& lhs, const Signature_para
 		&& (strcmp(lhs.SemanticName, rhs.SemanticName) == 0);
 }
 
-inline bool operator!=(const Signature_parameter_desc& lhs, const Signature_parameter_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Signature_parameter_desc& lhs, const Signature_parameter_desc& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -6365,14 +6365,14 @@ public:
 };
 static_assert(sizeof(Trace_register) == sizeof(D3D11_TRACE_REGISTER));
 
-inline bool operator==(const Trace_register& lhs, const Trace_register& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Trace_register& lhs, const Trace_register& rhs) noexcept {
 	return (lhs.RegType == rhs.RegType)
 		&& (lhs.Index2D == rhs.Index2D) //if an undefined behavior when valid value is Index1D
 		&& (lhs.OperandIndex == rhs.OperandIndex)
 		&& (lhs.Flags == rhs.Flags);
 }
 
-inline bool operator!=(const Trace_register& lhs, const Trace_register& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Trace_register& lhs, const Trace_register& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -6388,11 +6388,11 @@ public:
 };
 static_assert(sizeof(Vertex_shader_trace_desc) == sizeof(D3D11_VERTEX_SHADER_TRACE_DESC));
 
-inline bool operator==(const Vertex_shader_trace_desc& lhs, const Vertex_shader_trace_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Vertex_shader_trace_desc& lhs, const Vertex_shader_trace_desc& rhs) noexcept {
 	return (lhs.Invocation == rhs.Invocation);
 }
 
-inline bool operator!=(const Vertex_shader_trace_desc& lhs, const Vertex_shader_trace_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Vertex_shader_trace_desc& lhs, const Vertex_shader_trace_desc& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -6458,7 +6458,7 @@ public:
 };
 static_assert(sizeof(Shader_trace_desc) == sizeof(D3D11_SHADER_TRACE_DESC));
 
-inline bool operator==(const Shader_trace_desc& lhs, const Shader_trace_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Shader_trace_desc& lhs, const Shader_trace_desc& rhs) noexcept {
 	if (lhs.Flags != rhs.Flags || lhs.Type != rhs.Type)
 		return false;
 
@@ -6480,7 +6480,7 @@ inline bool operator==(const Shader_trace_desc& lhs, const Shader_trace_desc& rh
 	}
 }
 
-inline bool operator!=(const Shader_trace_desc& lhs, const Shader_trace_desc& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Shader_trace_desc& lhs, const Shader_trace_desc& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -6502,7 +6502,7 @@ public:
 };
 static_assert(sizeof(Trace_value) == sizeof(D3D11_TRACE_VALUE));
 
-inline bool operator==(const Trace_value& lhs, const Trace_value& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Trace_value& lhs, const Trace_value& rhs) noexcept {
 	auto bits_lhs = lhs.Bits;
 	auto bits_rhs = rhs.Bits;
 	return (lhs.ValidMask == rhs.ValidMask)
@@ -6512,7 +6512,7 @@ inline bool operator==(const Trace_value& lhs, const Trace_value& rhs) noexcept 
 		&& (lhs.ValidMask & Trace_component_mask_bit::w ? bits_lhs[3] == bits_rhs[3] : true);
 }
 
-inline bool operator!=(const Trace_value& lhs, const Trace_value& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Trace_value& lhs, const Trace_value& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -6541,7 +6541,7 @@ public:
 };
 static_assert(sizeof(Trace_step) == sizeof(D3D11_TRACE_STEP));
 
-inline bool operator==(const Trace_step& lhs, const Trace_step& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Trace_step& lhs, const Trace_step& rhs) noexcept {
 	return (lhs.ID == rhs.ID)
 		&& (lhs.InstructionActive == rhs.InstructionActive)
 		&& (lhs.NumRegistersRead == rhs.NumRegistersRead)
@@ -6551,7 +6551,7 @@ inline bool operator==(const Trace_step& lhs, const Trace_step& rhs) noexcept {
 		&& (lhs.CurrentGlobalCycle == rhs.CurrentGlobalCycle);
 }
 
-inline bool operator!=(const Trace_step& lhs, const Trace_step& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Trace_step& lhs, const Trace_step& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -6659,7 +6659,7 @@ public:
 };
 static_assert(sizeof(Trace_stats) == sizeof(D3D11_TRACE_STATS));
 
-inline bool operator==(const Trace_stats& lhs, const Trace_stats& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Trace_stats& lhs, const Trace_stats& rhs) noexcept {
 	return (lhs.TraceDesc == rhs.TraceDesc)
 		&& (lhs.NumInvocationsInStamp == rhs.NumInvocationsInStamp)
 		&& (lhs.TargetStampIndex == rhs.TargetStampIndex)
@@ -6685,7 +6685,7 @@ inline bool operator==(const Trace_stats& lhs, const Trace_stats& rhs) noexcept 
 		&& (lhs.DSInputPatchConstantMask == rhs.DSInputPatchConstantMask);
 }
 
-inline bool operator!=(const Trace_stats& lhs, const Trace_stats& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Trace_stats& lhs, const Trace_stats& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -6703,12 +6703,12 @@ public:
 };
 static_assert(sizeof(Info_queue_filter) == sizeof(D3D11_INFO_QUEUE_FILTER));
 
-inline bool operator==(const Info_queue_filter& lhs, const Info_queue_filter& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Info_queue_filter& lhs, const Info_queue_filter& rhs) noexcept {
 	return (lhs.AllowList == rhs.AllowList)
 		&& (lhs.DenyList == rhs.DenyList);
 }
 
-inline bool operator!=(const Info_queue_filter& lhs, const Info_queue_filter& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Info_queue_filter& lhs, const Info_queue_filter& rhs) noexcept {
 	return !operator==(lhs, rhs);
 }
 
@@ -6725,12 +6725,12 @@ public:
 };
 static_assert(sizeof(Shader_data) == sizeof(D3D_SHADER_DATA));
 
-inline bool operator==(const Shader_data& lhs, const Shader_data& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator==(const Shader_data& lhs, const Shader_data& rhs) noexcept {
 	return (lhs.BytecodeLength == rhs.BytecodeLength)
 		&& (_HW_3D_STD_ memcmp(lhs.pBytecode, rhs.pBytecode, lhs.BytecodeLength) == 0);
 }
 
-inline bool operator!=(const Shader_data& lhs, const Shader_data& rhs) noexcept {
+_HW_3D_INLINE_FUNCTION_ bool operator!=(const Shader_data& lhs, const Shader_data& rhs) noexcept {
 	return (!(lhs == rhs));
 }
 

@@ -19,6 +19,9 @@
     <Filter Include="头文件\rs">
       <UniqueIdentifier>{db8a5c6e-6f59-4155-972b-d69294813248}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\rs">
+      <UniqueIdentifier>{da9b786c-cf9f-47b5-b509-924691851228}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="d3d\d3d_wrapper.hpp">
@@ -54,22 +57,31 @@
     <ClInclude Include="rs\rs_utils.hpp">
       <Filter>头文件\rs</Filter>
     </ClInclude>
-    <ClInclude Include="rs\rs_shader.hpp">
-      <Filter>头文件\rs</Filter>
-    </ClInclude>
     <ClInclude Include="rs\rs_render_manager.h">
       <Filter>头文件\rs</Filter>
     </ClInclude>
-    <ClInclude Include="rs\rs_buffer.hpp">
+    <ClInclude Include="rs\rs_hw_resource.hpp">
       <Filter>头文件\rs</Filter>
     </ClInclude>
-    <ClInclude Include="rs\rs_view.hpp">
+    <ClInclude Include="rs\rs_hw_shader.hpp">
+      <Filter>头文件\rs</Filter>
+    </ClInclude>
+    <ClInclude Include="rs\rs_hw_view.hpp">
+      <Filter>头文件\rs</Filter>
+    </ClInclude>
+    <ClInclude Include="rs\rs_hw_buffer.h">
+      <Filter>头文件\rs</Filter>
+    </ClInclude>
+    <ClInclude Include="rs\rs_hw_texture.h">
       <Filter>头文件\rs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="rs\rs_hw_buffer.cpp">
+      <Filter>源文件\rs</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

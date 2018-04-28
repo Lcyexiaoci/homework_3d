@@ -26,7 +26,7 @@ struct _D3d_vertex_shader_helper : _D3d_shader_helper_base {
 	static _HW_3D_STD_ unique_ptr<_Handle_type>
 		create_shader(
 			_HW_3D_IN_ const _Source_code_type& code,
-			_HW_3D_IN_ Native_device* device
+			_HW_3D_IN_ Device* device
 		) {
 		auto[success, result] = device->create_vertex_shader(code.data(), code.size(), nullptr);
 
@@ -60,7 +60,7 @@ struct _D3d_vertex_shader_helper : _D3d_shader_helper_base {
 	static void 
 		make_shader_current(
 		_HW_3D_IN_ _Handle_type* handle,
-		_HW_3D_IN_ Native_context* context
+		_HW_3D_IN_ Context* context
 	) {
 		context->vs_set_shader(handle, {});
 	}
@@ -74,7 +74,7 @@ struct _D3d_compute_shader_helper : _D3d_shader_helper_base {
 	static _HW_3D_STD_ unique_ptr<_Handle_type>
 		create_shader(
 			_HW_3D_IN_ const _Source_code_type& code,
-			_HW_3D_IN_ Native_device* device
+			_HW_3D_IN_ Device* device
 		) {
 		auto[success, result] = device->create_compute_shader(code.data(), code.size(), nullptr);
 
@@ -108,7 +108,7 @@ struct _D3d_compute_shader_helper : _D3d_shader_helper_base {
 	static void
 		make_shader_current(
 			_HW_3D_IN_ _Handle_type* handle,
-			_HW_3D_IN_ Native_context* context
+			_HW_3D_IN_ Context* context
 		) {
 		context->cs_set_shader(handle, {});
 	}
@@ -122,7 +122,7 @@ struct _D3d_domain_shader_helper : _D3d_shader_helper_base {
 	static _HW_3D_STD_ unique_ptr<_Handle_type>
 		create_shader(
 			_HW_3D_IN_ const _Source_code_type& code,
-			_HW_3D_IN_ Native_device* device
+			_HW_3D_IN_ Device* device
 		) {
 		auto[success, result] = device->create_domain_shader(code.data(), code.size(), nullptr);
 
@@ -156,7 +156,7 @@ struct _D3d_domain_shader_helper : _D3d_shader_helper_base {
 	static void
 		make_shader_current(
 			_HW_3D_IN_ _Handle_type* handle,
-			_HW_3D_IN_ Native_context* context
+			_HW_3D_IN_ Context* context
 		) {
 		context->ds_set_shader(handle, {});
 	}
@@ -170,7 +170,7 @@ struct _D3d_hull_shader_helper : _D3d_shader_helper_base {
 	static _HW_3D_STD_ unique_ptr<_Handle_type>
 		create_shader(
 			_HW_3D_IN_ const _Source_code_type& code,
-			_HW_3D_IN_ Native_device* device
+			_HW_3D_IN_ Device* device
 		) {
 		auto[success, result] = device->create_hull_shader(code.data(), code.size(), nullptr);
 
@@ -204,7 +204,7 @@ struct _D3d_hull_shader_helper : _D3d_shader_helper_base {
 	static void 
 		make_shader_current(
 			_HW_3D_IN_ _Handle_type* handle,
-			_HW_3D_IN_ Native_context* context
+			_HW_3D_IN_ Context* context
 		) {
 		context->hs_set_shader(handle, {});
 	}
@@ -218,7 +218,7 @@ struct _D3d_geometry_shader_helper : _D3d_shader_helper_base {
 	static _HW_3D_STD_ unique_ptr<_Handle_type>
 		create_shader(
 			_HW_3D_IN_ const _Source_code_type& code,
-			_HW_3D_IN_ Native_device* device
+			_HW_3D_IN_ Device* device
 		) {
 		auto[success, result] = device->create_geometry_shader(code.data(), code.size(), nullptr);
 
@@ -252,7 +252,7 @@ struct _D3d_geometry_shader_helper : _D3d_shader_helper_base {
 	static void
 		make_shader_current(
 			_HW_3D_IN_ _Handle_type* handle,
-			_HW_3D_IN_ Native_context* context
+			_HW_3D_IN_ Context* context
 		) {
 		context->gs_set_shader(handle, {});
 	}
@@ -266,7 +266,7 @@ struct _D3d_pixel_shader_helper : _D3d_shader_helper_base {
 	static _HW_3D_STD_ unique_ptr<_Handle_type>
 		create_shader(
 			_HW_3D_IN_ const _Source_code_type& code,
-			_HW_3D_IN_ Native_device* device
+			_HW_3D_IN_ Device* device
 		) {
 		auto[success, result] = device->create_pixel_shader(code.data(), code.size(), nullptr);
 
@@ -300,7 +300,7 @@ struct _D3d_pixel_shader_helper : _D3d_shader_helper_base {
 	static void
 		make_shader_current(
 			_HW_3D_IN_ _Handle_type* handle,
-			_HW_3D_IN_ Native_context* context
+			_HW_3D_IN_ Context* context
 		) {
 		context->ps_set_shader(handle, {});
 	}
@@ -455,27 +455,16 @@ private:
 };
 
 //
-class Shader_manager : public _Singleton<Shader_manager> {
-public:
-	template <typename Shader>
-	_HW_3D_STD_ unique_ptr<Shader>
-		create(
-			_HW_3D_IN_ const typename Shader::Source_code_type& code,
-			_HW_3D_IN_ Render_manager* render_manager
-		) {
-		render_manager = render_manager == nullptr ? Render_manager::current_render_manager() : render_manager;
-		if (render_manager == nullptr)
-			_HW_3D_TRHOW_EXCEPTION_(Error_type::logic, "try to create shader without hardware"); 
-		return _HW_3D_STD_ make_unique<Shader>(code, render_manager);
-	}
-};
-
-//
 template <typename _Shader>
 _HW_3D_STD_ unique_ptr<_Shader> _TShader_builder<_Shader>::create(_HW_3D_IN_ Render_manager* render_manager) {
 	auto macros = _setup_shader_macros(_macros);
 	_code = _setup_source_code(_path, _entry, macros);
-	return Shader_manager::get_instance().create<_Shader>(_code, render_manager);
+	
+	render_manager = render_manager == nullptr ? Render_manager::current_render_manager() : render_manager;
+	if (render_manager == nullptr)
+		_HW_3D_TRHOW_EXCEPTION_(Error_type::logic, "try to create shader without hardware"); 
+
+	return _HW_3D_STD_ make_unique<_Shader>(_code, render_manager);
 }
 
 using Vertex_shader = _TShader<_D3d_vertex_shader_helper>;

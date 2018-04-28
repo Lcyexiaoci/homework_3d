@@ -8,8 +8,8 @@
 
 #include "rs\rs_utils.hpp"
 #include "rs\rs_render_manager.h"
-#include "rs\rs_shader.hpp"
-#include "rs\rs_view.hpp"
+#include "rs\rs_hw_shader.hpp"
+#include "rs\rs_hw_view.hpp"
 
 void test_d3d_wrapper();
 void test_rs_utils();

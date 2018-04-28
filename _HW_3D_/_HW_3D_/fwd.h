@@ -52,7 +52,7 @@ for namespace
 */
 
 #define _HW_3D_STD_ ::std::
-#define _HW_3D_HW_ ::hw::
+#define _HW_3D_HW_	hw::
 
 #define _HW_3D_OPEN_HW_NAMESPACE_		namespace hw {
 #define _HW_3D_CLOSE_HW_NAMESPACE_		}
@@ -79,17 +79,24 @@ for concurrency
 #define _HW_3D_NO_VTABLE_ __declspec(novtable)
 
 /*
+inline, it seems that plain inline have some bug
+*/
+#define _HW_3D_INLINE_FUNCTION_ __forceinline
+
+#define _HW_3D_INLINE_VARIABLE_ __declspec(selectany)
+
+/*
 
 */
 //flag type def macro
 #define _HW_3D_HW_FLAG_TYPE_(Flag_type, Bit_type)											\
 using Flag_type = _HW_3D_HW_ Flags<Bit_type, _HW_3D_HW_ Underlying_type_t<Bit_type>>;		\
 																							\
-inline Flag_type operator|(Bit_type bit0, Bit_type bit1) {									\
+_HW_3D_INLINE_FUNCTION_ Flag_type operator|(Bit_type bit0, Bit_type bit1) {					\
 	return Flag_type (bit0) | bit1;															\
 }																							\
 																							\
-inline Flag_type operator~(Bit_type bit) {													\
+_HW_3D_INLINE_FUNCTION_ Flag_type operator~(Bit_type bit) {									\
 	return ~Flag_type (bit);																\
 }
 

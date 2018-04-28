@@ -1,6 +1,7 @@
 #pragma once
 
 #include "rs_fwd.h"
+#include "../d3d/d3d_func.hpp"
 
 _HW_3D_OPEN_HW_NAMESPACE_
 
@@ -152,22 +153,12 @@ using Extent1d = _TExtent<uint32_t, 1>;
 using Extent2d = _TExtent<uint32_t, 2>;
 using Extent3d = _TExtent<uint32_t, 3>;
 
-//
-//
-struct Subresource {
-	uint32_t mip_slice{ 0 };
-	uint32_t array_slice{ 0 };
-	uint32_t mip_levels{ 0 };
-
-	explicit operator uint32_t() const {
-		return _HW_3D_D3D_ calc_subresource(mip_slice, array_slice, mip_levels);
-	}
-};
-
 ///
 ///
 ///helper function
-inline Box transfer_to_box(Offset1d offset, Extent1d extent) {
+
+//transfer <offset, extent> to Box
+_HW_3D_INLINE_FUNCTION_ Box transfer_to_box(Offset1d offset, Extent1d extent) {
 	Box res;
 
 	res.left = offset.x;
@@ -180,7 +171,7 @@ inline Box transfer_to_box(Offset1d offset, Extent1d extent) {
 	return res;
 }
 
-inline Box transfer_to_box(Offset2d offset, Extent2d extent) {
+_HW_3D_INLINE_FUNCTION_ Box transfer_to_box(Offset2d offset, Extent2d extent) {
 	Box res;
 
 	res.left = offset.x;
@@ -193,7 +184,7 @@ inline Box transfer_to_box(Offset2d offset, Extent2d extent) {
 	return res;
 }
 
-inline Box transfer_to_box(Offset3d offset, Extent3d extent) {
+_HW_3D_INLINE_FUNCTION_ Box transfer_to_box(Offset3d offset, Extent3d extent) {
 	Box res;
 
 	res.left = offset.x;
@@ -239,8 +230,12 @@ struct Is_shader_helper <
 
 };
 
-template <typename _Shader_helper>
-inline constexpr bool is_shader_helper_v = Is_shader_helper<_Shader_helper>::value;
+template <typename _Shader_helper> 
+constexpr bool is_shader_helper_v = Is_shader_helper<_Shader_helper>::value;
+
+//metadata
+template <typename Ty>
+using Metadata_t = typename Ty::Metadata;
 
 _HW_3D_CLOSE_RS_NAMESPACE_
 

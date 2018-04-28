@@ -4675,7 +4675,7 @@ struct D3d_wrapper_alloc_base {
 	}
 };
 
-inline D3d_wrapper_alloc_base::Memory_pool_type D3d_wrapper_alloc_base::memory_pool{};
+_HW_3D_INLINE_VARIABLE_ D3d_wrapper_alloc_base::Memory_pool_type D3d_wrapper_alloc_base::memory_pool;
 
 //
 //

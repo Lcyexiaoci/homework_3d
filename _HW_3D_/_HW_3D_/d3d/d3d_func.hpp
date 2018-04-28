@@ -9,7 +9,7 @@ _HW_3D_OPEN_DXGI_NAMESPACE_
 
 //
 //
-inline _HW_3D_STD_ tuple<Result, _HW_3D_STD_ unique_ptr<IFactory>>
+_HW_3D_INLINE_FUNCTION_ _HW_3D_STD_ tuple<Result, _HW_3D_STD_ unique_ptr<IFactory>>
 create_factory() {
 	_HW_3D_STD_ tuple<Result, _HW_3D_STD_ unique_ptr<IFactory>> res;
 
@@ -23,7 +23,7 @@ create_factory() {
 	return res;
 }
 
-inline _HW_3D_STD_ tuple<Result, _HW_3D_STD_ unique_ptr<IFactory1>>
+_HW_3D_INLINE_FUNCTION_ _HW_3D_STD_ tuple<Result, _HW_3D_STD_ unique_ptr<IFactory1>>
 create_factory1() {
 	_HW_3D_STD_ tuple<Result, _HW_3D_STD_ unique_ptr<IFactory1>> res;
 
@@ -37,7 +37,7 @@ create_factory1() {
 	return res;
 }
 
-inline _HW_3D_STD_ tuple<Result, _HW_3D_STD_ unique_ptr<IFactory2>>
+_HW_3D_INLINE_FUNCTION_ _HW_3D_STD_ tuple<Result, _HW_3D_STD_ unique_ptr<IFactory2>>
 create_facotry2(UINT flags) {
 	_HW_3D_STD_ tuple<Result, _HW_3D_STD_ unique_ptr<IFactory2>> res;
 
@@ -51,7 +51,7 @@ create_facotry2(UINT flags) {
 	return res;
 }
 
-inline _HW_3D_STD_ tuple<Result, _HW_3D_STD_ unique_ptr<IDebug>>
+_HW_3D_INLINE_FUNCTION_ _HW_3D_STD_ tuple<Result, _HW_3D_STD_ unique_ptr<IDebug>>
 get_dubug_interface() {
 	_HW_3D_STD_ tuple<Result, _HW_3D_STD_ unique_ptr<IDebug>> res;
 
@@ -65,7 +65,7 @@ get_dubug_interface() {
 	return res;
 }
 
-inline _HW_3D_STD_ tuple<Result, _HW_3D_STD_ unique_ptr<IInfo_queue>>
+_HW_3D_INLINE_FUNCTION_ _HW_3D_STD_ tuple<Result, _HW_3D_STD_ unique_ptr<IInfo_queue>>
 get_info_queue_interface() {
 	_HW_3D_STD_ tuple<Result, _HW_3D_STD_ unique_ptr<IInfo_queue>> res;
 
@@ -79,7 +79,7 @@ get_info_queue_interface() {
 	return res;
 }
 
-inline _HW_3D_STD_ tuple<Result, _HW_3D_STD_ unique_ptr<IDebug1>>
+_HW_3D_INLINE_FUNCTION_ _HW_3D_STD_ tuple<Result, _HW_3D_STD_ unique_ptr<IDebug1>>
 get_debug_interface1(UINT flags) {
 	_HW_3D_STD_ tuple<Result, _HW_3D_STD_ unique_ptr<IDebug1>> res;
 
@@ -97,7 +97,7 @@ _HW_3D_CLOSE_DXGI_NAMESPACE_
 
 _HW_3D_OPEN_D3D_NAMESPACE_
 
-inline _HW_3D_STD_ tuple<Result, _HW_3D_STD_ unique_ptr<IDevice>, Feature_level, _HW_3D_STD_ unique_ptr<IDevice_context>>
+_HW_3D_INLINE_FUNCTION_ _HW_3D_STD_ tuple<Result, _HW_3D_STD_ unique_ptr<IDevice>, Feature_level, _HW_3D_STD_ unique_ptr<IDevice_context>>
 create_device(
 	_HW_3D_IN_ _HW_3D_DXGI_ IAdapter* adpater,
 	_HW_3D_IN_ Driver_type driver_type,
@@ -131,7 +131,7 @@ create_device(
 	return res;
 }
 
-inline _HW_3D_STD_ tuple<Result, _HW_3D_STD_ unique_ptr<IDevice>, Feature_level, _HW_3D_STD_ unique_ptr<IDevice_context>, _HW_3D_STD_ unique_ptr<_HW_3D_DXGI_ ISwap_chain>>
+_HW_3D_INLINE_FUNCTION_ _HW_3D_STD_ tuple<Result, _HW_3D_STD_ unique_ptr<IDevice>, Feature_level, _HW_3D_STD_ unique_ptr<IDevice_context>, _HW_3D_STD_ unique_ptr<_HW_3D_DXGI_ ISwap_chain>>
 create_device_and_swap_chain(
 	_HW_3D_IN_ _HW_3D_DXGI_ IAdapter* adapter,
 	_HW_3D_IN_ Driver_type driver_type,
@@ -170,7 +170,7 @@ create_device_and_swap_chain(
 	return res;
 }
 
-inline Uint
+_HW_3D_INLINE_FUNCTION_ Uint
 calc_subresource(
 	_HW_3D_IN_ Uint mip_slice,
 	_HW_3D_IN_ Uint array_slice,
@@ -179,7 +179,7 @@ calc_subresource(
 	return D3D11CalcSubresource(mip_slice, array_slice, mip_levels);
 }
 
-inline _HW_3D_STD_ tuple<Result, _HW_3D_STD_ unique_ptr<IBlob>>
+_HW_3D_INLINE_FUNCTION_ _HW_3D_STD_ tuple<Result, _HW_3D_STD_ unique_ptr<IBlob>>
 compile_from_file(
 	_HW_3D_IN_ const _HW_3D_STD_ wstring& file_name,
 	_HW_3D_IN_ const Shader_macro* define,
@@ -217,7 +217,7 @@ compile_from_file(
 }
 
 
-inline _HW_3D_STD_ unique_ptr<_HW_3D_DXGI_ IDevice>
+_HW_3D_INLINE_FUNCTION_ _HW_3D_STD_ unique_ptr<_HW_3D_DXGI_ IDevice>
 transfer_device(
 	_HW_3D_IN_ IDevice* device
 ) {

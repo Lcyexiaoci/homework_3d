@@ -26,15 +26,20 @@ _HW_3D_OPEN_RS_NAMESPACE_
 ///import type
 
 //import native api type, d3d specific
-using Native_factory = _HW_3D_DXGI_ IFactory;
-using Native_adapteer = _HW_3D_DXGI_ IAdapter;
-using Native_context = _HW_3D_D3D_ IDevice_context;
-using Native_device = _HW_3D_D3D_ IDevice;
-using Native_resource_usage = _HW_3D_D3D_ Usage;
-using Native_resource_bind_flag = _HW_3D_D3D_ Bind_flag;
-using Native_resource_cpu_access_flag = _HW_3D_D3D_ Cpu_access_flag;
-using Native_resource_misc_flag = _HW_3D_D3D_ Resource_misc_flag;
-using Native_pixel_format = _HW_3D_DXGI_ Format;
+using Factory = _HW_3D_DXGI_ IFactory;
+using Adapteer = _HW_3D_DXGI_ IAdapter;
+using Context = _HW_3D_D3D_ IDevice_context;
+using Device = _HW_3D_D3D_ IDevice;
+using Resource_usage = _HW_3D_D3D_ Usage;
+using Resource_bind_flag = _HW_3D_D3D_ Bind_flag;
+using Resource_cpu_access_flag = _HW_3D_D3D_ Cpu_access_flag;
+using Resource_misc_flag = _HW_3D_D3D_ Resource_misc_flag;
+using Pixel_format = _HW_3D_DXGI_ Format;
+
+using Native_factory = IDXGIFactory;
+using Native_adapter = IDXGIAdapter;
+using Native_context = ID3D11DeviceContext;
+using Native_device = ID3D11Device;
 
 //import utils struct
 using Rect = _HW_3D_D3D_ Rect;

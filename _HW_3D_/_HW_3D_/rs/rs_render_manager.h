@@ -51,6 +51,10 @@ public:
 	Native_device* native_device();
 
 	Native_context* native_context();
+
+	Device* device();
+
+	Context* context() { return nullptr; }
 };
 
 
