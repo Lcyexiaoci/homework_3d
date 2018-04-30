@@ -74,7 +74,7 @@ for concurrency
 
 */
 
-#define _HW_3D_TRHOW_EXCEPTION_(error_type, msg) throw _HW_3D_HW_ Hw_exception(error_type, msg, __FILE__, __LINE__)
+#define _HW_3D_THROW_EXCEPTION_(error_type, msg) throw _HW_3D_HW_ Hw_exception(error_type, msg, __FILE__, __LINE__)
 
 #define _HW_3D_NO_VTABLE_ __declspec(novtable)
 

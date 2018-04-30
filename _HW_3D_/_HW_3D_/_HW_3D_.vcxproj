@@ -131,7 +131,7 @@
     <ClInclude Include="d3d\d3d_wrapper.hpp" />
     <ClInclude Include="fwd.h" />
     <ClInclude Include="log.hpp" />
-    <ClInclude Include="rs\rs_hw_buffer.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="rs\rs_fwd.h" />
     <ClInclude Include="rs\rs_hw_texture.h" />
     <ClInclude Include="rs\rs_render_manager.h" />
@@ -142,7 +142,6 @@
     <ClInclude Include="utils.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="rs\rs_hw_buffer.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

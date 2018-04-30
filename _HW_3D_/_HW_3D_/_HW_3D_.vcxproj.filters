@@ -69,19 +69,16 @@
     <ClInclude Include="rs\rs_hw_view.hpp">
       <Filter>头文件\rs</Filter>
     </ClInclude>
-    <ClInclude Include="rs\rs_hw_buffer.h">
-      <Filter>头文件\rs</Filter>
-    </ClInclude>
     <ClInclude Include="rs\rs_hw_texture.h">
       <Filter>头文件\rs</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
       <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="rs\rs_hw_buffer.cpp">
-      <Filter>源文件\rs</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

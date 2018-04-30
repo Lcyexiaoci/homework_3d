@@ -10,13 +10,18 @@
 #include "rs\rs_render_manager.h"
 #include "rs\rs_hw_shader.hpp"
 #include "rs\rs_hw_view.hpp"
+#include "rs\rs_hw_resource.hpp"
 
 void test_d3d_wrapper();
 void test_rs_utils();
 void test_rs_view_base();
 
 int main() {
-	test_rs_view_base();
+	_HW_3D_RS_ Hardware_buffer_builder builder;
+	builder.Usage = _HW_3D_RS_ Resource_usage::dynamic;
+	
+
+	test_rs_utils();
 	std::getchar();
 }
 
@@ -153,6 +158,17 @@ void test_rs_utils() {
 	std::cout << x.width << std::endl;
 	std::cout << y.width << ", " << y.height << std::endl;
 	std::cout << z.width << ", " << y.height << ", " << z.depth << std::endl;
+
+	_HW_3D_RS_ Range2d m(a, y);
+	std::cout << "<" << m.offset.x << ", " << m.offset.y << "> - <"
+		<< m.extent.width << ", " << m.extent.height << ">" << std::endl;
+
+	std::cout << std::is_constructible_v<_HW_3D_RS_ Offset2d, const _HW_3D_RS_ Offset1d &> << std::endl;
+	std::cout << std::is_constructible_v<_HW_3D_RS_ Extent2d, const _HW_3D_RS_ Extent2d &> << std::endl;
+
+	_HW_3D_RS_ Range3d n(1, 2, 3, 4, 5, 6);
+	std::cout << "< " << n.offset.x << ", " << n.offset.y << ", " << n.offset.z << "> - <"
+		<< n.extent.width << ", " << n.extent.height << ", " << n.extent.depth << ">" << std::endl;
 }
 
 void test_rs_view_base() {
