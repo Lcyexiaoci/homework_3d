@@ -374,7 +374,7 @@ public:
 			_HW_3D_IN_ const Path& file_name
 		) {
 		if (auto ext = file_name.extension(); ext != ".cso" && ext != ".hlsl")
-			_HW_3D_TRHOW_EXCEPTION_(Error_type::logic, "invalid shader source file type");
+			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "invalid shader source file type");
 		_path = file_name;
 		return *this;
 	}
@@ -462,7 +462,7 @@ _HW_3D_STD_ unique_ptr<_Shader> _TShader_builder<_Shader>::create(_HW_3D_IN_ Ren
 	
 	render_manager = render_manager == nullptr ? Render_manager::current_render_manager() : render_manager;
 	if (render_manager == nullptr)
-		_HW_3D_TRHOW_EXCEPTION_(Error_type::logic, "try to create shader without hardware"); 
+		_HW_3D_THROW_EXCEPTION_(Error_type::logic, "try to create shader without hardware"); 
 
 	return _HW_3D_STD_ make_unique<_Shader>(_code, render_manager);
 }

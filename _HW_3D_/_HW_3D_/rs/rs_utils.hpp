@@ -153,6 +153,46 @@ using Extent1d = _TExtent<uint32_t, 1>;
 using Extent2d = _TExtent<uint32_t, 2>;
 using Extent3d = _TExtent<uint32_t, 3>;
 
+template <typename _Ty, _HW_3D_STD_ size_t _Dim>
+struct _TRange {
+	static_assert(_Dim > 0 && _Dim < 4 && alignof(_Ty) == alignof(_TOffset<_Ty, _Dim>) && alignof(_Ty) == alignof(_TExtent<_Ty, _Dim>));
+
+	_TOffset<_Ty, _Dim> offset;
+	_TExtent<_Ty, _Dim> extent;
+
+	_TRange() = default;
+	_TRange(const _TRange&) = default;
+	_TRange& operator=(const _TRange&) = default;
+
+	template <
+		typename _Offset_other_type, 
+		typename _Extent_other_type,
+		_HW_3D_STD_ size_t _Offset_other_dim, 
+		_HW_3D_STD_ size_t _Extent_other_dim,
+		typename = _HW_3D_STD_ enable_if_t<
+			(_HW_3D_STD_ is_constructible_v<_TOffset<_Ty, _Dim>, const _TOffset<_Offset_other_type, _Offset_other_dim> &> && 
+			_HW_3D_STD_ is_constructible_v<_TExtent<_Ty, _Dim>, const _TExtent<_Extent_other_type, _Extent_other_dim> &>)>>
+		_TRange(
+			const _TOffset<_Offset_other_type, _Offset_other_dim>& offset_,
+			const _TExtent<_Extent_other_type, _Extent_other_dim>& extent_
+		) : offset(offset_)
+		, extent(extent_) {
+	}
+
+	template <
+		typename... _Args, 
+		_HW_3D_STD_ enable_if_t<((sizeof...(_Args)) == 2 * _Dim 
+			&& _HW_3D_STD_ conjunction_v<_HW_3D_STD_ is_assignable<_Ty&, _Args>...>), int> = 0>
+	_TRange(_Args&&... args) {
+		auto ptr = _HW_3D_STD_ addressof(*offset.begin());
+		((*ptr++ = _HW_3D_STD_ forward<_Args>(args)), ...);
+	}
+};
+
+using Range1d = _TRange<uint32_t, 1>;
+using Range2d = _TRange<uint32_t, 2>;
+using Range3d = _TRange<uint32_t, 3>;
+
 ///
 ///
 ///helper function
@@ -197,6 +237,18 @@ _HW_3D_INLINE_FUNCTION_ Box transfer_to_box(Offset3d offset, Extent3d extent) {
 	return res;
 }
 
+_HW_3D_INLINE_FUNCTION_ Box transfer_to_box(const Range1d& range) {
+	return transfer_to_box(range.offset, range.extent);
+}
+
+_HW_3D_INLINE_FUNCTION_ Box transfer_to_box(const Range2d& range) {
+	return transfer_to_box(range.offset, range.extent);
+}
+
+_HW_3D_INLINE_FUNCTION_ Box transfer_to_box(const Range3d& range) {
+	return transfer_to_box(range.offset, range.extent);
+}
+
 ///
 ///
 /// type function
@@ -232,10 +284,6 @@ struct Is_shader_helper <
 
 template <typename _Shader_helper> 
 constexpr bool is_shader_helper_v = Is_shader_helper<_Shader_helper>::value;
-
-//metadata
-template <typename Ty>
-using Metadata_t = typename Ty::Metadata;
 
 _HW_3D_CLOSE_RS_NAMESPACE_
 
