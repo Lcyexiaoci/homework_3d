@@ -180,21 +180,21 @@ public:
 		context->copy_subresource_region(dst, 0, { dst_offset, 0, 0 }, src, 0, &src_box);
 	}
 
-	uint32_t
+	static uint32_t
 		size(
 			_HW_3D_IN_ const Metadata_type& metadata
 		) {
 		return metadata.ByteWidth;
 	}
 
-	uint32_t
+	static uint32_t
 		stride(
 			_HW_3D_IN_ const Metadata_type& metadata
 		) {
 		return metadata.StructureByteStride;
 	}
 
-	_HW_3D_STD_ unique_ptr<Handle_type>
+	static _HW_3D_STD_ unique_ptr<Handle_type>
 		create(
 			_HW_3D_IN_ Device_type* device,
 			_HW_3D_IN_ const Metadata_type& metadata,
@@ -628,7 +628,7 @@ struct _D3d_texture1d_helper : _D3d_texture_helper_base<_HW_3D_D3D_ Texture1d_de
 public:
 	using Metadata_type = _HW_3D_D3D_ Texture1d_desc;
 	using Handle_type = _HW_3D_D3D_ ITexture1d;
-	using Native_handle_type = ID3D11Texture2D;
+	using Native_handle_type = ID3D11Texture1D;
 	using Subresource_type = _D3d_texture_subresource<Handle_type>;
 public:
 
@@ -647,7 +647,7 @@ public:
 			static_cast<uint32_t>(src),
 			_HW_3D_D3D_ Map::read,
 			{});
-		_HW_3D_RS_ASSERT_D3DCALL_SUCCESS_(success, "failed to map buffer");
+		_HW_3D_RS_ASSERT_D3DCALL_SUCCESS_(success, "failed to map texture");
 
 		auto offset = range.offset.x / pixels * total_size;
 		auto size = range.extent.width / pixels * total_size;
@@ -659,7 +659,7 @@ public:
 
 		return res;
 	}
-
+	
 	static void
 		copy(
 			_HW_3D_IN_ Context_type* context,
@@ -733,7 +733,7 @@ public:
 		return metadata.Format;
 	}
 
-	_HW_3D_STD_ unique_ptr<Handle_type>
+	static _HW_3D_STD_ unique_ptr<Handle_type>
 		create(
 			_HW_3D_IN_ Device_type* device,
 			_HW_3D_IN_ const Metadata_type& metadata,
@@ -1002,6 +1002,322 @@ struct _THardware_texture1d_builder : _My_base {
 //
 using Hardware_texture1d = _THardware_texture1d<_D3d_texture1d_helper>;
 using Hardware_texture1d_builder = _THardware_texture1d_builder<_D3d_texture1d_helper>;
+
+//
+//for simplicty, never read compressed texture back
+struct _D3d_texture2d_helper : _D3d_texture_helper_base<_HW_3D_D3D_ Texture2d_desc> {
+public:
+	using Metadata_type = _HW_3D_D3D_ Texture2d_desc;
+	using Handle_type = _HW_3D_D3D_ ITexture2d;
+	using Native_handle_type = ID3D11Texture2D;
+	using Subresource_type = _D3d_texture_subresource<Handle_type>;
+public:
+	static _HW_3D_STD_ vector<_HW_3D_STD_ byte>
+		read(
+			_HW_3D_IN_ Context_type* context,
+			_HW_3D_IN_ Subresource_type src,
+			_HW_3D_IN_ const Metadata_type& metadata,
+			_HW_3D_IN_ const Range2d& range
+		) {
+		_HW_3D_STD_ vector<_HW_3D_STD_ byte> res;
+		auto[pixels, total_size] = pixel_size(metadata);
+		total_size *= samples(metadata);
+
+		auto[success, result] = context->map(
+			src.texture,
+			static_cast<uint32_t>(src),
+			_HW_3D_D3D_ Map::read,
+			{});
+		_HW_3D_RS_ASSERT_D3DCALL_SUCCESS_(success, "failed to map texture");
+
+		auto[offset, extent] = range;
+		auto size = extent.width * extent.height / pixels * total_size;
+		auto row_size = extent.width / pixels * total_size;
+
+		res.resize(size);
+		_HW_3D_STD_ byte* p_src = reinterpret_cast<_HW_3D_STD_ byte*>(result.pData) + result.RowPitch * offset.y + offset.x / pixels * total_size;
+		_HW_3D_STD_ byte* p_dst = res.data();
+		for (uint32_t i = 0; i != extent.height; i++) {
+			_HW_3D_STD_ memcpy(p_dst, p_src, row_size);
+			p_src += result.RowPitch;
+			p_dst += row_size;
+		}
+
+		context->unmap(src.texture, static_cast<uint32_t>(src));
+
+		return res;
+	}
+
+	static void
+		copy(
+			_HW_3D_IN_ Context_type* context,
+			_HW_3D_IN_ Handle_type* dst,
+			_HW_3D_IN_ Handle_type* src
+		) {
+		context->copy_resource(dst, src);
+	}
+
+	static void
+		copy(
+			_HW_3D_IN_ Context_type* context,
+			_HW_3D_IN_ Subresource_type dst,
+			_HW_3D_IN_ Offset2d dst_offset,
+			_HW_3D_IN_ Subresource_type src,
+			_HW_3D_IN_ const Range2d& src_range
+		) {
+		auto src_box = transfer_to_box(src_range);
+		context->copy_subresource_region(
+			dst.texture,
+			static_cast<uint32_t>(dst),
+			{ dst_offset.x, dst_offset.y },
+			src.texture,
+			static_cast<uint32_t>(src),
+			&src_box);
+	}
+
+	static Extent2d
+		size(
+			_HW_3D_IN_ const Metadata_type& metadata,
+			_HW_3D_IN_ uint32_t level
+		) {
+		auto width = get_mipmaps_length(metadata.Width, level);
+		auto height = get_mipmaps_length(metadata.Height, level);
+		if (width || height)
+			return Extent2d((_HW_3D_STD_ max)(1u, width), (_HW_3D_STD_ max)(1u, height));
+		else
+			return Extent2d( 0, 0 );
+	}
+
+	static uint32_t
+		data_size(
+			_HW_3D_IN_ const Metadata_type& metadata,
+			_HW_3D_IN_ uint32_t level
+		) {
+		auto[pixels, total_size] = pixel_size(metadata);
+		auto[width, height] = size(metadata, level);
+		return (width + pixels - 1) / pixels * total_size * height;
+	}
+
+	static uint32_t
+		width(
+			_HW_3D_IN_ const Metadata_type& metadata
+		) {
+		return metadata.Width;
+	}
+
+	static uint32_t
+		height(
+			_HW_3D_IN_ const Metadata_type& metadata
+		) {
+		return metadata.Height;
+	}
+
+	static uint32_t
+		mip_levels(
+			_HW_3D_IN_ const Metadata_type& metadata
+		) {
+		return metadata.MipLevels;
+	}
+
+	static uint32_t
+		array_size(
+			_HW_3D_IN_ const Metadata_type& metadata
+		) {
+		return metadata.ArraySize;
+	}
+
+	static Pixel_format
+		format(
+			_HW_3D_IN_ const Metadata_type& metadata
+		) {
+		return metadata.Format;
+	}
+
+	static uint32_t
+		samples(
+			_HW_3D_IN_ const Metadata_type& metadata
+		) {
+		return metadata.SampleDesc.Count;
+	}
+
+	static _HW_3D_STD_ unique_ptr<Handle_type>
+		create(
+			_HW_3D_IN_ Device_type* device,
+			_HW_3D_IN_ const Metadata_type& metadata,
+			_HW_3D_IN_ const void* data,
+			_HW_3D_IN_ uint32_t row_pitch,
+			_HW_3D_IN_ uint32_t slice_pitch
+		) {
+		_HW_3D_D3D_ Subresource_data init_data;
+		init_data.pSysMem = data;
+		init_data.SysMemPitch = row_pitch;
+		init_data.SysMemSlicePitch = slice_pitch;
+		
+		auto[success, texture] = device->create_texture_2d(metadata, &init_data);
+
+		_HW_3D_RS_ASSERT_D3DCALL_SUCCESS_(success, "failed to create texture2d");
+
+		return _HW_3D_STD_ move(texture);
+	}
+
+	static void
+		write_via_mapping(
+			_HW_3D_IN_ Context_type* context,
+			_HW_3D_IN_ Subresource_type dst,
+			_HW_3D_IN_ const Metadata_type& metadata,
+			_HW_3D_IN_ const Range2d& range,
+			_HW_3D_IN_ const void* data,
+			_HW_3D_IN_ uint32_t row_pitch,
+			_HW_3D_IN_ Resource_write_hint hint
+		) {
+		auto map_type = d3d_map_type(hint);
+
+		auto[success, result] = context->map(
+			dst.texture,
+			static_cast<uint32_t>(dst),
+			map_type,
+			{});
+		_HW_3D_RS_ASSERT_D3DCALL_SUCCESS_(success, "failed to map texture 2d");
+		
+		auto[pixels, total_size] = pixel_size(metadata);
+		total_size *= samples(metadata);
+		
+		auto[offset, extent] = range;
+		auto row_size = extent.width / pixels * total_size;
+		row_pitch = row_pitch == 0 ? row_size : row_pitch;
+
+		_HW_3D_STD_ byte* p_dst = reinterpret_cast<_HW_3D_STD_ byte*>(result.pData) + result.RowPitch * offset.y + offset.x / pixels * total_size;
+		const _HW_3D_STD_ byte* p_src = reinterpret_cast<const _HW_3D_STD_ byte*>(data);
+		for (uint32_t i = 0; i != extent.height; i++) {
+			_HW_3D_STD_ memcpy(p_dst, p_src, row_size);
+			p_dst += result.RowPitch;
+			p_src += row_pitch;
+		}
+
+		context->unmap(dst.texture, static_cast<uint32_t>(dst));
+	}
+
+	static void
+		write_via_update(
+			_HW_3D_IN_ Context_type* context,
+			_HW_3D_IN_ Subresource_type dst,
+			_HW_3D_IN_ const Range2d& range,
+			_HW_3D_IN_ const void* data,
+			_HW_3D_IN_ uint32_t row_pitch
+		);
+
+	static void
+		resolve(
+			_HW_3D_IN_ Context_type* context,
+			_HW_3D_IN_ Subresource_type dst,
+			_HW_3D_IN_ Subresource_type src,
+			_HW_3D_IN_ Pixel_format format
+		);
+};
+
+//
+//
+struct _D3d_texture3d_helper : _D3d_texture_helper_base<_HW_3D_D3D_ Texture3d_desc> {
+public:
+	using Metadata_type = _HW_3D_D3D_ Texture3d_desc;
+	using Handle_type = _HW_3D_D3D_ ITexture3d;
+	using Native_handle_type = ID3D11Texture3D;
+	using Subresource_type = _D3d_texture_subresource<Handle_type>;
+public:
+	static _HW_3D_STD_ vector<_HW_3D_STD_ byte>
+		read(
+			_HW_3D_IN_ Context_type* context,
+			_HW_3D_IN_ Subresource_type src,
+			_HW_3D_IN_ const Metadata_type& metadata,
+			_HW_3D_IN_ const Range3d& range
+		);
+
+	static void
+		copy(
+			_HW_3D_IN_ Context_type* context,
+			_HW_3D_IN_ Handle_type* dst,
+			_HW_3D_IN_ Handle_type* src
+		);
+
+	static void
+		copy(
+			_HW_3D_IN_ Context_type* context,
+			_HW_3D_IN_ Subresource_type dst,
+			_HW_3D_IN_ Offset3d dst_offset,
+			_HW_3D_IN_ Subresource_type src,
+			_HW_3D_IN_ const Range3d& src_range
+		);
+
+	static Extent3d
+		size(
+			_HW_3D_IN_ const Metadata_type& metadata,
+			_HW_3D_IN_ uint32_t level
+		);
+
+	static uint32_t
+		data_size(
+			_HW_3D_IN_ const Metadata_type& metadata,
+			_HW_3D_IN_ uint32_t level
+		);
+
+	static uint32_t
+		width(
+			_HW_3D_IN_ const Metadata_type& metadata
+		);
+
+	static uint32_t
+		height(
+			_HW_3D_IN_ const Metadata_type& metadata
+		);
+
+	static uint32_t
+		depth(
+			_HW_3D_IN_ const Metadata_type& metadata
+		);
+
+	static uint32_t
+		mip_levels(
+			_HW_3D_IN_ const Metadata_type& metadata
+		);
+
+	static Pixel_format
+		format(
+			_HW_3D_IN_ const Metadata_type& metadata
+		);
+
+	static _HW_3D_STD_ unique_ptr<Handle_type>
+		create(
+			_HW_3D_IN_ Device_type* device,
+			_HW_3D_IN_ const Metadata_type& metadata,
+			_HW_3D_IN_ const void* data,
+			_HW_3D_IN_ uint32_t row_pitch,
+			_HW_3D_IN_ uint32_t slice_pitch
+		);
+
+	static void
+		write_via_mapping(
+			_HW_3D_IN_ Context_type* context,
+			_HW_3D_IN_ Subresource_type dst,
+			_HW_3D_IN_ const Metadata_type& metadata,
+			_HW_3D_IN_ const Range3d& range,
+			_HW_3D_IN_ const void* data,
+			_HW_3D_IN_ uint32_t row_pitch,
+			_HW_3D_IN_ uint32_t slice_pitch,
+			_HW_3D_IN_ Resource_write_hint hint
+		);
+
+	static void
+		write_via_update(
+			_HW_3D_IN_ Context_type* context,
+			_HW_3D_IN_ Subresource_type dst,
+			_HW_3D_IN_ const Range3d& range,
+			_HW_3D_IN_ const void* data,
+			_HW_3D_IN_ uint32_t row_pitch,
+			_HW_3D_IN_ uint32_t slice_pitch
+		);
+
+};
+
 
 _HW_3D_CLOSE_RS_NAMESPACE_
 
