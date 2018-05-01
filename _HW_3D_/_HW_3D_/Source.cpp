@@ -17,10 +17,6 @@ void test_rs_utils();
 void test_rs_view_base();
 
 int main() {
-	_HW_3D_RS_ Hardware_buffer_builder builder;
-	builder.Usage = _HW_3D_RS_ Resource_usage::dynamic;
-	
-
 	test_rs_utils();
 	std::getchar();
 }
@@ -148,20 +144,36 @@ void test_d3d_wrapper() {
 void test_rs_utils() {
 	_HW_3D_RS_ Offset1d a(1.0f);
 	_HW_3D_RS_ Offset2d b(a);
+	auto[ax] = a;
+	auto&[bx, by] = b;
+	std::cout << ax << std::endl;
+	std::cout << bx << ", " << by << std::endl;
+	ax = 1111;
 	std::cout << a.x << std::endl;
+	bx = 12, by = 34;
 	std::cout << b.x << ", " << b.y << std::endl;
 
 	_HW_3D_RS_ Extent1d x(1.1);
 	_HW_3D_RS_ Extent2d y(1, 2.2);
 	_HW_3D_RS_ Extent3d z(y);
-	z.depth = 3;
-	std::cout << x.width << std::endl;
-	std::cout << y.width << ", " << y.height << std::endl;
-	std::cout << z.width << ", " << y.height << ", " << z.depth << std::endl;
+	auto[xwidth] = x;
+	auto[ywidth, yheight] = y;
+	auto[zwidth, zheight, zdepth] = z; 
+
+	std::cout << xwidth << std::endl;
+	std::cout << ywidth << ", " << yheight << std::endl;
+	std::cout << zwidth << ", " << zheight << ", " << zdepth << std::endl;
 
 	_HW_3D_RS_ Range2d m(a, y);
+
+	auto[m_off, m_ext] = m;
+	auto[mx, my] = m_off;
+	auto[mwidth, mheight] = m_ext;
 	std::cout << "<" << m.offset.x << ", " << m.offset.y << "> - <"
 		<< m.extent.width << ", " << m.extent.height << ">" << std::endl;
+
+	std::cout << "<" << mx << ", " << my << "> - <"
+		<< mwidth << ", " << mheight << ">" << std::endl;
 
 	std::cout << std::is_constructible_v<_HW_3D_RS_ Offset2d, const _HW_3D_RS_ Offset1d &> << std::endl;
 	std::cout << std::is_constructible_v<_HW_3D_RS_ Extent2d, const _HW_3D_RS_ Extent2d &> << std::endl;
@@ -169,6 +181,8 @@ void test_rs_utils() {
 	_HW_3D_RS_ Range3d n(1, 2, 3, 4, 5, 6);
 	std::cout << "< " << n.offset.x << ", " << n.offset.y << ", " << n.offset.z << "> - <"
 		<< n.extent.width << ", " << n.extent.height << ", " << n.extent.depth << ">" << std::endl;
+
+	
 }
 
 void test_rs_view_base() {

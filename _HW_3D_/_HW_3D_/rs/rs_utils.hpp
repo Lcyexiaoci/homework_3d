@@ -3,6 +3,9 @@
 #include "rs_fwd.h"
 #include "../d3d/d3d_func.hpp"
 
+
+
+
 _HW_3D_OPEN_HW_NAMESPACE_
 
 _HW_3D_OPEN_RS_NAMESPACE_
@@ -45,6 +48,27 @@ public:
 		auto iter = this->begin();
 		((*iter++ = _HW_3D_STD_ forward<_Args>(args)), ...);
 	}
+
+	template <
+		_HW_3D_STD_ size_t _Index,
+		typename = _HW_3D_STD_ enable_if_t<(_Index < _Dim)>>
+		auto& get() & {
+		return this->at(_Index);
+	}
+
+	template <
+		_HW_3D_STD_ size_t _Index,
+		typename = _HW_3D_STD_ enable_if_t<(_Index < _Dim)>>
+		const auto& get() const & {
+		return this->at(_Index);
+	}
+
+	template <
+		_HW_3D_STD_ size_t _Index,
+		typename = _HW_3D_STD_ enable_if_t<(_Index < _Dim)>>
+		auto&& get() && {
+		return this->at(_Index);
+	}
 };
 
 //
@@ -52,8 +76,11 @@ public:
 template <typename _Ty, _HW_3D_STD_ size_t _Dim>
 class _TOffset : public _TData_array<_Ty, _Dim> {
 	static_assert(_Dim > 0 && _Dim < 4);
+
+	using _My_base = _TData_array<_Ty, _Dim>;
 public:
-	using _TData_array<_Ty, _Dim>::_TData_array;
+	using _My_base::_My_base;
+	using _My_base::get;
 
 	void set_x(_Ty x) {
 		this->at(0) = x;
@@ -96,17 +123,30 @@ public:
 	__declspec(property(put = set_z, get = get_z)) _Ty z;
 };
 
+template <typename _Ty, _HW_3D_STD_ size_t _Dim>
+struct _HW_3D_STD_ tuple_size<_TOffset<_Ty, _Dim>> : public  _HW_3D_STD_ integral_constant<_HW_3D_STD_ size_t, _Dim> {};
+
+template <_HW_3D_STD_ size_t _Index, typename _Ty, _HW_3D_STD_ size_t _Dim>
+struct _HW_3D_STD_ tuple_element<_Index, _TOffset<_Ty, _Dim>> {
+	static_assert(_Index < _Dim);
+	using type = _Ty;
+};
+
 using Offset1d = _TOffset<uint32_t, 1>;
 using Offset2d = _TOffset<uint32_t, 2>;
 using Offset3d = _TOffset<uint32_t, 3>;
+
 
 //
 //
 template <typename _Ty, _HW_3D_STD_ size_t _Dim>
 class _TExtent : public _TData_array<_Ty, _Dim> {
 	static_assert(_Dim > 0 && _Dim < 4);
+
+	using _My_base = _TData_array<_Ty, _Dim>;
 public:
-	using _TData_array<_Ty, _Dim>::_TData_array;
+	using _My_base::_My_base;
+	using _My_base::get;
 
 	void set_width(_Ty width) {
 		this->at(0) = width;
@@ -149,6 +189,15 @@ public:
 	__declspec(property(get = get_depth, put = set_depth)) _Ty depth;
 };
 
+template <typename _Ty, _HW_3D_STD_ size_t _Dim>
+struct _HW_3D_STD_ tuple_size<_TExtent<_Ty, _Dim>> : public _HW_3D_STD_ integral_constant<_HW_3D_STD_ size_t, _Dim> {};
+
+template <_HW_3D_STD_ size_t _Index, typename _Ty, _HW_3D_STD_ size_t _Dim>
+struct _HW_3D_STD_ tuple_element<_Index, _TExtent<_Ty, _Dim>> {
+	static_assert(_Index < _Dim);
+	using type = _Ty;
+};
+
 using Extent1d = _TExtent<uint32_t, 1>;
 using Extent2d = _TExtent<uint32_t, 2>;
 using Extent3d = _TExtent<uint32_t, 3>;
@@ -187,7 +236,59 @@ struct _TRange {
 		auto ptr = _HW_3D_STD_ addressof(*offset.begin());
 		((*ptr++ = _HW_3D_STD_ forward<_Args>(args)), ...);
 	}
+
+	template <
+		_HW_3D_STD_ size_t _Index, 
+		typename = _HW_3D_STD_ enable_if_t<(_Index < 2)>>
+	auto& get() & {
+		if constexpr (_Index == 0) {
+			return offset;
+		}
+		else {
+			return extent;
+		}
+	}
+
+	template <
+		_HW_3D_STD_ size_t _Index, 
+		typename = _HW_3D_STD_ enable_if_t<(_Index < 2)>>
+	const auto& get() const & {
+		if constexpr (_Index == 0) {
+			return offset;
+		}
+		else {
+			return extent;
+		}
+	}
+
+	template <
+		_HW_3D_STD_ size_t _Index,
+		typename = _HW_3D_STD_ enable_if_t<(_Index < 2)>>
+		auto&& get() && {
+		if constexpr (_Index == 0) {
+			return offset;
+		}
+		else {
+			return extent;
+		}
+	}
+
 };
+
+template <typename _Ty, _HW_3D_STD_ size_t _Dim>
+struct _HW_3D_STD_ tuple_size<_TRange<_Ty, _Dim>> : public _HW_3D_STD_ integral_constant<_HW_3D_STD_ size_t, 2> {};
+
+template <typename _Ty, _HW_3D_STD_ size_t _Dim>
+struct _HW_3D_STD_ tuple_element<0, _TRange<_Ty, _Dim>> { 
+	using type = _HW_3D_RS_ _TOffset<_Ty, _Dim>; 
+};
+
+template <typename _Ty, _HW_3D_STD_ size_t _Dim>
+struct _HW_3D_STD_ tuple_element<1, _TRange<_Ty, _Dim>> {
+	using type = _HW_3D_RS_ _TExtent<_Ty, _Dim>;
+};
+
+
 
 using Range1d = _TRange<uint32_t, 1>;
 using Range2d = _TRange<uint32_t, 2>;
@@ -249,6 +350,31 @@ _HW_3D_INLINE_FUNCTION_ Box transfer_to_box(const Range3d& range) {
 	return transfer_to_box(range.offset, range.extent);
 }
 
+_HW_3D_INLINE_FUNCTION_ uint32_t get_mipmaps_length(uint32_t length0, uint32_t level) {
+	return length0 >> level;
+}
+
+_HW_3D_INLINE_FUNCTION_ uint32_t get_max_level(uint32_t length) {
+	uint32_t res;
+	while (length >> res) res++;
+	return res;
+}
+
+_HW_3D_INLINE_FUNCTION_ uint32_t get_mip_levels(Extent1d size) {
+	return get_max_level(size.width);
+}
+
+_HW_3D_INLINE_FUNCTION_ uint32_t get_mip_levels(Extent2d size) {
+	uint32_t res = get_max_level(size.width);
+	return (_HW_3D_STD_ max)(res, get_max_level(size.height));
+}
+
+_HW_3D_INLINE_FUNCTION_ uint32_t get_mip_levels(Extent3d size) {
+	uint32_t res = get_max_level(size.width);
+	res = (_HW_3D_STD_ max)(res, get_max_level(size.height));
+	return (_HW_3D_STD_ max)(res, get_max_level(size.depth));
+}
+
 ///
 ///
 /// type function
@@ -288,3 +414,8 @@ constexpr bool is_shader_helper_v = Is_shader_helper<_Shader_helper>::value;
 _HW_3D_CLOSE_RS_NAMESPACE_
 
 _HW_3D_CLOSE_HW_NAMESPACE_
+
+
+
+constexpr _HW_3D_STD_ size_t a = _HW_3D_STD_ tuple_size_v<_HW_3D_RS_ Offset1d>;
+constexpr _HW_3D_STD_ tuple_element_t<0, _HW_3D_RS_ Offset1d> b = 1;

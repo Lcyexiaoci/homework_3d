@@ -17,6 +17,22 @@ enum class Resource_write_hint {
 
 //
 //
+_HW_3D_INLINE_FUNCTION_ _HW_3D_D3D_ Map
+	d3d_map_type(
+		_HW_3D_IN_ Resource_write_hint hint
+	) {
+	switch (hint) {
+	case Resource_write_hint::discard:
+		return _HW_3D_D3D_ Map::write_discard;
+	case Resource_write_hint::no_override:
+		return _HW_3D_D3D_ Map::write_no_overwrite;
+	default:
+		return _HW_3D_D3D_ Map::write;
+	}
+}
+
+//
+//
 template <typename _Metadata_type>
 struct _D3d_resource_helper_base {
 public:
@@ -110,6 +126,7 @@ public:
 		) {
 		return (metadata.BindFlags & Resource_bind_flag::bit_type::shader_resource) != Resource_bind_flag{};
 	}
+
 };
 
 struct _D3d_buffer_helper : _D3d_resource_helper_base<_HW_3D_D3D_ Buffer_desc> {
@@ -201,17 +218,7 @@ public:
 			_HW_3D_IN_ const void* data,
 			_HW_3D_IN_ Resource_write_hint hint
 		) {
-		_HW_3D_D3D_ Map map_type = _HW_3D_STD_ invoke(
-			[](Resource_write_hint h) {
-				switch (h) {
-				case Resource_write_hint::discard:
-					return _HW_3D_D3D_ Map::write_discard;
-				case Resource_write_hint::no_override:
-					return _HW_3D_D3D_ Map::write_no_overwrite;
-				default:
-					return _HW_3D_D3D_ Map::write;
-				}},
-			hint);
+		_HW_3D_D3D_ Map map_type = d3d_map_type(hint);
 
 		auto[success, result] = context->map(dst, 0, map_type, {});
 		_HW_3D_RS_ASSERT_D3DCALL_SUCCESS_(success, "failed to map buffer");
@@ -238,11 +245,13 @@ public:
 template <typename Buffer_helper>
 class _THardware_buffer {
 public:
-	using Handle_type = typename Buffer_helper::Handle_type;
-	using Native_handle_type = typename Buffer_helper::Native_handle_type;
-	using Metadata_type = typename Buffer_helper::Metadata_type;
-
+	using _My_helper = Buffer_helper;
 	using _My_type = _THardware_buffer<Buffer_helper>;
+
+	using Handle_type = typename _My_helper::Handle_type;
+	using Native_handle_type = typename _My_helper::Native_handle_type;
+	using Metadata_type = typename _My_helper::Metadata_type;
+
 public:
 	_THardware_buffer(
 		_HW_3D_IN_ const Metadata_type& metadata,
@@ -250,7 +259,7 @@ public:
 		_HW_3D_IN_ Render_manager* render_manager
 	) : _metadata(metadata)
 		, _render_manager(render_manager) {
-		_buffer = Buffer_helper::create(_render_manager->device(), _metadata, initial_data);
+		_buffer = _My_helper::create(_render_manager->device(), _metadata, initial_data);
 	}
 
 	Handle_type* 
@@ -265,12 +274,12 @@ public:
 
 	uint32_t
 		size() const {
-		return Buffer_helper::size(_metadata);
+		return _My_helper::size(_metadata);
 	}
 
 	uint32_t
 		stride() const {
-		return Buffer_helper::stride(_metadata);
+		return _My_helper::stride(_metadata);
 	}
 
 	_HW_3D_STD_ vector<_HW_3D_STD_ byte>
@@ -279,14 +288,11 @@ public:
 			_HW_3D_IN_ uint32_t size
 		) {
 #ifdef _DEBUG
-		if (!Buffer_helper::is_mappable_as_src(_metadata))
+		if (!_My_helper::is_mappable_as_src(_metadata))
 			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "try to read from no-readabel buffer");
-
-		if (offset >= this->size())
-			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "offset size is larger than whole buffer size");
 #endif
 		size = (_HW_3D_STD_ min)(this->size() - offset, size);
-		return Buffer_helper::read(_render_manager->context(), _buffer.get(), offset, size);
+		return _My_helper::read(_render_manager->context(), _buffer.get(), offset, size);
 	}
 
 	void
@@ -296,17 +302,11 @@ public:
 			_HW_3D_IN_ const void* data
 		) {
 #ifdef _DEBUG
-		if (data == nullptr || size == 0)
-			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "try to write nothing to buffer");
-
-		if (offset >= this->size())
-			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "offset size is larger than whole buffer size");
-
-		if (!Buffer_helper::is_updatable_as_dst(_metadata))
+		if (!_My_helper::is_updatable_as_dst(_metadata))
 			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "should update via mapped pointer");
 #endif
 		size = (_HW_3D_STD_ min)(this->size() - offset, size);
-		Buffer_helper::write_via_update(_render_manager->context(), _buffer.get(), offset, size, data);
+		_My_helper::write_via_update(_render_manager->context(), _buffer.get(), offset, size, data);
 	}
 
 	void 
@@ -317,23 +317,17 @@ public:
 			_HW_3D_IN_ Resource_write_hint hint
 		) {
 #ifdef _DEBUG
-		if (data == nullptr || size == 0)
-			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "try to write nothing to buffer");
-
-		if (offset >= this->size())
-			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "offset size is larger than whole buffer size");
-
-		if (!Buffer_helper::is_mappable_as_dst(_metadata))
+		if (!_My_helper::is_mappable_as_dst(_metadata))
 			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "should not update via mapped pointer");
 
-		if (hint == Resource_write_hint::discard && !Buffer_helper::is_mappable_as_dst_and_discard(_metadata))
+		if (hint == Resource_write_hint::discard && !_My_helper::is_mappable_as_dst_and_discard(_metadata))
 			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "try to dicard a un-discardable buffer");
 
-		if (hint == Resource_write_hint::no_override && !Buffer_helper::is_mappable_as_dst_and_no_override(_metadata))
+		if (hint == Resource_write_hint::no_override && !_My_helper::is_mappable_as_dst_and_no_override(_metadata))
 			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "invalid resource write hint");
 #endif
 		size = (_HW_3D_STD_ min)(this->size() - offset, size);
-		Buffer_helper::write_via_mapping(_render_manager->context(), _buffer.get(), offset, size, hint);
+		_My_helper::write_via_mapping(_render_manager->context(), _buffer.get(), offset, size, hint);
 	}
 
 	void
@@ -341,14 +335,11 @@ public:
 			_HW_3D_IN_ _My_type* other
 		) {
 #ifdef _DEBUG
-		if (!Buffer_helper::is_copyable_as_dst(_metadata))
+		if (!_My_helper::is_copyable_as_dst(_metadata))
 			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "try to copy to a no copyable buffer");
 
-		if (other == nullptr)
-			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "try to copy to an empty buffer");
-
 		if (this == other)
-			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "tro to copy between different size buffer");
+			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "try to copy between same buffer");
 
 		if (this->size() != other->size())
 			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "try to copy between different size buffer");
@@ -356,7 +347,7 @@ public:
 		if (this->_render_manager != other->_render_manager)
 			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "try to copy between differnt context");
 #endif
-		Buffer_helper::copy(_render_manager->context(), _buffer.get(), other->_buffer.get());
+		_My_helper::copy(_render_manager->context(), _buffer.get(), other->_buffer.get());
 	}
 
 	void
@@ -367,25 +358,13 @@ public:
 			_HW_3D_IN_ uint32_t size
 		) {
 #ifdef _DEBUG
-		if (!Buffer_helper::is_copyable_as_dst(_metadata))
+		if (!_My_helper::is_copyable_as_dst(_metadata))
 			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "try to copy to a no copyable buffer");
-
-		if (other == nullptr)
-			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "try to copy to an empty buffer");
-
-		if (this == other)
-			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "tro to copy between different size buffer");
-
-		if (this->size() != other->size())
-			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "try to copy between different size buffer");
 
 		if (this->_render_manager != other->_render_manager)
 			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "try to copy between differnt context");
-
-		if (offset + size >= this->size() || src_offset + size >= other->size())
-			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "invalid argument");
 #endif
-		Buffer_helper::copy(_render_manager->context(), _buffer.get(), offset, other->handle(), src_offset, size);
+		_My_helper::copy(_render_manager->context(), _buffer.get(), offset, other->handle(), src_offset, size);
 	}
 private:
 	_HW_3D_STD_ unique_ptr<Handle_type> _buffer;
@@ -591,7 +570,9 @@ public:
 		is_auto_generate_mipmaps(
 			_HW_3D_IN_ const Metadata_type& metadata
 		) {
-		return (metadata.MiscFlags & Resource_misc_flag::bit_type::generate_mips) != Resource_misc_flag{};
+		return ((metadata.MiscFlags & Resource_misc_flag::bit_type::generate_mips) != Resource_misc_flag{} 
+			&& ((metadata.BindFlags & Resource_bind_flag::bit_type::shader_resource) != Resource_bind_flag{} || 
+				(metadata.BindFlags & Resource_bind_flag::bit_type::render_target) != Resource_bind_flag{}));
 	}
 
 	static bool
@@ -642,7 +623,7 @@ struct _D3d_texture_subresource {
 };
 
 //
-//
+//for simplicity, read and write only in a level and array slice
 struct _D3d_texture1d_helper : _D3d_texture_helper_base<_HW_3D_D3D_ Texture1d_desc> {
 public:
 	using Metadata_type = _HW_3D_D3D_ Texture1d_desc;
@@ -655,16 +636,38 @@ public:
 		read(
 			_HW_3D_IN_ Context_type* context,
 			_HW_3D_IN_ Subresource_type src,
-			_HW_3D_IN_ Offset1d offet,
-			_HW_3D_IN_ Extent1d size
-		);
+			_HW_3D_IN_ const Metadata_type& metadata,
+			_HW_3D_IN_ const Range1d& range
+		) {
+		_HW_3D_STD_ vector<_HW_3D_STD_ byte> res;
+		auto[pixels, total_size] = pixel_size(metadata);
+
+		auto[success, result] = context->map(
+			src.texture,
+			static_cast<uint32_t>(src),
+			_HW_3D_D3D_ Map::read,
+			{});
+		_HW_3D_RS_ASSERT_D3DCALL_SUCCESS_(success, "failed to map buffer");
+
+		auto offset = range.offset.x / pixels * total_size;
+		auto size = range.extent.width / pixels * total_size;
+
+		res.resize(size);
+		_HW_3D_STD_ memcpy(res.data(), reinterpret_cast<_HW_3D_STD_ byte*>(result.pData) + offset, res.size());
+
+		context->unmap(src.texture, static_cast<uint32_t>(src));
+
+		return res;
+	}
 
 	static void
 		copy(
 			_HW_3D_IN_ Context_type* context,
 			_HW_3D_IN_ Handle_type* dst,
 			_HW_3D_IN_ Handle_type* src
-		);
+		) {
+		context->copy_resource(dst, src);
+	}
 
 	static void
 		copy(
@@ -672,45 +675,333 @@ public:
 			_HW_3D_IN_ Subresource_type dst,
 			_HW_3D_IN_ Offset1d dst_offset,
 			_HW_3D_IN_ Subresource_type src,
-			_HW_3D_IN_ Offset1d src_offset,
-			_HW_3D_IN_ Extent1d size
-		);
+			_HW_3D_IN_ const Range2d& src_range
+		) {
+		auto src_box = transfer_to_box(src_range);
+		context->copy_subresource_region(
+			dst.texture, 
+			static_cast<uint32_t>(dst), 
+			{dst_offset.x},
+			src.texture,
+			static_cast<uint32_t>(src),
+			&src_box);
+	}
 
 	static Extent1d
 		size(
 			_HW_3D_IN_ const Metadata_type& metadata,
 			_HW_3D_IN_ uint32_t level
-		);
+		) {
+		return get_mipmaps_length(metadata.Width, level);
+	}
 
 	static uint32_t
 		data_size(
 			_HW_3D_IN_ const Metadata_type& metadata,
 			_HW_3D_IN_ uint32_t level
-		);
+		) {
+		auto[pixels, total_size] = pixel_size(metadata);
+		auto width = size(metadata, level).width;
+		return (width + pixels - 1) / pixels * total_size;
+	}
 
 	static uint32_t
 		width(
 			_HW_3D_IN_ const Metadata_type& metadata
-		);
+		) {
+		return metadata.Width;
+	}
 
 	static uint32_t
 		mip_levels(
 			_HW_3D_IN_ const Metadata_type& metadata
-		);
+		) {
+		return metadata.MipLevels;
+	}
 
 	static uint32_t
 		array_size(
 			_HW_3D_IN_ const Metadata_type& metadata
-		);
+		) {
+		return metadata.ArraySize;
+	}
 
 	static Pixel_format
 		format(
 			_HW_3D_IN_ const Metadata_type& metadata
-		);
+		) {
+		return metadata.Format;
+	}
 
+	_HW_3D_STD_ unique_ptr<Handle_type>
+		create(
+			_HW_3D_IN_ Device_type* device,
+			_HW_3D_IN_ const Metadata_type& metadata,
+			_HW_3D_IN_ const void* data,
+			_HW_3D_IN_ uint32_t row_pitch
+		) {
+		_HW_3D_D3D_ Subresource_data init_data;
+		init_data.pSysMem = data;
+		init_data.SysMemPitch = row_pitch;
+		auto[success, texture] = device->create_texture_1d(metadata, &init_data);
+		
+		_HW_3D_RS_ASSERT_D3DCALL_SUCCESS_(success, "faield to create texture1d");
 
-	
+		return _HW_3D_STD_ move(texture);
+	}
+
+	static void
+		write_via_mapping(
+			_HW_3D_IN_ Context_type* context,
+			_HW_3D_IN_ Subresource_type dst,
+			_HW_3D_IN_ const Metadata_type& metadata,
+			_HW_3D_IN_ const Range1d& range,
+			_HW_3D_IN_ const void* data,
+			_HW_3D_IN_ Resource_write_hint hint
+		) {
+		auto map_type = d3d_map_type(hint);
+
+		auto[success, result] = context->map(dst.texture, static_cast<uint32_t>(dst), map_type, {});
+		_HW_3D_RS_ASSERT_D3DCALL_SUCCESS_(success, "failed to map texture 1d");
+
+		auto[pixels, total_size] = pixel_size(metadata);
+		
+		auto offset = range.offset.x / pixels * total_size;
+		auto size = range.extent.width / pixels * total_size;
+
+		_HW_3D_STD_ memcpy(reinterpret_cast<_HW_3D_STD_ byte*>(result.pData) + offset, data, size);
+		
+		context->unmap(dst.texture, static_cast<uint32_t>(dst));
+	}
+
+	static void
+		write_via_update(
+			_HW_3D_IN_ Context_type* context,
+			_HW_3D_IN_ Subresource_type dst,
+			_HW_3D_IN_ const Range1d& range,
+			_HW_3D_IN_ const void* data
+		) {
+		auto dst_box = _HW_3D_RS_ transfer_to_box(range);
+		context->update_subresource(dst.texture, static_cast<uint32_t>(dst), &dst_box, data, 0, 0);
+	}
 };
+
+//
+//
+template <typename Texture1d_helper>
+class _THardware_texture1d {
+public:
+	using _My_helper = Texture1d_helper;
+	using _My_type = _THardware_texture1d<Texture1d_helper>;
+
+	using Handle_type = typename _My_helper::Handle_type;
+	using Native_handle_type = typename _My_helper::Native_handle_type;
+	using Metadata_type = typename _My_helper::Metadata_type;
+	using Subresource_type = typename _My_helper::Subresource_type;
+
+public:
+	_THardware_texture1d(
+		_HW_3D_IN_ const Metadata_type& metadata,
+		_HW_3D_IN_ const void* initial_data,
+		_HW_3D_IN_ uint32_t row_pitch,
+		_HW_3D_IN_ Render_manager* render_manager
+	) : _metadata(metadata)
+		, _render_manager(render_manager) {
+		_texture = _My_helper::create(_render_manager->device(), _metadata, row_pitch, render_manager);
+	}
+
+	Handle_type*
+		handle() const {
+		return _texture.get();
+	}
+
+	Native_handle_type*
+		native_handle() const {
+		return _texture->get();
+	}
+
+	_HW_3D_STD_ vector<_HW_3D_STD_ byte>
+		read(
+			_HW_3D_IN_ uint32_t level,
+			_HW_3D_IN_ uint32_t array_index,
+			_HW_3D_IN_ const Range1d& range
+		) {
+#ifdef _DEBUG
+		if (!_My_helper::is_mappable_as_src(_metadata))
+			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "try to read form no-readable texture");
+#endif
+		return _My_helper::read(_render_manager->context(), Subresource_type(_texture.get(), level, array_index), _metadata, range);
+	}
+
+	void
+		copy(
+			_HW_3D_IN_ _My_type* other
+		) {
+#ifdef _DEBUG
+		if (!_My_helper::is_copyable_as_dst(_metadata))
+			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "try to copy a no copyable texture");
+
+		if (this == other)
+			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "try to copy between same texture");
+
+		if (this->size() != other->size())
+			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "try to copy between different size");
+
+		/*should be a compatible format, too relunctant*/
+
+		if (this->_render_manager != other->_render_manager)
+			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "try to copy between different context");
+#endif
+		_My_helper::copy(_render_manager->context(), _texture.get(), other->handle());
+	}
+
+	void
+		copy(
+			_HW_3D_IN_ uint32_t level,
+			_HW_3D_IN_ uint32_t array_index,
+			_HW_3D_IN_ Offset1d offset,
+			_HW_3D_IN_ _My_type* other,
+			_HW_3D_IN_ uint32_t src_lev,
+			_HW_3D_IN_ uint32_t src_array_idx,
+			_HW_3D_IN_ const Range1d& src_range
+		) {
+#ifdef _DEBUG
+		if (!_My_helper::is_copyable_as_dst(_metadata))
+			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "try to copy a no copyable texture");
+
+		if (this == other && level == src_lev && array_index == src_array_idx)
+			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "try to copy between same texture");
+
+		if (this->_render_manager != other->_render_manager)
+			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "try to copy between different context");
+#endif
+		_My_helper::copy(
+			_render_manager->context(), 
+			Subresource_type(_texture.get(), level, array_index), 
+			offset,
+			Subresource_type(other->handle(), src_lev, src_array_idx),
+			src_range);
+	}
+
+	void
+		write(
+			_HW_3D_IN_ uint32_t level,
+			_HW_3D_IN_ uint32_t array_index,
+			_HW_3D_IN_ const Range1d& range,
+			_HW_3D_IN_ const void* data
+		) {
+#ifdef _DEBUG
+		if (!_My_helper::is_updatable_as_dst(_metadata))
+			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "should update via mapped pointer");
+#endif
+		_My_helper::write_via_update(
+			_render_manager->context(),
+			Subresource_type(_texture.get(), level, array_index),
+			range,
+			data);
+	}
+
+	void
+		write_via_mapping(
+			_HW_3D_IN_ uint32_t level,
+			_HW_3D_IN_ uint32_t array_index,
+			_HW_3D_IN_ const Range1d& range,
+			_HW_3D_IN_ const void* data,
+			_HW_3D_IN_ Resource_write_hint hint
+		) {
+#ifdef _DEBUG
+		if (!_My_helper::is_mappable_as_dst(_metadata))
+			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "should not update via mapped pointer");
+
+		if (hint == Resource_write_hint::discard && !_My_helper::is_mappable_as_dst_and_discard(_metadata))
+			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "try to dicard a un-discardable buffer");
+
+		if (hint == Resource_write_hint::no_override && !_My_helper::is_mappable_as_dst_and_no_override(_metadata))
+			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "invalid resource write hint");
+#endif
+		_My_helper::write_via_mapping(
+			_render_manager->context(),
+			Subresource_type(_texture.get(), level, array_index),
+			_metadata,
+			range,
+			data,
+			hint);
+	}
+
+	bool
+		is_compressed() const {
+		return _My_helper::is_compressed(_metadata);
+	}
+
+	bool
+		is_multisample() const {
+		return _My_helper::is_multisample(_metadata);
+	}
+
+	Extent1d
+		size(
+			_HW_3D_IN_ uint32_t level = 0
+		) const {
+		return _My_helper::size(_metadata, level);
+	}
+
+	uint32_t
+		data_size(
+			_HW_3D_IN_ uint32_t level = 0
+		) const {
+		return  _My_helper::data_size(_metadata, level);
+	}
+
+	uint32_t
+		width() const {
+		return _My_helper::width(_metadata);
+	}
+
+	uint32_t
+		mip_levels() const {
+		return _My_helper::mip_levels(_metadata);
+	}
+
+	uint32_t
+		array_size() const {
+		return _My_helper::array_size(_metadata);
+	}
+
+	Pixel_format
+		format() const {
+		return _My_helper::format(_metadata);
+	}
+private:
+	_HW_3D_STD_ unique_ptr<Handle_type> _texture;
+	Metadata_type _metadata;
+	Render_manager* const _render_manager;
+};
+
+//
+//
+template <typename Texture1d_helper, typename _My_base = typename Texture1d_helper::Metadata_type>
+struct _THardware_texture1d_builder : _My_base {
+	using Hardware_texture1d_type = _THardware_texture1d<Texture1d_helper>;
+
+	_HW_3D_STD_ unique_ptr<Hardware_texture1d_type>
+		create(
+			_HW_3D_IN_ const void* pdata,
+			_HW_3D_IN_ uint32_t row_pitch,
+			_HW_3D_IN_ Render_manager* render_manager = nullptr
+		) {
+		render_manager = render_manager == nullptr ? Render_manager::current_render_manager() : render_manager;
+
+		if (render_manager == nullptr)
+			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "try to create texture without hardware");
+
+		return _HW_3D_STD_ make_unique<Hardware_texture1d_type>(*this, pdata, row_pitch, render_manager);
+	}
+};
+
+//
+//
+using Hardware_texture1d = _THardware_texture1d<_D3d_texture1d_helper>;
+using Hardware_texture1d_builder = _THardware_texture1d_builder<_D3d_texture1d_helper>;
 
 _HW_3D_CLOSE_RS_NAMESPACE_
 
