@@ -29,7 +29,7 @@ public:
 		typename _Other, 
 		_HW_3D_STD_ size_t _Other_dim,
 		typename = _HW_3D_STD_ enable_if_t<(_Other_dim <= _Dim && _HW_3D_STD_ is_assignable_v<_Ty&, _Other>)>>
-		constexpr _TData_array(const _TData_array<_Other, _Other_dim>& other)
+		explicit constexpr _TData_array(const _TData_array<_Other, _Other_dim>& other)
 		: _TData_array() {
 		if constexpr (_HW_3D_STD_ is_same_v<_Ty, _Other>) {
 			_HW_3D_STD_ memcpy(this->data(), other.data(), sizeof(_Ty) * _Other_dim);
@@ -43,7 +43,7 @@ public:
 	template <
 		typename ... _Args,
 		typename = _HW_3D_STD_ enable_if_t<((sizeof...(_Args) <= _Dim) && _HW_3D_STD_ conjunction_v<_HW_3D_STD_ is_assignable<_Ty&, _Args>...>)>>
-		constexpr _TData_array(_Args&&... args)
+		explicit constexpr _TData_array(_Args&&... args)
 		: _TData_array() {
 		auto iter = this->begin();
 		((*iter++ = _HW_3D_STD_ forward<_Args>(args)), ...);
@@ -132,6 +132,16 @@ struct _HW_3D_STD_ tuple_element<_Index, _TOffset<_Ty, _Dim>> {
 	using type = _Ty;
 };
 
+template <typename _Ty, _HW_3D_STD_ size_t _Dim>
+bool operator==(_TOffset<_Ty, _Dim> lhs, _TOffset<_Ty, _Dim> rhs) noexcept {
+	return _HW_3D_STD_ memcmp(_HW_3D_STD_ addressof(lhs), _HW_3D_STD_ addressof(rhs), sizeof(lhs)) == 0;
+}
+
+template <typename _Ty, _HW_3D_STD_ size_t _Dim>
+bool operator!=(_TOffset<_Ty, _Dim> lhs, _TOffset<_Ty, _Dim> rhs) noexcept {
+	return !(lhs == rhs);
+}
+
 using Offset1d = _TOffset<uint32_t, 1>;
 using Offset2d = _TOffset<uint32_t, 2>;
 using Offset3d = _TOffset<uint32_t, 3>;
@@ -197,6 +207,16 @@ struct _HW_3D_STD_ tuple_element<_Index, _TExtent<_Ty, _Dim>> {
 	static_assert(_Index < _Dim);
 	using type = _Ty;
 };
+
+template <typename _Ty, _HW_3D_STD_ size_t _Dim>
+bool operator==(_TExtent<_Ty, _Dim> lhs, _TExtent<_Ty, _Dim> rhs) noexcept {
+	return _HW_3D_STD_ memcmp(_HW_3D_STD_ addressof(lhs), _HW_3D_STD_ addressof(rhs), sizeof(rhs)) == 0;
+}
+
+template <typename _Ty, _HW_3D_STD_ size_t _Dim>
+bool operator!=(_TExtent<_Ty, _Dim> lhs, _TExtent<_Ty, _Dim> rhs) noexcept {
+	return !(lhs == rhs);
+}
 
 using Extent1d = _TExtent<uint32_t, 1>;
 using Extent2d = _TExtent<uint32_t, 2>;
@@ -288,7 +308,16 @@ struct _HW_3D_STD_ tuple_element<1, _TRange<_Ty, _Dim>> {
 	using type = _HW_3D_RS_ _TExtent<_Ty, _Dim>;
 };
 
+template <typename _Ty, _HW_3D_STD_ size_t _Dim>
+bool operator==(const _TRange<_Ty, _Dim>& lhs, const _TRange<_Ty, _Dim>& rhs) noexcept {
+	return (lhs.offset == rhs.offset)
+		&& (lhs.extent == rhs.extent);
+}
 
+template <typename _Ty, _HW_3D_STD_ size_t _Dim>
+bool operator!=(const _TRange<_Ty, _Dim>& lhs, const _TRange<_Ty, _Dim>& rhs) noexcept {
+	return !(lhs == rhs);
+}
 
 using Range1d = _TRange<uint32_t, 1>;
 using Range2d = _TRange<uint32_t, 2>;
