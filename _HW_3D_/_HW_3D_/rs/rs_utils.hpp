@@ -293,6 +293,84 @@ struct _TRange {
 		}
 	}
 
+	void set_x(_Ty x) {
+		offset.x = x;
+	}
+
+	template <
+		_HW_3D_STD_ size_t Dim = _Dim,
+		typename = _HW_3D_STD_ enable_if_t<(Dim > 1)>>
+		void set_y(_Ty y) {
+		offset.y = y;
+	}
+
+	template <
+		_HW_3D_STD_ size_t Dim = _Dim,
+		typename = _HW_3D_STD_ enable_if_t<(Dim > 2)>>
+		void set_z(_Ty z) {
+		offset.z = z;
+	}
+
+	_Ty get_x() const {
+		return offset.x;
+	}
+
+	template <
+		_HW_3D_STD_ size_t Dim = _Dim,
+		typename = _HW_3D_STD_ enable_if_t<(Dim > 1)>>
+		_Ty get_y() const {
+		return offset.y;
+	}
+
+	template <
+		_HW_3D_STD_ size_t Dim = _Dim,
+		typename = _HW_3D_STD_ enable_if_t<(Dim > 2)>>
+		_Ty get_z() const {
+		return offset.z;
+	}
+
+	void set_width(_Ty width) {
+		extent.width = width;
+	}
+
+	template <
+		_HW_3D_STD_ size_t Dim = _Dim,
+		typename = _HW_3D_STD_ enable_if_t<(Dim > 1)>>
+		void set_height(_Ty height) {
+		extent.height = height;
+	}
+
+	template <
+		_HW_3D_STD_ size_t Dim = _Dim,
+		typename = _HW_3D_STD_ enable_if_t<(Dim > 2)>>
+		void set_depth(_Ty depth) {
+		extent.depth = depth;
+	}
+
+	_Ty get_width() const {
+		return extent.width;
+	}
+
+	template <
+		_HW_3D_STD_ size_t Dim = _Dim,
+		typename = _HW_3D_STD_ enable_if_t<(Dim > 1)>>
+		_Ty get_height() const {
+		return extent.height;
+	}
+
+	template <
+		_HW_3D_STD_ size_t Dim = _Dim,
+		typename = _HW_3D_STD_ enable_if_t<(Dim > 2)>>
+		_Ty get_depth() const {
+		return extent.depth;
+	}
+
+	__declspec(property(put = set_x, get = get_x)) _Ty x;
+	__declspec(property(put = set_y, get = get_y)) _Ty y;
+	__declspec(property(put = set_z, get = get_z)) _Ty z;
+	__declspec(property(get = get_width, put = set_width)) _Ty width;
+	__declspec(property(get = get_height, put = set_height)) _Ty height;
+	__declspec(property(get = get_depth, put = set_depth)) _Ty depth;
 };
 
 template <typename _Ty, _HW_3D_STD_ size_t _Dim>
@@ -394,14 +472,14 @@ _HW_3D_INLINE_FUNCTION_ uint32_t get_mip_levels(Extent1d size) {
 }
 
 _HW_3D_INLINE_FUNCTION_ uint32_t get_mip_levels(Extent2d size) {
-	uint32_t res = get_max_level(size.width);
-	return (_HW_3D_STD_ max)(res, get_max_level(size.height));
+	uint32_t dim = (_HW_3D_STD_ max)(size.width, size.height);
+	return get_max_level(dim);
 }
 
 _HW_3D_INLINE_FUNCTION_ uint32_t get_mip_levels(Extent3d size) {
-	uint32_t res = get_max_level(size.width);
-	res = (_HW_3D_STD_ max)(res, get_max_level(size.height));
-	return (_HW_3D_STD_ max)(res, get_max_level(size.depth));
+	uint32_t dim = (_HW_3D_STD_ max)(size.width, size.height);
+	dim = (_HW_3D_STD_ max)(dim, size.depth);
+	return get_max_level(dim);
 }
 
 ///
@@ -443,8 +521,3 @@ constexpr bool is_shader_helper_v = Is_shader_helper<_Shader_helper>::value;
 _HW_3D_CLOSE_RS_NAMESPACE_
 
 _HW_3D_CLOSE_HW_NAMESPACE_
-
-
-
-constexpr _HW_3D_STD_ size_t a = _HW_3D_STD_ tuple_size_v<_HW_3D_RS_ Offset1d>;
-constexpr _HW_3D_STD_ tuple_element_t<0, _HW_3D_RS_ Offset1d> b = 1;
