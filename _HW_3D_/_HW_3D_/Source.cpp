@@ -3,8 +3,8 @@
 #include "d3d\d3d_flag.hpp"
 #include "d3d\d3d_enum.h"
 #include "d3d\d3d_struct.hpp"
-#include "d3d\d3d_wrapper.hpp"
 #include "d3d\d3d_func.hpp"
+#include "d3d\d3d_wrapper.hpp"
 
 #include "rs\rs_utils.hpp"
 #include "rs\rs_render_manager.h"

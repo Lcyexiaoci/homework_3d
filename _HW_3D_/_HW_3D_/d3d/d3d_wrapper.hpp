@@ -26,6 +26,8 @@ public:
 		) = 0;
 
 	//ugly but useful
+	using Native_handle_type = IUnknown;
+
 	virtual IUnknown* get() = 0;
 
 	virtual const IUnknown* get() const = 0;
@@ -74,6 +76,8 @@ public:
 			_HW_3D_IN_ const IBase* unknown
 		) = 0;
 
+	using Native_handle_type = IDXGIObject;
+
 	virtual IDXGIObject* get() = 0;
 
 	virtual const IDXGIObject* get() const = 0;
@@ -100,6 +104,8 @@ public:
 		get_desc(
 		) = 0;
 
+	using Native_handle_type = IDXGIAdapter;
+
 	virtual IDXGIAdapter* get() = 0;
 
 	virtual const IDXGIAdapter* get() const = 0;
@@ -116,6 +122,8 @@ public:
 		get_desc1(
 		) = 0;
 
+	using Native_handle_type = IDXGIAdapter1;
+
 	virtual IDXGIAdapter1* get() = 0;
 
 	virtual const IDXGIAdapter1* get() const = 0;
@@ -131,6 +139,8 @@ public:
 	virtual _HW_3D_STD_ tuple<Result, Adapter_desc2>
 		get_desc2(
 		) = 0;
+
+	using Native_handle_type = IDXGIAdapter2;
 
 	virtual IDXGIAdapter2* get() = 0;
 
@@ -177,6 +187,8 @@ public:
 			_HW_3D_IN_ DWORD cookie
 		) = 0;
 
+	using Native_handle_type = IDXGIAdapter3;
+
 	virtual IDXGIAdapter3* get() = 0;
 
 	virtual const IDXGIAdapter3* get() const = 0;
@@ -192,6 +204,8 @@ public:
 	virtual _HW_3D_STD_ tuple<Result, Adapter_desc3>
 		get_desc3(
 		) = 0;
+
+	using Native_handle_type = IDXGIAdapter4;
 
 	virtual IDXGIAdapter4* get() = 0;
 
@@ -210,6 +224,8 @@ public:
 			_HW_3D_IN_ GUID appid,
 			_HW_3D_IN_ Debug_rlo_flag flags
 		) = 0;
+
+	using Native_handle_type = IDXGIDebug;
 
 	virtual IDXGIDebug* get() = 0;
 
@@ -234,6 +250,8 @@ public:
 	virtual BOOL
 		is_leak_tracking_enabled_for_thread(
 		) = 0;
+
+	using Native_handle_type = IDXGIDebug1;
 
 	virtual IDXGIDebug1* get() = 0;
 
@@ -291,6 +309,8 @@ public:
 			_HW_3D_IN_ const RECT& rect
 		) = 0;
 
+	using Native_handle_type = IDXGIDecodeSwapChain;
+
 	virtual IDXGIDecodeSwapChain* get() = 0;
 
 	virtual const IDXGIDecodeSwapChain* get() const = 0;
@@ -329,6 +349,8 @@ public:
 			_HW_3D_IN_ INT priority
 		) = 0;
 
+	using Native_handle_type = IDXGIDevice;
+
 	virtual IDXGIDevice* get() = 0;
 
 	virtual const IDXGIDevice* get() const = 0;
@@ -349,6 +371,8 @@ public:
 		set_maximum_frame_latency(
 			_HW_3D_IN_ UINT max_latency
 		) = 0;
+
+	using Native_handle_type = IDXGIDevice1;
 
 	virtual IDXGIDevice1* get() = 0;
 
@@ -378,6 +402,8 @@ public:
 			_HW_3D_IN_ const _HW_3D_STD_ vector<IResource*>& resources
 		) = 0;
 
+	using Native_handle_type = IDXGIDevice2;
+
 	virtual IDXGIDevice2* get() = 0;
 
 	virtual const IDXGIDevice2* get() const = 0;
@@ -393,6 +419,8 @@ public:
 	virtual void
 		trim(
 		) = 0;
+
+	using Native_handle_type = IDXGIDevice3;
 
 	virtual IDXGIDevice3* get() = 0;
 
@@ -418,6 +446,8 @@ public:
 			_HW_3D_IN_ const _HW_3D_STD_ vector<IResource*>& resources
 		) = 0;
 
+	using Native_handle_type = IDXGIDevice4;
+
 	virtual IDXGIDevice4* get() = 0;
 
 	virtual const IDXGIDevice4* get() const = 0;
@@ -434,6 +464,8 @@ public:
 		get_device(
 			_HW_3D_IN_ REFIID riid
 		) = 0;
+
+	using Native_handle_type = IDXGIDeviceSubObject;
 
 	virtual IDXGIDeviceSubObject* get() = 0;
 
@@ -455,6 +487,8 @@ public:
 		set_stereo_enabled(
 			BOOL enabled
 		) = 0;
+
+	using Native_handle_type = IDXGIDisplayControl;
 
 	virtual IDXGIDisplayControl* get() = 0;
 
@@ -494,6 +528,8 @@ public:
 			_HW_3D_IN_ UINT flags
 		) = 0;
 
+	using Native_handle_type = IDXGIFactory;
+
 	virtual IDXGIFactory* get() = 0;
 
 	virtual const IDXGIFactory* get() const = 0;
@@ -514,6 +550,8 @@ public:
 	virtual BOOL
 		is_current(
 		) = 0;
+
+	using Native_handle_type = IDXGIFactory1;
 
 	virtual IDXGIFactory1* get() = 0;
 
@@ -592,6 +630,8 @@ public:
 			_HW_3D_IN_ DWORD cookie
 		) = 0;
 
+	using Native_handle_type = IDXGIFactory2;
+
 	virtual IDXGIFactory2* get() = 0;
 
 	virtual const IDXGIFactory2* get() const = 0;
@@ -607,6 +647,8 @@ public:
 	virtual UINT
 		get_creation_flags(
 		) = 0;
+
+	using Native_handle_type = IDXGIFactory3;
 
 	virtual IDXGIFactory3* get() = 0;
 
@@ -631,6 +673,8 @@ public:
 			_HW_3D_IN_ REFIID riid
 		) = 0;
 
+	using Native_handle_type = IDXGIFactory4;
+
 	virtual IDXGIFactory4* get() = 0;
 
 	virtual const IDXGIFactory4* get() const = 0;
@@ -649,6 +693,8 @@ public:
 			_HW_3D_IN_ void* feature_support_data,
 			_HW_3D_IN_ UINT feature_support_data_size
 		) = 0;
+
+	using Native_handle_type = IDXGIFactory5;
 
 	virtual IDXGIFactory5* get() = 0;
 
@@ -678,6 +724,8 @@ public:
 			_HW_3D_IN_ const Swap_chain_desc1& desc,
 			_HW_3D_IN_ IOutput* restrict_to_output
 		) = 0;
+
+	using Native_handle_type = IDXGIFactoryMedia;
 
 	virtual IDXGIFactoryMedia* get() = 0;
 
@@ -897,6 +945,8 @@ public:
 			_HW_3D_IN_ BOOL mute
 		) = 0;
 
+	using Native_handle_type = IDXGIInfoQueue;
+
 	virtual IDXGIInfoQueue* get() = 0;
 
 	virtual const IDXGIInfoQueue* get() const = 0;
@@ -919,6 +969,8 @@ public:
 		release_sync(
 			_HW_3D_IN_ UINT64 key
 		) = 0;
+
+	using Native_handle_type = IDXGIKeyedMutex;
 
 	virtual IDXGIKeyedMutex* get() = 0;
 
@@ -989,6 +1041,8 @@ public:
 		wait_for_v_blank(
 		) = 0;
 
+	using Native_handle_type = IDXGIOutput;
+
 	virtual IDXGIOutput* get() = 0;
 
 	virtual const IDXGIOutput* get() const = 0;
@@ -1023,6 +1077,8 @@ public:
 			_HW_3D_IN_ IResource* dest
 		) = 0;
 
+	using Native_handle_type = IDXGIOutput1;
+
 	virtual IDXGIOutput1* get() = 0;
 
 	virtual const IDXGIOutput1* get() const = 0;
@@ -1038,6 +1094,8 @@ public:
 	virtual BOOL
 		supports_overlays(
 		) = 0;
+
+	using Native_handle_type = IDXGIOutput2;
 
 	virtual IDXGIOutput2* get() = 0;
 
@@ -1056,6 +1114,8 @@ public:
 			_HW_3D_IN_ Format enum_format,
 			_HW_3D_IN_ IBase* device
 		) = 0;
+
+	using Native_handle_type = IDXGIOutput3;
 
 	virtual IDXGIOutput3* get() = 0;
 
@@ -1076,6 +1136,8 @@ public:
 			_HW_3D_IN_ IBase* device
 		) = 0;
 
+	using Native_handle_type = IDXGIOutput4;
+
 	virtual IDXGIOutput4* get() = 0;
 
 	virtual const IDXGIOutput4* get() const = 0;
@@ -1095,6 +1157,8 @@ public:
 			_HW_3D_IN_ const _HW_3D_STD_ vector<Format>& formats
 		) = 0;
 
+	using Native_handle_type = IDXGIOutput5;
+
 	virtual IDXGIOutput5* get() = 0;
 
 	virtual const IDXGIOutput5* get() const = 0;
@@ -1110,6 +1174,8 @@ public:
 	virtual _HW_3D_STD_ tuple<Result, Output_desc1>
 		get_desc1(
 		) = 0;
+
+	using Native_handle_type = IDXGIOutput6;
 
 	virtual IDXGIOutput6* get() = 0;
 
@@ -1159,6 +1225,8 @@ public:
 		unmap_desktop_surface(
 		) = 0;
 
+	using Native_handle_type = IDXGIOutputDuplication;
+
 	virtual IDXGIOutputDuplication* get() = 0;
 
 	virtual const IDXGIOutputDuplication* get() const = 0;
@@ -1188,6 +1256,8 @@ public:
 			_HW_3D_IN_ Resource_priority eviction_priority
 		) = 0;
 
+	using Native_handle_type = IDXGIResource;
+
 	virtual IDXGIResource* get() = 0;
 
 	virtual const IDXGIResource* get() const = 0;
@@ -1211,6 +1281,8 @@ public:
 		create_subresource_surface(
 			_HW_3D_IN_ UINT index
 		) = 0;
+
+	using Native_handle_type = IDXGIResource1;
 
 	virtual IDXGIResource1* get() = 0;
 
@@ -1237,6 +1309,8 @@ public:
 		unmap(
 		) = 0;
 
+	using Native_handle_type = IDXGISurface;
+
 	virtual IDXGISurface* get() = 0;
 
 	virtual const IDXGISurface* get() const = 0;
@@ -1259,6 +1333,8 @@ public:
 			_HW_3D_IN_ RECT* dirty_rect
 		) = 0;
 
+	using Native_handle_type = IDXGISurface1;
+
 	virtual IDXGISurface1* get() = 0;
 
 	virtual const IDXGISurface1* get() const = 0;
@@ -1277,6 +1353,8 @@ public:
 			_HW_3D_IN_ void** p_parent_resource,
 			_HW_3D_IN_ UINT* p_subresource_index
 		) = 0;
+
+	using Native_handle_type = IDXGISurface2;
 
 	virtual IDXGISurface2* get() = 0;
 
@@ -1342,6 +1420,8 @@ public:
 			_HW_3D_IN_ IOutput* target
 		) = 0;
 
+	using Native_handle_type = IDXGISwapChain;
+
 	virtual IDXGISwapChain* get() = 0;
 
 	virtual const IDXGISwapChain* get() const = 0;
@@ -1405,6 +1485,8 @@ public:
 			_HW_3D_IN_ Mode_rotation rotation
 		) = 0;
 
+	using Native_handle_type = IDXGISwapChain1;
+
 	virtual IDXGISwapChain1* get() = 0;
 
 	virtual const IDXGISwapChain* get() const = 0;
@@ -1449,6 +1531,8 @@ public:
 			_HW_3D_IN_ UINT height
 		) = 0;
 
+	using Native_handle_type = IDXGISwapChain2;
+
 	virtual IDXGISwapChain2* get() = 0;
 
 	virtual const IDXGISwapChain2* get() const = 0;
@@ -1485,6 +1569,8 @@ public:
 			_HW_3D_IN_ Color_space_type color_space
 		) = 0;
 
+	using Native_handle_type = IDXGISwapChain3;
+
 	virtual IDXGISwapChain3* get() = 0;
 
 	virtual const IDXGISwapChain3* get() const = 0;
@@ -1503,6 +1589,8 @@ public:
 			_HW_3D_IN_ UINT size,
 			_HW_3D_IN_ void* meta_data
 		) = 0;
+
+	using Native_handle_type = IDXGISwapChain4;
 
 	virtual IDXGISwapChain4* get() = 0;
 
@@ -1529,6 +1617,8 @@ public:
 		set_present_duration(
 			_HW_3D_IN_ UINT duration
 		) = 0;
+
+	using Native_handle_type = IDXGISwapChainMedia;
 
 	virtual IDXGISwapChainMedia* get() = 0;
 
@@ -1828,6 +1918,8 @@ public:
 			_HW_3D_IN_ const IBase* p_data
 		) = 0;
 
+	using Native_handle_type = ID3D11Device;
+
 	virtual ID3D11Device* get() = 0;
 
 	virtual const ID3D11Device* get() const = 0;
@@ -1880,6 +1972,8 @@ public:
 			_HW_3D_IN_ REFIID returned_interface
 		) = 0;
 
+	using Native_handle_type = ID3D11Device1;
+
 	virtual ID3D11Device1* get() = 0;
 
 	virtual const ID3D11Device1* get() const = 0;
@@ -1917,6 +2011,8 @@ public:
 			_HW_3D_IN_OUT_ Uint* num_subresource_tilings,
 			_HW_3D_IN_ Uint first_subresource_tilling
 		) = 0;
+
+	using Native_handle_type = ID3D11Device2;
 
 	virtual ID3D11Device2* get() = 0;
 
@@ -1999,6 +2095,8 @@ public:
 			_HW_3D_IN_ Uint depth_pitch
 		) = 0;
 
+	using Native_handle_type = ID3D11Device3;
+	
 	virtual ID3D11Device3* get() = 0;
 
 	virtual const ID3D11Device3* get() const = 0;
@@ -2020,6 +2118,8 @@ public:
 		unregister_device_removed(
 			_HW_3D_IN_ DWORD cookie
 		) = 0;
+
+	using Native_handle_type = ID3D11Device4;
 
 	virtual ID3D11Device4* get() = 0;
 
@@ -2045,6 +2145,8 @@ public:
 			_HW_3D_IN_ HANDLE fence,
 			_HW_3D_IN_ REFIID returned_interface
 		) = 0;
+
+	using Native_handle_type = ID3D11Device5;
 
 	virtual ID3D11Device5* get() = 0;
 
@@ -2082,6 +2184,8 @@ public:
 			_HW_3D_IN_ const IBase* data
 		) = 0;
 
+	using Native_handle_type = ID3D11DeviceChild;
+
 	virtual ID3D11DeviceChild* get() = 0;
 
 	virtual const ID3D11DeviceChild* get() const = 0;
@@ -2097,6 +2201,8 @@ public:
 	virtual Uint
 		get_data_size(
 		) = 0;
+
+	using Native_handle_type = ID3D11Asynchronous;
 
 	virtual ID3D11Asynchronous* get() = 0;
 
@@ -2114,6 +2220,8 @@ public:
 		get_desc(
 		) = 0;
 
+	using Native_handle_type = ID3D11BlendState;
+
 	virtual ID3D11BlendState* get() = 0;
 
 	virtual const ID3D11BlendState* get() const = 0;
@@ -2129,6 +2237,8 @@ public:
 	virtual Blend_desc1
 		get_desc1(
 		) = 0;
+
+	using Native_handle_type = ID3D11BlendState1;
 
 	virtual ID3D11BlendState1* get() = 0;
 
@@ -2146,6 +2256,8 @@ public:
 		get_context_flags(
 		) = 0;
 
+	using Native_handle_type = ID3D11CommandList;
+
 	virtual ID3D11CommandList* get() = 0;
 
 	virtual const ID3D11CommandList* get() const = 0;
@@ -2162,6 +2274,8 @@ public:
 		get_desc(
 		) = 0;
 
+	using Native_handle_type = ID3D11Counter;
+
 	virtual ID3D11Counter* get() = 0;
 
 	virtual const ID3D11Counter* get() const = 0;
@@ -2177,6 +2291,8 @@ public:
 	virtual Depth_stencil_desc
 		get_desc(
 		) = 0;
+
+	using Native_handle_type = ID3D11DepthStencilState;
 
 	virtual ID3D11DepthStencilState* get() = 0;
 
@@ -2823,6 +2939,8 @@ public:
 			_HW_3D_IN_ const _HW_3D_STD_ vector<IShader_resource_view*>& views
 		) = 0;
 
+	using Native_handle_type = ID3D11DeviceContext;
+
 	virtual ID3D11DeviceContext* get() = 0;
 
 	virtual const ID3D11DeviceContext* get() const = 0;
@@ -2969,6 +3087,8 @@ public:
 			_HW_3D_IN_ const _HW_3D_STD_ vector<Uint>& num_constant
 		) = 0;
 
+	using Native_handle_type = ID3D11DeviceContext1;
+
 	virtual ID3D11DeviceContext1* get() = 0;
 
 	virtual const ID3D11DeviceContext1* get() const = 0;
@@ -3055,6 +3175,8 @@ public:
 		) = 0;
 
 
+	using Native_handle_type = ID3D11DeviceContext2;
+
 	virtual ID3D11DeviceContext2* get() = 0;
 
 	virtual const ID3D11DeviceContext2* get() const = 0;
@@ -3082,6 +3204,8 @@ public:
 			Bool enabled
 		) = 0;
 
+	using Native_handle_type = ID3D11DeviceContext3;
+
 	virtual ID3D11DeviceContext3* get() = 0;
 
 	virtual const ID3D11DeviceContext3* get() const = 0;
@@ -3107,6 +3231,8 @@ public:
 		) = 0;
 
 
+	using Native_handle_type = ID3D11DeviceContext4;
+
 	virtual ID3D11DeviceContext4* get() = 0;
 
 	virtual const ID3D11DeviceContext4* get() const = 0;
@@ -3119,6 +3245,8 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11DeviceContext3, ID3D11DeviceContext
 //
 class _HW_3D_NO_VTABLE_ IDevice_context_state : public IDevice_child {
 public:
+	using Native_handle_type = ID3DDeviceContextState;
+
 	virtual ID3DDeviceContextState* get() = 0;
 
 	virtual const ID3DDeviceContextState* get() const = 0;
@@ -3149,6 +3277,8 @@ public:
 			_HW_3D_IN_ HANDLE h_event
 		) = 0;
 
+	using Native_handle_type = ID3D11Fence;
+
 	virtual ID3D11Fence* get() = 0;
 
 	virtual const ID3D11Fence* get() const = 0;
@@ -3161,6 +3291,8 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11DeviceChild, ID3D11Fence>);
 //
 class _HW_3D_NO_VTABLE_ IInput_layout : public IDevice_child {
 public:
+	using Native_handle_type = ID3D11InputLayout;
+
 	virtual ID3D11InputLayout* get() = 0;
 
 	virtual const ID3D11InputLayout* get() const = 0;
@@ -3190,6 +3322,8 @@ public:
 			_HW_3D_IN_ Bool protect
 		) = 0;
 
+	using Native_handle_type = ID3D11Multithread;
+
 	virtual ID3D11Multithread* get() = 0;
 
 	virtual const ID3D11Multithread* get() const = 0;
@@ -3206,6 +3340,8 @@ public:
 		get_desc(
 		) = 0;
 
+	using Native_handle_type = ID3D11Query;
+
 	virtual ID3D11Query* get() = 0;
 
 	virtual const ID3D11Query* get() const = 0;
@@ -3218,6 +3354,8 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11Asynchronous, ID3D11Query>);
 //
 class _HW_3D_NO_VTABLE_ IPredicate : public IQuery {
 public:
+	using Native_handle_type = ID3D11Predicate;
+
 	virtual ID3D11Predicate* get() = 0;
 
 	virtual const ID3D11Predicate* get() const = 0;
@@ -3233,6 +3371,8 @@ public:
 	virtual Query_desc1
 		get_desc1(
 		) = 0;
+
+	using Native_handle_type = ID3D11Query1;
 
 	virtual ID3D11Query1* get() = 0;
 
@@ -3250,6 +3390,8 @@ public:
 		get_desc(
 		) = 0;
 
+	using Native_handle_type = ID3D11RasterizerState;
+
 	virtual ID3D11RasterizerState* get() = 0;
 
 	virtual const ID3D11RasterizerState* get() const = 0;
@@ -3265,6 +3407,8 @@ public:
 	virtual Rasterizer_desc1
 		get_desc1(
 		) = 0;
+
+	using Native_handle_type = ID3D11RasterizerState1;
 
 	virtual ID3D11RasterizerState1* get() = 0;
 
@@ -3282,6 +3426,8 @@ public:
 		get_desc2(
 		) = 0;
 
+	using Native_handle_type = ID3D11RasterizerState2;
+
 	virtual ID3D11RasterizerState2* get() = 0;
 
 	virtual const ID3D11RasterizerState2* get() const = 0;
@@ -3297,6 +3443,8 @@ public:
 	virtual Sampler_desc
 		get_desc(
 		) = 0;
+
+	using Native_handle_type = ID3D11SamplerState;
 
 	virtual ID3D11SamplerState* get() = 0;
 
@@ -3352,6 +3500,8 @@ public:
 		validate_context_for_dispatch(
 			_HW_3D_IN_ IDevice_context* context
 		) = 0;
+
+	using Native_handle_type = ID3D11Debug;
 
 	virtual ID3D11Debug* get() = 0;
 
@@ -3530,6 +3680,8 @@ public:
 			_HW_3D_IN_ Bool mute
 		) = 0;
 
+	using Native_handle_type = ID3D11InfoQueue;
+
 	virtual ID3D11InfoQueue* get() = 0;
 
 	virtual const ID3D11InfoQueue* get() const = 0;
@@ -3548,6 +3700,8 @@ public:
 			_HW_3D_IN_ Shader_tracking_option options
 		) = 0;
 
+	using Native_handle_type = ID3D11RefDefaultTrackingOptions;
+
 	virtual ID3D11RefDefaultTrackingOptions* get() = 0;
 
 	virtual const ID3D11RefDefaultTrackingOptions* get() const = 0;
@@ -3564,6 +3718,8 @@ public:
 		set_tracking_options(
 			_HW_3D_IN_ Shader_tracking_option options
 		) = 0;
+
+	using Native_handle_type = ID3D11RefTrackingOptions;
 
 	virtual ID3D11RefTrackingOptions* get() = 0;
 
@@ -3588,6 +3744,8 @@ public:
 			_HW_3D_IN_ Shader_tracking_resource_type type,
 			_HW_3D_IN_ Shader_tracking_option options
 		) = 0;
+
+	using Native_handle_type = ID3D11TracingDevice;
 
 	virtual ID3D11TracingDevice* get() = 0;
 
@@ -3614,6 +3772,8 @@ public:
 			_HW_3D_IN_ _HW_3D_DXGI_ Resource_priority priority
 		) = 0;
 
+	using Native_handle_type = ID3D11Resource;
+
 	virtual ID3D11Resource* get() = 0;
 
 	virtual const ID3D11Resource* get() const = 0;
@@ -3629,6 +3789,8 @@ public:
 	virtual Buffer_desc
 		get_desc(
 		) = 0;
+
+	using Native_handle_type = ID3D11Buffer;
 
 	virtual ID3D11Buffer* get() = 0;
 
@@ -3646,6 +3808,8 @@ public:
 		get_resource(
 		) = 0;
 
+	using Native_handle_type = ID3D11View;
+
 	virtual ID3D11View* get() = 0;
 
 	virtual const ID3D11View* get() const = 0;
@@ -3661,6 +3825,8 @@ public:
 	virtual Depth_stencil_view_desc
 		get_desc(
 		) = 0;
+
+	using Native_handle_type = ID3D11DepthStencilView;
 
 	virtual ID3D11DepthStencilView* get() = 0;
 
@@ -3678,6 +3844,8 @@ public:
 		get_desc(
 		) = 0;
 
+	using Native_handle_type = ID3D11RenderTargetView;
+
 	virtual ID3D11RenderTargetView* get() = 0;
 
 	virtual const ID3D11RenderTargetView* get() const = 0;
@@ -3693,6 +3861,8 @@ public:
 	virtual Render_target_view_desc1
 		get_desc1(
 		) = 0;
+
+	using Native_handle_type = ID3D11RenderTargetView1;
 
 	virtual ID3D11RenderTargetView1* get() = 0;
 
@@ -3710,6 +3880,8 @@ public:
 		get_desc(
 		) = 0;
 
+	using Native_handle_type = ID3D11ShaderResourceView;
+
 	virtual ID3D11ShaderResourceView* get() = 0;
 
 	virtual const ID3D11ShaderResourceView* get() const = 0;
@@ -3725,6 +3897,8 @@ public:
 	virtual Shader_resource_view_desc1
 		get_desc1(
 		) = 0;
+
+	using Native_handle_type = ID3D11ShaderResourceView1;
 
 	virtual ID3D11ShaderResourceView1* get() = 0;
 
@@ -3742,6 +3916,8 @@ public:
 		get_desc(
 		) = 0;
 
+	using Native_handle_type = ID3D11Texture1D;
+
 	virtual ID3D11Texture1D* get() = 0;
 
 	virtual const ID3D11Texture1D* get() const = 0;
@@ -3757,6 +3933,8 @@ public:
 	virtual Texture2d_desc
 		get_desc(
 		) = 0;
+
+	using Native_handle_type = ID3D11Texture2D;
 
 	virtual ID3D11Texture2D* get() = 0;
 
@@ -3774,6 +3952,8 @@ public:
 		get_desc1(
 		) = 0;
 
+	using Native_handle_type = ID3D11Texture2D1;
+
 	virtual ID3D11Texture2D1* get() = 0;
 
 	virtual const ID3D11Texture2D1* get() const = 0;
@@ -3789,6 +3969,8 @@ public:
 	virtual Texture3d_desc
 		get_desc(
 		) = 0;
+
+	using Native_handle_type = ID3D11Texture3D;
 
 	virtual ID3D11Texture3D* get() = 0;
 
@@ -3806,6 +3988,8 @@ public:
 		get_desc1(
 		) = 0;
 
+	using Native_handle_type = ID3D11Texture3D1;
+
 	virtual ID3D11Texture3D1* get() = 0;
 
 	virtual const ID3D11Texture3D1* get() const = 0;
@@ -3822,6 +4006,8 @@ public:
 		get_desc(
 		) = 0;
 
+	using Native_handle_type = ID3D11UnorderedAccessView;
+
 	virtual ID3D11UnorderedAccessView* get() = 0;
 
 	virtual const ID3D11UnorderedAccessView* get() const = 0;
@@ -3837,6 +4023,8 @@ public:
 	virtual Unordered_access_view_desc1
 		get_desc1(
 		) = 0;
+
+	using Native_handle_type = ID3D11UnorderedAccessView1;
 
 	virtual ID3D11UnorderedAccessView1* get() = 0;
 
@@ -3866,6 +4054,8 @@ public:
 		get_type_name(
 		) = 0;
 
+	using Native_handle_type = ID3D11ClassInstance;
+
 	virtual ID3D11ClassInstance* get() = 0;
 
 	virtual const ID3D11ClassInstance* get() const = 0;
@@ -3893,6 +4083,8 @@ public:
 			_HW_3D_IN_ Uint index
 		) = 0;
 
+	using Native_handle_type = ID3D11ClassLinkage;
+
 	virtual ID3D11ClassLinkage* get() = 0;
 
 	virtual const ID3D11ClassLinkage* get() const = 0;
@@ -3905,6 +4097,8 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11DeviceChild, ID3D11ClassLinkage>);
 //
 class _HW_3D_NO_VTABLE_ ICompute_shader : public IDevice_child {
 public:
+	using Native_handle_type = ID3D11ComputeShader;
+
 	virtual ID3D11ComputeShader* get() = 0;
 
 	virtual const ID3D11ComputeShader* get() const = 0;
@@ -3917,6 +4111,8 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11DeviceChild, ID3D11ComputeShader>);
 //
 class _HW_3D_NO_VTABLE_ IDomain_shader : public IDevice_child {
 public:
+	using Native_handle_type = ID3D11DomainShader;
+
 	virtual ID3D11DomainShader* get() = 0;
 
 	virtual const ID3D11DomainShader* get() const = 0;
@@ -3976,6 +4172,8 @@ public:
 		set_output_signature(
 			_HW_3D_IN_ const _HW_3D_STD_ vector<Parameter_desc>& parameters
 		) = 0;
+
+	using Native_handle_type = ID3D11FunctionLinkingGraph;
 
 	virtual ID3D11FunctionLinkingGraph* get() = 0;
 
@@ -4041,6 +4239,8 @@ public:
 //
 class _HW_3D_NO_VTABLE_ IGeometry_shader : public IDevice_child {
 public:
+	using Native_handle_type = ID3D11GeometryShader;
+
 	virtual ID3D11GeometryShader* get() = 0;
 
 	virtual const ID3D11GeometryShader* get() const = 0;
@@ -4053,6 +4253,8 @@ static_assert(_HW_3D_STD_ is_base_of_v<ID3D11DeviceChild, ID3D11GeometryShader>)
 //
 class _HW_3D_NO_VTABLE_ IHull_shader : public IDevice_child {
 public:
+	using Native_handle_type = ID3D11HullShader;
+
 	virtual ID3D11HullShader* get() = 0;
 
 	virtual const ID3D11HullShader* get() const = 0;
@@ -4073,6 +4275,8 @@ public:
 		get_function_by_index(
 			_HW_3D_IN_ Int function_index
 		) = 0;
+
+	using Native_handle_type = ID3D11LibraryReflection;
 
 	virtual ID3D11LibraryReflection* get() = 0;
 
@@ -4105,6 +4309,8 @@ public:
 			_HW_3D_IN_ IModule_instance* lib
 		) = 0;
 
+	using Native_handle_type = ID3D11Linker;
+
 	virtual ID3D11Linker* get() = 0;
 
 	virtual const ID3D11Linker* get() const = 0;
@@ -4117,6 +4323,8 @@ static_assert(_HW_3D_STD_ is_base_of_v<IUnknown, ID3D11Linker>);
 //
 class _HW_3D_NO_VTABLE_ ILinking_node : public IBase {
 public:
+	using Native_handle_type = ID3D11LinkingNode;
+
 	virtual ID3D11LinkingNode* get() = 0;
 
 	virtual const ID3D11LinkingNode* get() const = 0;
@@ -4133,6 +4341,8 @@ public:
 		create_instance(
 			_HW_3D_IN_ const _HW_3D_STD_ string& name
 		) = 0;
+
+	using Native_handle_type = ID3D11Module;
 
 	virtual ID3D11Module* get() = 0;
 
@@ -4216,6 +4426,8 @@ public:
 			_HW_3D_IN_ Uint count
 		) = 0;
 
+	using Native_handle_type = ID3D11ModuleInstance;
+
 	virtual ID3D11ModuleInstance* get() = 0;
 
 	virtual const ID3D11ModuleInstance* get() const = 0;
@@ -4228,6 +4440,8 @@ static_assert(_HW_3D_STD_ is_base_of_v<IUnknown, ID3D11ModuleInstance>);
 //
 class _HW_3D_NO_VTABLE_ IPixel_shader : public IDevice_child {
 public:
+	using Native_handle_type = ID3D11PixelShader;
+
 	virtual ID3D11PixelShader* get() = 0;
 
 	virtual const ID3D11PixelShader* get() const = 0;
@@ -4323,6 +4537,8 @@ public:
 	virtual Bool
 		is_sampler_frequency_shader(
 		) = 0;
+
+	using Native_handle_type = ID3D11ShaderReflection;
 
 	virtual ID3D11ShaderReflection* get() = 0;
 
@@ -4478,6 +4694,8 @@ public:
 		trace_ready(
 		) = 0;
 
+	using Native_handle_type = ID3D11ShaderTrace;
+
 	virtual ID3D11ShaderTrace* get() = 0;
 
 	virtual const ID3D11ShaderTrace* get() const = 0;
@@ -4496,6 +4714,8 @@ public:
 			_HW_3D_IN_ Shader_trace_desc& desc
 		) = 0;
 
+	using Native_handle_type = ID3D11ShaderTraceFactory;
+
 	virtual ID3D11ShaderTraceFactory* get() = 0;
 
 	virtual const ID3D11ShaderTraceFactory* get() const = 0;
@@ -4508,6 +4728,8 @@ static_assert(_HW_3D_STD_ is_base_of_v<IUnknown, ID3D11ShaderTraceFactory>);
 //
 class _HW_3D_NO_VTABLE_ IVertex_shader : public IDevice_child {
 public:
+	using Native_handle_type = ID3D11VertexShader;
+	
 	virtual ID3D11VertexShader* get() = 0;
 
 	virtual const ID3D11VertexShader* get() const = 0;
@@ -4527,6 +4749,8 @@ public:
 	virtual Size_t
 		get_buffer_size(
 		) = 0;
+
+	using Native_handle_type = ID3DBlob;
 
 	virtual ID3DBlob* get() = 0;
 
@@ -4579,6 +4803,8 @@ public:
 			_HW_3D_IN_ const _HW_3D_STD_ wstring& name
 		) = 0;
 
+	using Native_handle_type = ID3DUserDefinedAnnotation;
+
 	virtual ID3DUserDefinedAnnotation* get() = 0;
 
 	virtual const ID3DUserDefinedAnnotation* get() const = 0;
@@ -4606,7 +4832,7 @@ constexpr bool _Has_value_ptr_method_v = _Has_value_ptr_method<_Ty>::value;
 //
 //
 template <typename Interface>
-auto value_ptr(Interface* p_interface) {
+decltype(auto) value_ptr(Interface* p_interface) {
 	if constexpr (_HW_3D_STD_ is_base_of_v<IBase, Interface>)
 		return p_interface ? p_interface->get() : nullptr;
 	else if constexpr (_Has_value_ptr_method_v<Interface>)
@@ -4616,7 +4842,7 @@ auto value_ptr(Interface* p_interface) {
 }
 
 template <typename Interface>
-auto value_ptr(const Interface* p_interface) {
+decltype(auto) value_ptr(const Interface* p_interface) {
 	if constexpr (_HW_3D_STD_ is_base_of_v<IBase, Interface>)
 		return p_interface ? p_interface->get() : nullptr;
 	else if constexpr (_Has_value_ptr_method_v<Interface>)
@@ -4625,34 +4851,34 @@ auto value_ptr(const Interface* p_interface) {
 		return p_interface;
 }
 
-template <typename Interface, typename = _HW_3D_STD_ enable_if_t<_HW_3D_STD_ is_base_of_v<IBase, Interface>>>
-auto values_ptr(const _HW_3D_STD_ vector<Interface*>& interface_) {
-	_HW_3D_STD_ vector<_HW_3D_STD_ decay_t<decltype((value_ptr(interface_[0])))>> res;
+template <typename Ty>
+decltype(auto) value_ptr(Ty& value) {
+	if constexpr (_HW_3D_STD_ is_base_of_v<IBase, Ty>)
+		return value.get();
+	else if constexpr (_Has_value_ptr_method_v<Ty>)
+		return value.value_ptr();
+	else
+		return &value;
+}
 
-	res.reserve(interface_.size());
-	_HW_3D_STD_ for_each(interface_.begin(), interface_.end(), [&res](auto ptr) {res.push_back(value_ptr(ptr)); });
+template <typename Ty>
+decltype(auto) value_ptr(const Ty& value) {
+	if constexpr (_HW_3D_STD_ is_base_of_v<IBase, Ty>)
+		return value.get();
+	else if constexpr (_Has_value_ptr_method_v<Ty>)
+		return value.value_ptr();
+	else
+		return &value;
+}
+
+template <typename Ty, typename = _HW_3D_STD_ enable_if_t<_HW_3D_STD_ is_base_of_v<IBase, Ty>>>
+decltype(auto) values_ptr(const _HW_3D_STD_ vector<Ty*>& values) {
+	_HW_3D_STD_ vector<typename Ty::Native_handle_type *> res;
+	res.reserve(values.size());
+
+	_HW_3D_STD_ for_each(values.cbegin(), values.cend(), [&res](const auto item) {res.push_back(value_ptr(item)); });
 
 	return res;
-}
-
-template <typename Ty>
-auto value_ptr(Ty& value) {
-	if constexpr (_HW_3D_STD_ is_base_of_v<IBase, Ty>)
-		return value.get();
-	else if constexpr (_Has_value_ptr_method_v<Ty>)
-		return value.value_ptr();
-	else
-		return &value;
-}
-
-template <typename Ty>
-auto value_ptr(const Ty& value) {
-	if constexpr (_HW_3D_STD_ is_base_of_v<IBase, Ty>)
-		return value.get();
-	else if constexpr (_Has_value_ptr_method_v<Ty>)
-		return value.value_ptr();
-	else
-		return &value;
 }
 
 ///
@@ -8141,7 +8367,7 @@ _HW_3D_CLOSE_DXGI_NAMESPACE_
 
 _HW_3D_OPEN_D3D_NAMESPACE_
 
-//--forword declaration--
+//--forward declaration--
 template <bool own> class _Device;
 template <bool own> class _Device_context;
 template <bool own> class _Class_linkage;

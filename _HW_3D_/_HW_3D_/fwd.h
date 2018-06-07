@@ -6,6 +6,7 @@
 #include <cassert>
 #include <ctime>
 
+#include <algorithm>
 #include <type_traits>
 #include <array>
 #include <vector>
@@ -15,7 +16,6 @@
 #include <tuple>
 #include <memory>
 #include <string>
-#include <algorithm>
 #include <atomic>
 #include <exception>
 #include <fstream>

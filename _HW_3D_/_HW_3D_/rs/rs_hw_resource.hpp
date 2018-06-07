@@ -822,7 +822,7 @@ public:
 
 	static void
 		copy(
-			_HW_3D_IN_ _My_type* dst
+			_HW_3D_IN_ _My_type* dst,
 			_HW_3D_IN_ uint32_t dst_level,
 			_HW_3D_IN_ uint32_t dst_array_index,
 			_HW_3D_IN_ Offset1d dst_offset,
@@ -1220,6 +1220,8 @@ public:
 	}
 };
 
+//
+//
 template <typename Texture2d_helper> 
 class _THardware_texture2d {
 public:
@@ -1230,6 +1232,78 @@ public:
 	using Native_handle_type = typename _My_helper::Native_handle_type;
 	using Metadata_type = typename _My_helper::Metadata_type;
 	using Subresource_type = typename _My_helper::Subresource_type;
+public:
+	static void
+		copy(
+			_HW_3D_IN_ _My_type* dst,
+			_HW_3D_IN_ _My_type* src
+		) {
+#ifdef _DEBUG
+		if (!_My_helper::is_copyable_as_dst(dst->_metadata))
+			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "try to copy a no copyable texture");
+
+		if (dst == src)
+			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "try to copy between same texture");
+
+		if (dst->size() != src->size())
+			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "try to copy between different size");
+
+		if (dst->_render_manager != src->_render_manager)
+			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "try to copy between different context");
+#endif
+		_My_helper::copy(dst->_render_manager->context(), dst->handle(), src->handle());
+	}
+
+	static void
+		copy(
+			_HW_3D_IN_ _My_type* dst,
+			_HW_3D_IN_ uint32_t dst_level,
+			_HW_3D_IN_ uint32_t dst_array_index,
+			_HW_3D_IN_ Offset2d offset,
+			_HW_3D_IN_ _My_type* src,
+			_HW_3D_IN_ uint32_t src_level,
+			_HW_3D_IN_ uint32_t src_array_index,
+			_HW_3D_IN_ const Range2d& src_range
+		) {
+#ifdef _DEBUG
+		if (!_My_helper::is_copyable_as_dst(dst->_metadata))
+			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "try to copy a no copyable texture");
+
+		if (dst == src && dst_level == src_level && dst_array_index == src_array_index)
+			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "try to copy between same texture");
+
+		if (dst->_render_manager != src->_render_manager)
+			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "try to copy between different context");
+#endif
+		_My_helper::copy(
+			dst->_render_manager->context(),
+			Subresource_type(dst->handle(), dst_level, dst_array_index),
+			offset,
+			Subresource_type(src->handle(), src_level, src_array_index),
+			src_range);
+	}
+
+	static void
+		resolve(
+			_HW_3D_IN_ _My_type* dst,
+			_HW_3D_IN_ uint32_t dst_level,
+			_HW_3D_IN_ uint32_t dst_array_index,
+			_HW_3D_IN_ _My_type* src,
+			_HW_3D_IN_ uint32_t src_level,
+			_HW_3D_IN_ uint32_t src_array_index,
+			_HW_3D_IN_ Pixel_format format
+		) {
+#ifdef _DEBUG
+		if (dst->_render_manager != src->_render_manager)
+			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "try to resolve between different context");
+#endif
+		_My_helper::resolve(
+			dst->_render_manager->context(),
+			Subresource_type(dst->handle(), dst_level, dst_array_index),
+			Subresource_type(src->handle(), src_level, src_array_index),
+			format);
+	}
+
 public:
 	_THardware_texture2d(
 		_HW_3D_IN_ const Metadata_type& metadata,
@@ -1263,56 +1337,6 @@ public:
 			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "try to read form no-readable texture");
 #endif
 		return _My_helper::read(_render_manager->context(), Subresource_type(_texture.get(), level, array_index), _metadata, range);
-	}
-
-	void
-		copy(
-			_HW_3D_IN_ _My_type* other
-		) {
-#ifdef _DEBUG
-		if (!_My_helper::is_copyable_as_dst(_metadata))
-			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "try to copy a no copyable texture");
-
-		if (this == other)
-			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "try to copy between same texture");
-
-		if (this->size() != other->size())
-			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "try to copy between different size");
-
-		/*should be a compatible format, too reluctant*/
-
-		if (this->_render_manager != other->_render_manager)
-			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "try to copy between different context");
-#endif
-		_My_helper::copy(_render_manager->context(), _texture.get(), other->handle());
-	}
-
-	void
-		copy(
-			_HW_3D_IN_ uint32_t level,
-			_HW_3D_IN_ uint32_t array_index,
-			_HW_3D_IN_ Offset2d offset,
-			_HW_3D_IN_ _My_type* other,
-			_HW_3D_IN_ uint32_t src_lev,
-			_HW_3D_IN_ uint32_t src_array_idx,
-			_HW_3D_IN_ const Range2d& src_range
-		) {
-#ifdef _DEBUG
-		if (!_My_helper::is_copyable_as_dst(_metadata))
-			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "try to copy a no copyable texture");
-
-		if (this == other && level == src_lev && array_index == src_array_idx)
-			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "try to copy between same texture");
-
-		if (this->_render_manager != other->_render_manager)
-			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "try to copy between different context");
-#endif
-		_My_helper::copy(
-			_render_manager->context(),
-			Subresource_type(_texture.get(), level, array_index),
-			offset,
-			Subresource_type(other->handle(), src_lev, src_array_idx),
-			src_range);
 	}
 
 	void
@@ -1372,7 +1396,7 @@ public:
 		return _My_helper::is_multisample(_metadata);
 	}
 
-	Extent1d
+	Extent2d
 		size(
 			_HW_3D_IN_ uint32_t level = 0
 		) const {
@@ -1391,6 +1415,11 @@ public:
 		return _My_helper::width(_metadata);
 	}
 
+	uint32_t 
+		height() const {
+		return _My_helper::height(_metadata);
+	}
+
 	uint32_t
 		mip_levels() const {
 		return _My_helper::mip_levels(_metadata);
@@ -1406,11 +1435,42 @@ public:
 		return _My_helper::format(_metadata);
 	}
 
+	uint32_t
+		samples() const {
+		return _My_helper::samples(_metadata);
+	}
 private:
 	_HW_3D_STD_ unique_ptr<Handle_type> _texture;
 	Metadata_type _metadata;
 	Render_manager* const _render_manager;
 };
+
+//
+//
+template <typename Texture2d_helper, typename _My_base = typename Texture2d_helper::Metadata_type>
+struct _THardware_texture2d_builder : _My_base {
+	using Hardware_texture2d_type = _THardware_texture2d<Texture2d_helper>;
+
+	_HW_3D_STD_ unique_ptr<Hardware_texture2d_type>
+		create(
+			_HW_3D_IN_ const void* pdata,
+			_HW_3D_IN_ uint32_t row_pitch,
+			_HW_3D_IN_ uint32_t slice_pitch,
+			_HW_3D_IN_ Render_manager* render_manager = nullptr
+		) {
+		render_manager = render_manager == nullptr ? Render_manager::current_render_manager() : render_manager;
+
+		if (render_manager == nullptr)
+			_HW_3D_THROW_EXCEPTION_(Error_type::logic, "try to create texture without hardware");
+
+		return _HW_3D_STD_ make_unique<Hardware_texture2d_type>(*this, pdata, row_pitch, slice_pitch, render_manager);
+	}
+};
+
+//
+//
+using Hardware_texture2d = _THardware_texture2d<_D3d_texture2d_helper>;
+using Hardware_texture2d_builder = _THardware_texture2d_builder<_D3d_texture2d_helper>;
 
 //
 //
