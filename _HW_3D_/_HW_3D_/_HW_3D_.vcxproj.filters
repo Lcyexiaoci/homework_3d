@@ -66,14 +66,26 @@
     <ClInclude Include="rs\rs_hw_shader.hpp">
       <Filter>头文件\rs</Filter>
     </ClInclude>
-    <ClInclude Include="rs\rs_hw_view.hpp">
-      <Filter>头文件\rs</Filter>
-    </ClInclude>
-    <ClInclude Include="rs\rs_hw_texture.h">
-      <Filter>头文件\rs</Filter>
-    </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="rs\rs_hw_buffer.hpp">
+      <Filter>头文件\rs</Filter>
+    </ClInclude>
+    <ClInclude Include="rs\rs_hw_texture.hpp">
+      <Filter>头文件\rs</Filter>
+    </ClInclude>
+    <ClInclude Include="rs\rs_hw_texture1d.hpp">
+      <Filter>头文件\rs</Filter>
+    </ClInclude>
+    <ClInclude Include="rs\rs_hw_texture2d.hpp">
+      <Filter>头文件\rs</Filter>
+    </ClInclude>
+    <ClInclude Include="rs\rs_hw_texture3d.hpp">
+      <Filter>头文件\rs</Filter>
+    </ClInclude>
+    <ClInclude Include="rs\rs_hw_resource_view.hpp">
+      <Filter>头文件\rs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

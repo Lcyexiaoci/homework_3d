@@ -4832,7 +4832,7 @@ constexpr bool _Has_value_ptr_method_v = _Has_value_ptr_method<_Ty>::value;
 //
 //
 template <typename Interface>
-decltype(auto) value_ptr(Interface* p_interface) {
+auto value_ptr(Interface* p_interface) {
 	if constexpr (_HW_3D_STD_ is_base_of_v<IBase, Interface>)
 		return p_interface ? p_interface->get() : nullptr;
 	else if constexpr (_Has_value_ptr_method_v<Interface>)
@@ -4842,7 +4842,7 @@ decltype(auto) value_ptr(Interface* p_interface) {
 }
 
 template <typename Interface>
-decltype(auto) value_ptr(const Interface* p_interface) {
+auto value_ptr(const Interface* p_interface) {
 	if constexpr (_HW_3D_STD_ is_base_of_v<IBase, Interface>)
 		return p_interface ? p_interface->get() : nullptr;
 	else if constexpr (_Has_value_ptr_method_v<Interface>)
@@ -4852,7 +4852,7 @@ decltype(auto) value_ptr(const Interface* p_interface) {
 }
 
 template <typename Ty>
-decltype(auto) value_ptr(Ty& value) {
+auto value_ptr(Ty& value) {
 	if constexpr (_HW_3D_STD_ is_base_of_v<IBase, Ty>)
 		return value.get();
 	else if constexpr (_Has_value_ptr_method_v<Ty>)
@@ -4862,23 +4862,13 @@ decltype(auto) value_ptr(Ty& value) {
 }
 
 template <typename Ty>
-decltype(auto) value_ptr(const Ty& value) {
+auto value_ptr(const Ty& value) {
 	if constexpr (_HW_3D_STD_ is_base_of_v<IBase, Ty>)
 		return value.get();
 	else if constexpr (_Has_value_ptr_method_v<Ty>)
 		return value.value_ptr();
 	else
 		return &value;
-}
-
-template <typename Ty, typename = _HW_3D_STD_ enable_if_t<_HW_3D_STD_ is_base_of_v<IBase, Ty>>>
-decltype(auto) values_ptr(const _HW_3D_STD_ vector<Ty*>& values) {
-	_HW_3D_STD_ vector<typename Ty::Native_handle_type *> res;
-	res.reserve(values.size());
-
-	_HW_3D_STD_ for_each(values.cbegin(), values.cend(), [&res](const auto item) {res.push_back(value_ptr(item)); });
-
-	return res;
 }
 
 ///
@@ -6327,7 +6317,8 @@ public:
 		auto&[r, residency] = res;
 
 		residency.resize(resources.size());
-		auto resource_handles = values_ptr(resources);
+		_HW_3D_STD_ vector<IBase::Native_handle_type*> resource_handles; resource_handles.reserve(resources.size());
+		_HW_3D_STD_ for_each(resources.cbegin(), resources.cend(), [&resource_handles](const auto& item) {resource_handles.push_back(item->get()); });
 
 		r = static_cast<Result>(this->_handle->QueryResourceResidency(resource_handles.data(), (DXGI_RESIDENCY*)(residency.data()), UINT(resources.size())));
 
@@ -6897,7 +6888,9 @@ public:
 			_HW_3D_IN_ const _HW_3D_STD_ vector<IResource*>&  resources,
 			_HW_3D_IN_ Offer_resource_priority priority
 		) override {
-		auto resource_handles = values_ptr(resources);
+		_HW_3D_STD_ vector<IResource::Native_handle_type *> resource_handles; resource_handles.reserve(resources.size());
+		_HW_3D_STD_ for_each(resources.cbegin(), resources.cend(), [&resource_handles](const auto& item) {resource_handles.push_back(item->get()); });
+		
 		return static_cast<Result>(this->_handle->OfferResources(UINT(resources.size()), resource_handles.data(), DXGI_OFFER_RESOURCE_PRIORITY(priority)));
 	}
 
@@ -6908,8 +6901,9 @@ public:
 		_HW_3D_STD_ tuple<Result, BOOL> res;
 
 		auto&[r, discarded] = res;
+		_HW_3D_STD_ vector<IResource::Native_handle_type *> resource_handles; resource_handles.reserve(resources.size());
+		_HW_3D_STD_ for_each(resources.cbegin(), resources.cend(), [&resource_handles](const auto& item) {resource_handles.push_back(item->get()); });
 
-		auto resource_handles = values_ptr(resources);
 		r = static_cast<Result>(this->_handle->ReclaimResources(UINT(resources.size()), resource_handles.data(), &discarded));
 
 		return res;
@@ -6997,7 +6991,9 @@ public:
 			_HW_3D_IN_ Offer_resource_priority priority,
 			_HW_3D_IN_ Offer_resource_flag flags
 		) override {
-		auto resource_handles = values_ptr(resources);
+		_HW_3D_STD_ vector<IResource::Native_handle_type *> resource_handles; resource_handles.reserve(resources.size());
+		_HW_3D_STD_ for_each(resources.cbegin(), resources.cend(), [&resource_handles](const auto& item) {resource_handles.push_back(item->get()); });
+
 		return static_cast<Result>(this->_handle->OfferResources1(UINT(resources.size()), resource_handles.data(), DXGI_OFFER_RESOURCE_PRIORITY(priority), Offer_resource_flag::mask_type(flags)));
 	}
 
@@ -7009,7 +7005,9 @@ public:
 
 		auto&[r, rs] = res;
 
-		auto resource_handles = values_ptr(resources);
+		_HW_3D_STD_ vector<IResource::Native_handle_type *> resource_handles; resource_handles.reserve(resources.size());
+		_HW_3D_STD_ for_each(resources.cbegin(), resources.cend(), [&resource_handles](const auto& item) {resource_handles.push_back(item->get()); });
+
 		rs.resize(resources.size());
 		r = static_cast<Result>(this->_handle->ReclaimResources1(UINT(resources.size()), resource_handles.data(), (DXGI_RECLAIM_RESOURCE_RESULTS*)(rs.data())));
 
@@ -7819,7 +7817,8 @@ public:
 		) override {
 		assert(masks.size() == present_queue.size());
 
-		auto queue_handles = values_ptr(present_queue);
+		_HW_3D_STD_ vector<IBase::Native_handle_type*> queue_handles; queue_handles.reserve(present_queue.size());
+		_HW_3D_STD_ for_each(present_queue.cbegin(), present_queue.cend(), [&queue_handles](const auto& item) {queue_handles.push_back(item->get()); });
 
 		return static_cast<Result>(this->_handle->ResizeBuffers1(
 			UINT(masks.size()),
@@ -11921,7 +11920,9 @@ public:
 			_HW_3D_IN_ Uint start_slot,
 			_HW_3D_IN_ const _HW_3D_STD_ vector<IBuffer*>& constant_buffers
 		) override {
-		auto buffers = values_ptr(constant_buffers);
+		_HW_3D_STD_ vector<IBuffer::Native_handle_type*> buffers; buffers.reserve(constant_buffers.size());
+		_HW_3D_STD_ for_each(constant_buffers.cbegin(), constant_buffers.cend(), [&buffers](const auto& item) {buffers.push_back(item->get()); });
+
 		this->_handle->CSSetConstantBuffers(start_slot, Uint(buffers.size()), buffers.data());
 	}
 
@@ -11930,7 +11931,9 @@ public:
 			_HW_3D_IN_ Uint start_slot,
 			_HW_3D_IN_ const _HW_3D_STD_ vector<ISampler_state*>& samplers
 		) override {
-		auto ss = values_ptr(samplers);
+		_HW_3D_STD_ vector<ISampler_state::Native_handle_type*> ss; ss.reserve(samplers.size());
+		_HW_3D_STD_ for_each(samplers.cbegin(), samplers.cend(), [&ss](const auto& item) {ss.push_back(item->get()); });
+
 		this->_handle->CSSetSamplers(start_slot, Uint(ss.size()), ss.data());
 	}
 
@@ -11939,7 +11942,9 @@ public:
 			_HW_3D_IN_ ICompute_shader* shader,
 			_HW_3D_IN_ const _HW_3D_STD_ vector<IClass_instance*>& instances
 		) override {
-		auto cis = values_ptr(instances);
+		_HW_3D_STD_ vector<IClass_instance::Native_handle_type *> cis; cis.reserve(instances.size());
+		_HW_3D_STD_ for_each(instances.cbegin(), instances.cend(), [&cis](const auto& item) {cis.push_back(item->get()); });
+
 		this->_handle->CSSetShader(value_ptr(shader), cis.data(), Uint(cis.size()));
 	}
 
@@ -11948,7 +11953,9 @@ public:
 			_HW_3D_IN_ Uint start_slot,
 			_HW_3D_IN_ const _HW_3D_STD_ vector<IShader_resource_view*>& views
 		) override {
-		auto srvs = values_ptr(views);
+		_HW_3D_STD_ vector<IShader_resource_view::Native_handle_type*> srvs; srvs.reserve(views.size());
+		_HW_3D_STD_ for_each(views.cbegin(), views.cend(), [&srvs](const auto& item) {srvs.push_back(item->get()); });
+
 		this->_handle->CSSetShaderResources(start_slot, Uint(srvs.size()), srvs.data());
 	}
 
@@ -11959,7 +11966,9 @@ public:
 			_HW_3D_IN_ const _HW_3D_STD_ vector<Uint>& initial_counts
 		) override {
 		assert(views.size() == initial_counts.size());
-		auto uavs = values_ptr(views);
+		_HW_3D_STD_ vector<IUnordered_access_view::Native_handle_type *> uavs; uavs.reserve(views.size());
+		_HW_3D_STD_ for_each(views.cbegin(), views.cend(), [&uavs](const auto& item) {uavs.push_back(item->get()); });
+
 		this->_handle->CSSetUnorderedAccessViews(start_slot, Uint(uavs.size()), uavs.data(), initial_counts.data());
 	}
 
@@ -12109,7 +12118,9 @@ public:
 			_HW_3D_IN_ Uint start_slot,
 			_HW_3D_IN_ const _HW_3D_STD_ vector<IBuffer*>& constant_buffers
 		) override {
-		auto buffers = values_ptr(constant_buffers);
+		_HW_3D_STD_ vector<IBuffer::Native_handle_type *> buffers; buffers.reserve(constant_buffers.size());
+		_HW_3D_STD_ for_each(constant_buffers.cbegin(), constant_buffers.cend(), [&buffers](const auto& item) {buffers.push_back(item->get()); });
+
 		this->_handle->DSSetConstantBuffers(start_slot, Uint(buffers.size()), buffers.data());
 	}
 
@@ -12118,7 +12129,9 @@ public:
 			_HW_3D_IN_ Uint start_slot,
 			_HW_3D_IN_ const _HW_3D_STD_ vector<ISampler_state*>& samplers
 		) override {
-		auto ss = values_ptr(samplers);
+		_HW_3D_STD_ vector<ISampler_state::Native_handle_type *> ss; ss.reserve(samplers.size());
+		_HW_3D_STD_ for_each(samplers.cbegin(), samplers.cend(), [&ss](const auto& item) {ss.push_back(item->get()); });
+
 		this->_handle->DSSetSamplers(start_slot, Uint(ss.size()), ss.data());
 	}
 
@@ -12127,7 +12140,9 @@ public:
 			_HW_3D_IN_ IDomain_shader* shader,
 			_HW_3D_IN_ const _HW_3D_STD_ vector<IClass_instance*>& instances
 		) override {
-		auto cis = values_ptr(instances);
+		_HW_3D_STD_ vector<IClass_instance::Native_handle_type *> cis; cis.reserve(instances.size());
+		_HW_3D_STD_ for_each(instances.cbegin(), instances.cend(), [&cis](const auto& item) {cis.push_back(item->get()); });
+
 		this->_handle->DSSetShader(value_ptr(shader), cis.data(), Uint(cis.size()));
 	}
 
@@ -12136,7 +12151,9 @@ public:
 			_HW_3D_IN_ Uint start_slot,
 			_HW_3D_IN_ const _HW_3D_STD_ vector<IShader_resource_view*>& views
 		) override {
-		auto srvs = values_ptr(views);
+		_HW_3D_STD_ vector<IShader_resource_view::Native_handle_type*> srvs; srvs.reserve(views.size());
+		_HW_3D_STD_ for_each(views.cbegin(), views.cend(), [&srvs](const auto& item) {srvs.push_back(item->get()); });
+
 		this->_handle->DSSetShaderResources(start_slot, Uint(srvs.size()), srvs.data());
 	}
 
@@ -12298,7 +12315,9 @@ public:
 			_HW_3D_IN_ Uint start_slot,
 			_HW_3D_IN_ const _HW_3D_STD_ vector<IBuffer*>& constant_buffers
 		) override {
-		auto buffers = values_ptr(constant_buffers);
+		_HW_3D_STD_ vector<IBuffer::Native_handle_type *> buffers; buffers.reserve(constant_buffers.size());
+		_HW_3D_STD_ for_each(constant_buffers.cbegin(), constant_buffers.cend(), [&buffers](const auto& item) {buffers.push_back(item->get()); });
+
 		this->_handle->GSSetConstantBuffers(start_slot, Uint(buffers.size()), buffers.data());
 	}
 
@@ -12307,7 +12326,9 @@ public:
 			_HW_3D_IN_ Uint start_slot,
 			_HW_3D_IN_ const _HW_3D_STD_ vector<ISampler_state*>& samplers
 		) override {
-		auto ss = values_ptr(samplers);
+		_HW_3D_STD_ vector<ISampler_state::Native_handle_type *> ss; ss.reserve(samplers.size());
+		_HW_3D_STD_ for_each(samplers.cbegin(), samplers.cend(), [&ss](const auto& item) {ss.push_back(item->get()); });
+
 		this->_handle->GSSetSamplers(start_slot, Uint(ss.size()), ss.data());
 	}
 
@@ -12316,7 +12337,9 @@ public:
 			_HW_3D_IN_ IGeometry_shader* shader,
 			_HW_3D_IN_ const _HW_3D_STD_ vector<IClass_instance*>& instances
 		) override {
-		auto cis = values_ptr(instances);
+		_HW_3D_STD_ vector<IClass_instance::Native_handle_type*> cis; cis.reserve(instances.size());
+		_HW_3D_STD_ for_each(instances.cbegin(), instances.cend(), [&cis](const auto& item) {cis.push_back(item->get()); });
+
 		this->_handle->GSSetShader(value_ptr(shader), cis.data(), Uint(cis.size()));
 	}
 
@@ -12325,7 +12348,9 @@ public:
 			_HW_3D_IN_ Uint start_slot,
 			_HW_3D_IN_ const _HW_3D_STD_ vector<IShader_resource_view*>& views
 		) override {
-		auto srvs = values_ptr(views);
+		_HW_3D_STD_ vector<IShader_resource_view::Native_handle_type *> srvs; srvs.reserve(views.size());
+		_HW_3D_STD_ for_each(views.cbegin(), views.cend(), [&srvs](const auto& item) {srvs.push_back(item->get()); });
+
 		this->_handle->GSSetShaderResources(start_slot, Uint(srvs.size()), srvs.data());
 	}
 
@@ -12400,7 +12425,9 @@ public:
 			_HW_3D_IN_ Uint start_slot,
 			_HW_3D_IN_ const _HW_3D_STD_ vector<IBuffer*>& constant_buffers
 		) override {
-		auto buffers = values_ptr(constant_buffers);
+		_HW_3D_STD_ vector<IBuffer::Native_handle_type *> buffers; buffers.reserve(constant_buffers.size());
+		_HW_3D_STD_ for_each(constant_buffers.cbegin(), constant_buffers.cend(), [&buffers](const auto& item) {buffers.push_back(item->get()); });
+
 		this->_handle->HSSetConstantBuffers(start_slot, Uint(buffers.size()), buffers.data());
 	}
 
@@ -12409,7 +12436,9 @@ public:
 			_HW_3D_IN_ Uint start_slot,
 			_HW_3D_IN_ const _HW_3D_STD_ vector<ISampler_state*>& samplers
 		) override {
-		auto ss = values_ptr(samplers);
+		_HW_3D_STD_ vector<ISampler_state::Native_handle_type *> ss; ss.reserve(samplers.size());
+		_HW_3D_STD_ for_each(samplers.cbegin(), samplers.cend(), [&ss](const auto& item) {ss.push_back(item->get()); });
+
 		this->_handle->HSSetSamplers(start_slot, Uint(ss.size()), ss.data());
 	}
 
@@ -12418,7 +12447,9 @@ public:
 			_HW_3D_IN_ IHull_shader* shader,
 			_HW_3D_IN_ const _HW_3D_STD_ vector<IClass_instance*>& instances
 		) override {
-		auto cis = values_ptr(instances);
+		_HW_3D_STD_ vector<IClass_instance::Native_handle_type *> cis; cis.reserve(instances.size());
+		_HW_3D_STD_ for_each(instances.cbegin(), instances.cend(), [&cis](const auto& item) {cis.push_back(item->get()); });
+
 		this->_handle->HSSetShader(value_ptr(shader), cis.data(), Uint(cis.size()));
 	}
 
@@ -12427,7 +12458,9 @@ public:
 			_HW_3D_IN_ Uint start_slot,
 			_HW_3D_IN_ const _HW_3D_STD_ vector<IShader_resource_view*>& views
 		) override {
-		auto srvs = values_ptr(views);
+		_HW_3D_STD_ vector<IShader_resource_view::Native_handle_type *> srvs; srvs.reserve(views.size());
+		_HW_3D_STD_ for_each(views.cbegin(), views.cend(), [&srvs](const auto& item) {srvs.push_back(item->get()); });
+
 		this->_handle->HSSetShaderResources(start_slot, Uint(srvs.size()), srvs.data());
 	}
 
@@ -12513,7 +12546,9 @@ public:
 			_HW_3D_IN_ const _HW_3D_STD_ vector<Uint> strides,
 			_HW_3D_IN_ const _HW_3D_STD_ vector<Uint> offsets
 		) override {
-		auto buf = values_ptr(buffers);
+		_HW_3D_STD_ vector<IBuffer::Native_handle_type *> buf; buf.reserve(buffers.size());
+		_HW_3D_STD_ for_each(buffers.cbegin(), buffers.cend(), [&buf](const auto& item) {buf.push_back(item->get()); });
+
 		this->_handle->IASetVertexBuffers(start_slot, Uint(buf.size()), buf.data(), strides.data(), offsets.data());
 	}
 
@@ -12624,7 +12659,9 @@ public:
 			_HW_3D_IN_ const _HW_3D_STD_ vector<IRender_target_view*>& rtvs,
 			_HW_3D_IN_ IDepth_stencil_view* dsv
 		) override {
-		auto raw_rtvs = values_ptr(rtvs);
+		_HW_3D_STD_ vector<IRender_target_view::Native_handle_type *> raw_rtvs; raw_rtvs.reserve(rtvs.size());
+		_HW_3D_STD_ for_each(rtvs.cbegin(), rtvs.cend(), [&raw_rtvs](const auto& item) {raw_rtvs.push_back(item->get()); });
+
 		this->_handle->OMSetRenderTargets(Uint(raw_rtvs.size()), raw_rtvs.data(), value_ptr(dsv));
 	}
 
@@ -12636,8 +12673,10 @@ public:
 			_HW_3D_IN_ const _HW_3D_STD_ vector<IUnordered_access_view*>& uavs,
 			_HW_3D_IN_ const _HW_3D_STD_ vector<Uint>& uav_init_count
 		) override {
-		auto raw_rtvs = values_ptr(rtvs);
-		auto raw_uavs = values_ptr(uavs);
+		_HW_3D_STD_ vector<IRender_target_view::Native_handle_type *> raw_rtvs; raw_rtvs.reserve(rtvs.size());
+		_HW_3D_STD_ for_each(rtvs.cbegin(), rtvs.cend(), [&raw_rtvs](const auto& item) {raw_rtvs.push_back(item->get()); });
+		_HW_3D_STD_ vector<IUnordered_access_view::Native_handle_type *> raw_uavs; raw_uavs.reserve(uavs.size());
+		_HW_3D_STD_ for_each(uavs.cbegin(), uavs.cend(), [&raw_uavs](const auto& item) {raw_uavs.push_back(item->get()); });
 
 		this->_handle->OMSetRenderTargetsAndUnorderedAccessViews(
 			Uint(raw_rtvs.size()),
@@ -12720,7 +12759,9 @@ public:
 			_HW_3D_IN_ Uint start_slot,
 			_HW_3D_IN_ const _HW_3D_STD_ vector<IBuffer*>& constant_buffers
 		)  override {
-		auto buffers = values_ptr(constant_buffers);
+		_HW_3D_STD_ vector<IBuffer::Native_handle_type *> buffers; buffers.reserve(constant_buffers.size());
+		_HW_3D_STD_ for_each(constant_buffers.cbegin(), constant_buffers.cend(), [&buffers](const auto& item) {buffers.push_back(item->get()); });
+
 		this->_handle->PSSetConstantBuffers(start_slot, Uint(buffers.size()), buffers.data());
 	}
 
@@ -12730,7 +12771,9 @@ public:
 			_HW_3D_IN_ Uint start_slot,
 			_HW_3D_IN_ const _HW_3D_STD_ vector<ISampler_state*>& samplers
 		) override {
-		auto ss = values_ptr(samplers);
+		_HW_3D_STD_ vector<ISampler_state::Native_handle_type *> ss; ss.reserve(samplers.size());
+		_HW_3D_STD_ for_each(samplers.cbegin(), samplers.cend(), [&ss](const auto& item) {ss.push_back(item->get()); });
+
 		this->_handle->PSSetSamplers(start_slot, Uint(ss.size()), ss.data());
 	}
 
@@ -12739,7 +12782,9 @@ public:
 			_HW_3D_IN_ IPixel_shader* shader,
 			_HW_3D_IN_ const _HW_3D_STD_ vector<IClass_instance*>& instances
 		) override {
-		auto cis = values_ptr(instances);
+		_HW_3D_STD_ vector<IClass_instance::Native_handle_type *> cis; cis.reserve(instances.size());
+		_HW_3D_STD_ for_each(instances.cbegin(), instances.cend(), [&cis](const auto& item) {cis.push_back(item->get()); });
+
 		this->_handle->PSSetShader(value_ptr(shader), cis.data(), Uint(cis.size()));
 	}
 
@@ -12748,7 +12793,9 @@ public:
 			_HW_3D_IN_ Uint start_slot,
 			_HW_3D_IN_ const _HW_3D_STD_ vector<IShader_resource_view*>& views
 		) override {
-		auto srvs = values_ptr(views);
+		_HW_3D_STD_ vector<IShader_resource_view::Native_handle_type *> srvs; srvs.reserve(views.size());
+		_HW_3D_STD_ for_each(views.cbegin(), views.cend(), [&srvs](const auto& item) {srvs.push_back(item->get()); });
+
 		this->_handle->CSSetShaderResources(start_slot, Uint(srvs.size()), srvs.data());
 	}
 
@@ -12864,8 +12911,8 @@ public:
 			_HW_3D_IN_ const _HW_3D_STD_ vector<Uint>& offset
 		) override {
 		assert(buffers.size() == offset.size());
-
-		auto raw_bufs = values_ptr(buffers);
+		_HW_3D_STD_ vector<IBuffer::Native_handle_type*> raw_bufs; raw_bufs.reserve(buffers.size());
+		_HW_3D_STD_ for_each(buffers.cbegin(), buffers.cend(), [&raw_bufs](const auto& item) {raw_bufs.push_back(item->get()); });
 
 		this->_handle->SOSetTargets(Uint(buffers.size()), raw_bufs.data(), offset.data());
 	}
@@ -12968,7 +13015,9 @@ public:
 			_HW_3D_IN_ Uint start_slot,
 			_HW_3D_IN_ const _HW_3D_STD_ vector<IBuffer*>& constant_buffers
 		) override {
-		auto buffers = values_ptr(constant_buffers);
+		_HW_3D_STD_ vector<IBuffer::Native_handle_type *> buffers; buffers.reserve(constant_buffers.size());
+		_HW_3D_STD_ for_each(constant_buffers.cbegin(), constant_buffers.cend(), [&buffers](const auto& item) {buffers.push_back(item->get());});
+
 		this->_handle->VSSetConstantBuffers(start_slot, Uint(buffers.size()), buffers.data());
 	}
 
@@ -12977,7 +13026,9 @@ public:
 			_HW_3D_IN_ Uint start_slot,
 			_HW_3D_IN_ const _HW_3D_STD_ vector<ISampler_state*>& samplers
 		) override {
-		auto ss = values_ptr(samplers);
+		_HW_3D_STD_ vector<ISampler_state::Native_handle_type *> ss; ss.reserve(samplers.size());
+		_HW_3D_STD_ for_each(samplers.cbegin(), samplers.cend(), [&ss](const auto& item) {ss.push_back(item->get()); });
+
 		this->_handle->VSSetSamplers(start_slot, Uint(ss.size()), ss.data());
 	}
 
@@ -12986,7 +13037,9 @@ public:
 			_HW_3D_IN_ IVertex_shader* shader,
 			_HW_3D_IN_ const _HW_3D_STD_ vector<IClass_instance*>& instances
 		) override {
-		auto cis = values_ptr(instances);
+		_HW_3D_STD_ vector<IClass_instance::Native_handle_type *> cis; cis.reserve(instances.size());
+		_HW_3D_STD_ for_each(instances.cbegin(), instances.cend(), [&cis](const auto& item) {cis.push_back(item->get()); });
+
 		this->_handle->VSSetShader(value_ptr(shader), cis.data(), Uint(cis.size()));
 	}
 
@@ -12995,7 +13048,9 @@ public:
 			_HW_3D_IN_ Uint start_slot,
 			_HW_3D_IN_ const _HW_3D_STD_ vector<IShader_resource_view*>& views
 		) override {
-		auto srvs = values_ptr(views);
+		_HW_3D_STD_ vector<IShader_resource_view::Native_handle_type *> srvs; srvs.reserve(views.size());
+		_HW_3D_STD_ for_each(views.cbegin(), views.cend(), [&srvs](const auto& item) {srvs.push_back(item->get()); });
+
 		this->_handle->VSSetShaderResources(start_slot, Uint(srvs.size()), srvs.data());
 	}
 
@@ -13092,7 +13147,9 @@ public:
 			_HW_3D_IN_ const _HW_3D_STD_ vector<Uint>& first_constant,
 			_HW_3D_IN_ const _HW_3D_STD_ vector<Uint>& num_constant
 		) override {
-		auto raw_buffers = values_ptr(buffers);
+		_HW_3D_STD_ vector<IBuffer::Native_handle_type *> raw_buffers; raw_buffers.reserve(buffers.size());
+		_HW_3D_STD_ for_each(buffers.cbegin(), buffers.cend(), [&raw_buffers](const auto& item) {raw_buffers.push_back(item->get()); });
+
 		this->_handle->CSSetConstantBuffers1(start_slot, Uint(raw_buffers.size()), raw_buffers.data(), first_constant.data(), num_constant.data());
 	}
 
@@ -13144,7 +13201,9 @@ public:
 			_HW_3D_IN_ const _HW_3D_STD_ vector<Uint>& first_constant,
 			_HW_3D_IN_ const _HW_3D_STD_ vector<Uint>& num_constant
 		) override {
-		auto raw_buffers = values_ptr(buffers);
+		_HW_3D_STD_ vector<IBuffer::Native_handle_type *> raw_buffers; raw_buffers.reserve(buffers.size());
+		_HW_3D_STD_ for_each(buffers.cbegin(), buffers.cend(), [&raw_buffers](const auto& item) {raw_buffers.push_back(item->get()); });
+
 		this->_handle->DSSetConstantBuffers1(start_slot, Uint(raw_buffers.size()), raw_buffers.data(), first_constant.data(), num_constant.data());
 	}
 
@@ -13174,7 +13233,9 @@ public:
 			_HW_3D_IN_ const _HW_3D_STD_ vector<Uint>& first_constant,
 			_HW_3D_IN_ const _HW_3D_STD_ vector<Uint>& num_constant
 		) override {
-		auto raw_buffers = values_ptr(buffers);
+		_HW_3D_STD_ vector<IBuffer::Native_handle_type *> raw_buffers; raw_buffers.reserve(buffers.size());
+		_HW_3D_STD_ for_each(buffers.cbegin(), buffers.cend(), [&raw_buffers](const auto& item) {raw_buffers.push_back(item->get()); });
+
 		this->_handle->GSSetConstantBuffers1(start_slot, Uint(raw_buffers.size()), raw_buffers.data(), first_constant.data(), num_constant.data());
 	}
 
@@ -13204,7 +13265,9 @@ public:
 			_HW_3D_IN_ const _HW_3D_STD_ vector<Uint>& first_constant,
 			_HW_3D_IN_ const _HW_3D_STD_ vector<Uint>& num_constant
 		) override {
-		auto raw_buffers = values_ptr(buffers);
+		_HW_3D_STD_ vector<IBuffer::Native_handle_type *> raw_buffers; raw_buffers.reserve(buffers.size());
+		_HW_3D_STD_ for_each(buffers.cbegin(), buffers.cend(), [&raw_buffers](const auto& item) {raw_buffers.push_back(item->get()); });
+
 		this->_handle->HSSetConstantBuffers1(start_slot, Uint(raw_buffers.size()), raw_buffers.data(), first_constant.data(), num_constant.data());
 	}
 
@@ -13234,7 +13297,9 @@ public:
 			_HW_3D_IN_ const _HW_3D_STD_ vector<Uint>& first_constant,
 			_HW_3D_IN_ const _HW_3D_STD_ vector<Uint>& num_constant
 		) override {
-		auto raw_buffers = values_ptr(buffers);
+		_HW_3D_STD_ vector<IBuffer::Native_handle_type *> raw_buffers; raw_buffers.reserve(buffers.size());
+		_HW_3D_STD_ for_each(buffers.cbegin(), buffers.cend(), [&raw_buffers](const auto& item) {raw_buffers.push_back(item->get()); });
+
 		this->_handle->PSSetConstantBuffers1(start_slot, Uint(raw_buffers.size()), raw_buffers.data(), first_constant.data(), num_constant.data());
 	}
 
@@ -13295,7 +13360,9 @@ public:
 			_HW_3D_IN_ const _HW_3D_STD_ vector<Uint>& first_constant,
 			_HW_3D_IN_ const _HW_3D_STD_ vector<Uint>& num_constant
 		) override {
-		auto raw_buffers = values_ptr(buffers);
+		_HW_3D_STD_ vector<IBuffer::Native_handle_type *> raw_buffers; raw_buffers.reserve(buffers.size());
+		_HW_3D_STD_ for_each(buffers.cbegin(), buffers.cend(), [&raw_buffers](const auto& item) {raw_buffers.push_back(item->get()); });
+
 		this->_handle->VSSetConstantBuffers1(start_slot, Uint(raw_buffers.size()), raw_buffers.data(), first_constant.data(), num_constant.data());
 	}
 

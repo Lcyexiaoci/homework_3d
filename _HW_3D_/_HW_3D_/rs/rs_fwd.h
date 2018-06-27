@@ -35,6 +35,10 @@ using Resource_bind_flag = _HW_3D_D3D_ Bind_flag;
 using Resource_cpu_access_flag = _HW_3D_D3D_ Cpu_access_flag;
 using Resource_misc_flag = _HW_3D_D3D_ Resource_misc_flag;
 using Pixel_format = _HW_3D_DXGI_ Format;
+using Render_target_view = _HW_3D_D3D_ IRender_target_view;
+using Depth_stencil_view = _HW_3D_D3D_ IDepth_stencil_view;
+using Shader_resource_view = _HW_3D_D3D_ IShader_resource_view;
+using Unordered_access_view = _HW_3D_D3D_ IUnordered_access_view;
 
 using Native_factory = IDXGIFactory;
 using Native_adapter = IDXGIAdapter;

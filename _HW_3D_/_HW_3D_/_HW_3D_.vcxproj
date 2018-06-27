@@ -133,12 +133,16 @@
     <ClInclude Include="log.hpp" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="rs\rs_fwd.h" />
-    <ClInclude Include="rs\rs_hw_texture.h" />
+    <ClInclude Include="rs\rs_hw_buffer.hpp" />
+    <ClInclude Include="rs\rs_hw_texture.hpp" />
+    <ClInclude Include="rs\rs_hw_texture1d.hpp" />
+    <ClInclude Include="rs\rs_hw_texture2d.hpp" />
+    <ClInclude Include="rs\rs_hw_texture3d.hpp" />
     <ClInclude Include="rs\rs_render_manager.h" />
     <ClInclude Include="rs\rs_hw_resource.hpp" />
     <ClInclude Include="rs\rs_hw_shader.hpp" />
     <ClInclude Include="rs\rs_utils.hpp" />
-    <ClInclude Include="rs\rs_hw_view.hpp" />
+    <ClInclude Include="rs\rs_hw_resource_view.hpp" />
     <ClInclude Include="utils.hpp" />
   </ItemGroup>
   <ItemGroup>
