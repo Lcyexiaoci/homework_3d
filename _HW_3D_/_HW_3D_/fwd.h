@@ -78,12 +78,9 @@ for concurrency
 
 #define _HW_3D_NO_VTABLE_ __declspec(novtable)
 
-/*
-inline, it seems that plain inline have some bug
-*/
 #define _HW_3D_INLINE_FUNCTION_ __forceinline
 
-#define _HW_3D_INLINE_VARIABLE_ __declspec(selectany)
+#define _HW_3D_INLINE_VARIABLE_ inline 
 
 /*
 

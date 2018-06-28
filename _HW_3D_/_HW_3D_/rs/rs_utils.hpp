@@ -46,7 +46,7 @@ public:
 		explicit constexpr _TData_array(_Args&&... args)
 		: _TData_array() {
 		auto iter = this->begin();
-		((*iter++ = _HW_3D_STD_ forward<_Args>(args)), ...);
+		((*iter++ = (_Ty)_HW_3D_STD_ forward<_Args>(args)), ...);
 	}
 
 	template <
@@ -516,7 +516,7 @@ struct Is_shader_helper <
 };
 
 template <typename _Shader_helper> 
-constexpr bool is_shader_helper_v = Is_shader_helper<_Shader_helper>::value;
+_HW_3D_INLINE_VARIABLE_ constexpr bool is_shader_helper_v = Is_shader_helper<_Shader_helper>::value;
 
 _HW_3D_CLOSE_RS_NAMESPACE_
 

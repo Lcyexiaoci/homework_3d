@@ -123,6 +123,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="app.h" />
     <ClInclude Include="d3d\d3d_enum.h" />
     <ClInclude Include="d3d\d3d_flag.hpp" />
     <ClInclude Include="d3d\d3d_func.hpp" />
@@ -131,7 +132,6 @@
     <ClInclude Include="d3d\d3d_wrapper.hpp" />
     <ClInclude Include="fwd.h" />
     <ClInclude Include="log.hpp" />
-    <ClInclude Include="resource.h" />
     <ClInclude Include="rs\rs_fwd.h" />
     <ClInclude Include="rs\rs_hw_buffer.hpp" />
     <ClInclude Include="rs\rs_hw_texture.hpp" />

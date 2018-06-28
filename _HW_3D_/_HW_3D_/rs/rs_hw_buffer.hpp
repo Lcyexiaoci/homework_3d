@@ -91,7 +91,7 @@ public:
 			_HW_3D_IN_ Device_type* device,
 			_HW_3D_IN_ Handle_type* src,
 			_HW_3D_IN_ Pixel_format format,
-			Args&&... args
+			_HW_3D_IN_ Args&&... args
 		) {
 		return _D3d_resource_view::create_render_target_view<type>(device, src, format, _HW_3D_STD_ forward<Args>(args)...);
 	}
@@ -102,13 +102,32 @@ public:
 			_HW_3D_IN_ Device_type* device,
 			_HW_3D_IN_ Handle_type* src,
 			_HW_3D_IN_ Pixel_format format,
-			Args&&... args
+			_HW_3D_IN_ Args&&... args
 		) {
 		return _D3d_resource_view::create_shader_resource_view<type>(device, src, format, _HW_3D_STD_ forward<Args>(args)...);
 	}
 
 	template <Resource_view_type type, typename... Args>
-	static _HW_3D_STD_ enable_if_t<_HW_3D_STD_ is_same_v<Handle_type, typename _D3d_resource_view_helper<type>::_Resource_type>, _HW_3D_STD_ unique
+	static _HW_3D_STD_ enable_if_t<_HW_3D_STD_ is_same_v<Handle_type, typename _D3d_resource_view_helper<type>::_Resource_type>, _HW_3D_STD_ unique_ptr<Depth_stencil_view>>
+		create_depth_stencil_view(
+			_HW_3D_IN_ Device_type* device,
+			_HW_3D_IN_ Handle_type* src,
+			_HW_3D_IN_ Pixel_format format,
+			_HW_3D_IN_ Args&&... args
+		) {
+		return _D3d_resource_view::create_depth_stencil_view<type>(device, src, format, _HW_3D_STD_ forward<Args>(args)...);
+	}
+
+	template <Resource_view_type type, typename... Args>
+	static _HW_3D_STD_ enable_if_t<_HW_3D_STD_ is_same_v<Handle_type, typename _D3d_resource_view_helper<type>::_Resource_type>, _HW_3D_STD_ unique_ptr<Unordered_access_view>>
+		create_unordered_access_view(
+			_HW_3D_IN_ Device_type* device,
+			_HW_3D_IN_ Handle_type* src,
+			_HW_3D_IN_ Pixel_format format,
+			_HW_3D_IN_ Args&&... args
+		) {
+		return _D3d_resource_view::create_unordered_access_view<type>(device, src, format, _HW_3D_STD_ forward<Args>(args)...);
+	}
 
 	static void
 		write_via_mapping(
@@ -146,6 +165,8 @@ public:
 template <typename Buffer_helper>
 class _THardware_buffer {
 public:
+	
+	//using _My_helper = _D3d_buffer_helper;
 	using _My_helper = Buffer_helper;
 	using _My_type = _THardware_buffer<Buffer_helper>;
 
@@ -163,23 +184,19 @@ public:
 		_buffer = _My_helper::create(_render_manager->device(), _metadata, initial_data);
 	}
 
-	Handle_type* 
-		handle() const {
+	Handle_type* handle() const {
 		return _buffer.get();
 	}
 
-	Native_handle_type* 
-		native_handle() const {
+	Native_handle_type* native_handle() const {
 		return _buffer->get();
 	}
 
-	uint32_t
-		size() const {
+	uint32_t size() const {
 		return _My_helper::size(_metadata);
 	}
 
-	uint32_t
-		stride() const {
+	uint32_t stride() const {
 		return _My_helper::stride(_metadata);
 	}
 
@@ -196,8 +213,7 @@ public:
 		return _My_helper::read(_render_manager->context(), _buffer.get(), offset, size);
 	}
 
-	void
-		write (
+	void write (
 			_HW_3D_IN_ uint32_t offset,
 			_HW_3D_IN_ uint32_t size,
 			_HW_3D_IN_ const void* data
@@ -210,8 +226,7 @@ public:
 		_My_helper::write_via_update(_render_manager->context(), _buffer.get(), offset, size, data);
 	}
 
-	void 
-		write_via_mapping(
+	void write_via_mapping(
 			_HW_3D_IN_ uint32_t offset,
 			_HW_3D_IN_ uint32_t size,
 			_HW_3D_IN_ const void* data,
@@ -231,8 +246,7 @@ public:
 		_My_helper::write_via_mapping(_render_manager->context(), _buffer.get(), offset, size, hint);
 	}
 
-	void
-		copy(
+	void copy(
 			_HW_3D_IN_ _My_type* other
 		) {
 #ifdef _DEBUG
@@ -251,8 +265,7 @@ public:
 		_My_helper::copy(_render_manager->context(), _buffer.get(), other->_buffer.get());
 	}
 
-	void
-		copy(
+	void copy(
 			_HW_3D_IN_ uint32_t offset,
 			_HW_3D_IN_ _My_type* other,
 			_HW_3D_IN_ uint32_t src_offset,
@@ -267,6 +280,39 @@ public:
 #endif
 		_My_helper::copy(_render_manager->context(), _buffer.get(), offset, other->handle(), src_offset, size);
 	}
+
+	template <Resource_view_type type, typename... Args>
+	auto create_render_target_view(
+			_HW_3D_IN_ Pixel_format format,
+			_HW_3D_IN_ Args&&... args
+		) {
+		_My_helper::create_render_target_view<type>(_render_manager->device(), _buffer.get(), format, _HW_3D_STD_ forward<Args>(args)...);
+	}
+
+	template <Resource_view_type type, typename... Args>
+	auto create_shader_resource_view(
+		_HW_3D_IN_ Pixel_format format,
+		_HW_3D_IN_ Args&&... args
+	) {
+		_My_helper::create_shader_resource_view<type>(_render_manager->device(), _buffer.get(), format, _HW_3D_STD_ forward<Args>(args)...);
+	}
+
+	template <Resource_view_type type, typename... Args>
+	auto create_depth_stencil_view(
+		_HW_3D_IN_ Pixel_format format,
+		_HW_3D_IN_ Args&&... args
+	) {
+		_My_helper::create_depth_stencil_view<type>(_render_manager->device(), _buffer.get(), format, _HW_3D_STD_ forward<Args>(args)...);
+	}
+
+	template <Resource_view_type type, typename... Args>
+	auto create_unordered_access_view(
+		_HW_3D_IN_ Pixel_format format,
+		_HW_3D_IN_ Args&&... args
+	) {
+		_My_helper::create_unordered_access_view<type>(_render_manager->device(), _buffer.get(), format, _HW_3D_STD_ forward<Args>(args)...);
+	}
+
 private:
 	_HW_3D_STD_ unique_ptr<Handle_type> _buffer;
 	Metadata_type _metadata;

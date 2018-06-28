@@ -850,7 +850,7 @@ struct _D3d_is_unordered_access_view_constructible<_View_helper, _HW_3D_STD_ voi
 };
 
 template <typename _View_helper>
-struct D3d_is_unordered_access_view_constructbile_v = _D3d_is_unordered_access_view_constructible<_View_helper>::value;
+_HW_3D_INLINE_VARIABLE_ constexpr bool D3d_is_unordered_access_view_constructbile_v = _D3d_is_unordered_access_view_constructible<_View_helper>::value;
 
 struct _D3d_resource_view {
 

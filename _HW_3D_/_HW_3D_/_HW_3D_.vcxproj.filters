@@ -66,9 +66,6 @@
     <ClInclude Include="rs\rs_hw_shader.hpp">
       <Filter>头文件\rs</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="rs\rs_hw_buffer.hpp">
       <Filter>头文件\rs</Filter>
     </ClInclude>
@@ -86,6 +83,9 @@
     </ClInclude>
     <ClInclude Include="rs\rs_hw_resource_view.hpp">
       <Filter>头文件\rs</Filter>
+    </ClInclude>
+    <ClInclude Include="app.h">
+      <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

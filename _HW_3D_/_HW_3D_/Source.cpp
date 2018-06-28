@@ -9,17 +9,19 @@
 #include "rs\rs_utils.hpp"
 #include "rs\rs_render_manager.h"
 #include "rs\rs_hw_shader.hpp"
-#include "rs\rs_hw_view.hpp"
 #include "rs\rs_hw_resource.hpp"
+#include "rs\rs_hw_buffer.hpp"
+#include "rs\rs_hw_texture1d.hpp"
+#include "rs\rs_hw_texture2d.hpp"
+#include "rs\rs_hw_texture3d.hpp"
 
 void test_d3d_wrapper();
 void test_rs_utils();
-void test_rs_view_base();
 
-int main() {
-	test_rs_utils();
-	std::getchar();
-}
+//int main() {
+//	test_rs_utils();
+//	std::getchar();
+//}
 
 void test_d3d_wrapper() {
 #define _TEST_DXGI_WRAPPER_(_Type) \
@@ -185,21 +187,3 @@ void test_rs_utils() {
 	
 }
 
-void test_rs_view_base() {
-#define _TEST_VIEW_BASE_(type) \
-	std::cout << #type << ": " << sizeof(_HW_3D_RS_ _D3d_view_base<_HW_3D_RS_ _D3d_ ##type ##_view_helper>) <<"\n" << std::endl
-
-	_TEST_VIEW_BASE_(buffer);
-	_TEST_VIEW_BASE_(buffer_ex);
-	_TEST_VIEW_BASE_(texture1d);
-	_TEST_VIEW_BASE_(texture1d_array);
-	_TEST_VIEW_BASE_(texture2d);
-	_TEST_VIEW_BASE_(texture2d_array);
-	_TEST_VIEW_BASE_(texture2dms);
-	_TEST_VIEW_BASE_(texture2dms_array);
-	_TEST_VIEW_BASE_(texture3d);
-	_TEST_VIEW_BASE_(texture_cube);
-	_TEST_VIEW_BASE_(texture_cube_array);
-
-#undef _TEST_VIEW_BASE_
-}

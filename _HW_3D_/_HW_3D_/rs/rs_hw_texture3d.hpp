@@ -164,6 +164,50 @@ public:
 		return _HW_3D_STD_ move(texture);
 	}
 
+	template <Resource_view_type type, typename... Args>
+	static _HW_3D_STD_ enable_if_t<_HW_3D_STD_ is_same_v<Handle_type, typename _D3d_resource_view_helper<type>::_Resource_type>, _HW_3D_STD_ unique_ptr<Render_target_view>>
+		create_render_target_view(
+			_HW_3D_IN_ Device_type* device,
+			_HW_3D_IN_ Handle_type* src,
+			_HW_3D_IN_ Pixel_format format,
+			Args&&... args
+		) {
+		return _D3d_resource_view::create_render_target_view<type>(device, src, format, _HW_3D_STD_ forward<Args>(args)...);
+	}
+
+	template <Resource_view_type type, typename... Args>
+	static _HW_3D_STD_ enable_if_t<_HW_3D_STD_ is_same_v<Handle_type, typename _D3d_resource_view_helper<type>::_Resource_type>, _HW_3D_STD_ unique_ptr<Shader_resource_view>>
+		create_shader_resource_view(
+			_HW_3D_IN_ Device_type* device,
+			_HW_3D_IN_ Handle_type* src,
+			_HW_3D_IN_ Pixel_format format,
+			Args&&... args
+		) {
+		return _D3d_resource_view::create_shader_resource_view<type>(device, src, format, _HW_3D_STD_ forward<Args>(args)...);
+	}
+
+	template <Resource_view_type type, typename... Args>
+	static _HW_3D_STD_ enable_if_t<_HW_3D_STD_ is_same_v<Handle_type, typename _D3d_resource_view_helper<type>::_Resource_type>, _HW_3D_STD_ unique_ptr<Depth_stencil_view>>
+		create_depth_stencil_view(
+			_HW_3D_IN_ Device_type* device,
+			_HW_3D_IN_ Handle_type* src,
+			_HW_3D_IN_ Pixel_format format,
+			Args&&... args
+		) {
+		return _D3d_resource_view::create_depth_stencil_view<type>(device, src, format, _HW_3D_STD_ forward<Args>(args)...);
+	}
+
+	template <Resource_view_type type, typename... Args>
+	static _HW_3D_STD_ enable_if_t<_HW_3D_STD_ is_same_v<Handle_type, typename _D3d_resource_view_helper<type>::_Resource_type>, _HW_3D_STD_ unique_ptr<Unordered_access_view>>
+		create_unordered_access_view(
+			_HW_3D_IN_ Device_type* device,
+			_HW_3D_IN_ Handle_type* src,
+			_HW_3D_IN_ Pixel_format format,
+			Args&&... args
+		) {
+		return _D3d_resource_view::create_unordered_access_view<type>(device, src, format, _HW_3D_STD_ forward<Args>(args)...);
+	}
+
 	static void
 		write_via_mapping(
 			_HW_3D_IN_ Context_type* context,
@@ -290,7 +334,7 @@ public:
 	}
 
 public:
-	_THandware_texture3d(
+	_THardware_texture3d(
 		_HW_3D_IN_ const Metadata_type& metadata,
 		_HW_3D_IN_ const void * initial_data,
 		_HW_3D_IN_ uint32_t row_pitch,
@@ -410,6 +454,38 @@ public:
 		format() const {
 		return _My_helper::format(_metadata);
 	}
+
+	template <Resource_view_type type, typename... Args>
+	auto create_render_target_view(
+			_HW_3D_IN_ Pixel_format format,
+			_HW_3D_IN_ Args&&... args
+		) {
+		_My_helper::create_render_target_view<type>(_render_manager->device(), _buffer.get(), format, _HW_3D_STD_ forward<Args>(args)...);
+	}
+
+	template <Resource_view_type type, typename... Args>
+	auto create_shader_resource_view(
+		_HW_3D_IN_ Pixel_format format,
+		_HW_3D_IN_ Args&&... args
+	) {
+		_My_helper::create_shader_resource_view<type>(_render_manager->device(), _buffer.get(), format, _HW_3D_STD_ forward<Args>(args)...);
+	}
+
+	template <Resource_view_type type, typename... Args>
+	auto create_depth_stencil_view(
+		_HW_3D_IN_ Pixel_format format,
+		_HW_3D_IN_ Args&&... args
+	) {
+		_My_helper::create_depth_stencil_view<type>(_render_manager->device(), _buffer.get(), format, _HW_3D_STD_ forward<Args>(args)...);
+	}
+
+	template <Resource_view_type type, typename... Args>
+	auto create_unordered_access_view(
+		_HW_3D_IN_ Pixel_format format,
+		_HW_3D_IN_ Args&&... args
+	) {
+		_My_helper::create_unordered_access_view<type>(_render_manager->device(), _buffer.get(), format, _HW_3D_STD_ forward<Args>(args)...);
+	}
 private:
 	_HW_3D_STD_ unique_ptr<Handle_type> _texture;
 	Metadata_type _metadata;
@@ -420,7 +496,7 @@ private:
 //
 template <typename Texture3d_helper, typename _My_base = typename Texture3d_helper::Metadata_type>
 struct _THardware_texture3d_builder : _My_base {
-	using Hardware_texture3d_type = _THardware_texture3d<Texture3d_helper>:
+	using Hardware_texture3d_type = _THardware_texture3d<Texture3d_helper>;
 
 	_HW_3D_STD_ unique_ptr<Hardware_texture3d_type>
 		create(
