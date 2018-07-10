@@ -18,10 +18,10 @@
 void test_d3d_wrapper();
 void test_rs_utils();
 
-//int main() {
-//	test_rs_utils();
-//	std::getchar();
-//}
+int main() {
+	test_rs_utils();
+	std::getchar();
+}
 
 void test_d3d_wrapper() {
 #define _TEST_DXGI_WRAPPER_(_Type) \

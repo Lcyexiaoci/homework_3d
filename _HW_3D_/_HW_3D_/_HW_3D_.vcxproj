@@ -130,6 +130,10 @@
     <ClInclude Include="d3d\d3d_fwd.h" />
     <ClInclude Include="d3d\d3d_struct.hpp" />
     <ClInclude Include="d3d\d3d_wrapper.hpp" />
+    <ClInclude Include="fg\fg_fwd.h" />
+    <ClInclude Include="fg\fg_render_pass.hpp" />
+    <ClInclude Include="fg\fg_resource.hpp" />
+    <ClInclude Include="fg\fg_utils.hpp" />
     <ClInclude Include="fwd.h" />
     <ClInclude Include="log.hpp" />
     <ClInclude Include="rs\rs_fwd.h" />
@@ -146,6 +150,8 @@
     <ClInclude Include="utils.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="app\homework.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

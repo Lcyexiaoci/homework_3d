@@ -22,6 +22,9 @@
     <Filter Include="源文件\rs">
       <UniqueIdentifier>{da9b786c-cf9f-47b5-b509-924691851228}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\fg">
+      <UniqueIdentifier>{6394cdd8-9c2a-4284-840a-03f6e8fe009f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="d3d\d3d_wrapper.hpp">
@@ -87,9 +90,27 @@
     <ClInclude Include="app.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="fg\fg_fwd.h">
+      <Filter>头文件\fg</Filter>
+    </ClInclude>
+    <ClInclude Include="fg\fg_render_pass.hpp">
+      <Filter>头文件\fg</Filter>
+    </ClInclude>
+    <ClInclude Include="fg\fg_utils.hpp">
+      <Filter>头文件\fg</Filter>
+    </ClInclude>
+    <ClInclude Include="fg\fg_resource.hpp">
+      <Filter>头文件\fg</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="app\homework.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
