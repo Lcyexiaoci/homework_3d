@@ -451,7 +451,7 @@ private:
 	Path _path;
 	typename _Shader::Source_code_type _code;
 	_Shader_macros _macros;
-	_HW_3D_STD_ string _entry_;
+	_HW_3D_STD_ string _entry;
 };
 
 //

@@ -286,7 +286,7 @@ public:
 			_HW_3D_IN_ Pixel_format format,
 			_HW_3D_IN_ Args&&... args
 		) {
-		_My_helper::create_render_target_view<type>(_render_manager->device(), _buffer.get(), format, _HW_3D_STD_ forward<Args>(args)...);
+		return _My_helper::template create_render_target_view<type>(_render_manager->device(), _buffer.get(), format, _HW_3D_STD_ forward<Args>(args)...);
 	}
 
 	template <Resource_view_type type, typename... Args>
@@ -294,7 +294,7 @@ public:
 		_HW_3D_IN_ Pixel_format format,
 		_HW_3D_IN_ Args&&... args
 	) {
-		_My_helper::create_shader_resource_view<type>(_render_manager->device(), _buffer.get(), format, _HW_3D_STD_ forward<Args>(args)...);
+		return _My_helper::template create_shader_resource_view<type>(_render_manager->device(), _buffer.get(), format, _HW_3D_STD_ forward<Args>(args)...);
 	}
 
 	template <Resource_view_type type, typename... Args>
@@ -302,7 +302,7 @@ public:
 		_HW_3D_IN_ Pixel_format format,
 		_HW_3D_IN_ Args&&... args
 	) {
-		_My_helper::create_depth_stencil_view<type>(_render_manager->device(), _buffer.get(), format, _HW_3D_STD_ forward<Args>(args)...);
+		return _My_helper::template create_depth_stencil_view<type>(_render_manager->device(), _buffer.get(), format, _HW_3D_STD_ forward<Args>(args)...);
 	}
 
 	template <Resource_view_type type, typename... Args>
@@ -310,7 +310,7 @@ public:
 		_HW_3D_IN_ Pixel_format format,
 		_HW_3D_IN_ Args&&... args
 	) {
-		_My_helper::create_unordered_access_view<type>(_render_manager->device(), _buffer.get(), format, _HW_3D_STD_ forward<Args>(args)...);
+		return _My_helper::template create_unordered_access_view<type>(_render_manager->device(), _buffer.get(), format, _HW_3D_STD_ forward<Args>(args)...);
 	}
 
 private:

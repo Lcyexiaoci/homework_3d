@@ -6,7 +6,7 @@ namespace {
 	constexpr bool full_screen = false;
 	constexpr LPCSTR window_title = "homework";
 
-	LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
+	//LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 }
 
 _HW_3D_OPEN_HW_NAMESPACE_
@@ -29,7 +29,7 @@ private:
 
 };
 
-_HW_3D_REGISTER_DEMO_(Homework, "homework");
+// _HW_3D_REGISTER_DEMO_(Homework, "homework");
 
 _HW_3D_STD_ pair<int, int> Homework::initial_window() {
 	_HW_3D_STD_ pair<int, int> res;

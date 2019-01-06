@@ -394,7 +394,7 @@ public:
 			_HW_3D_IN_ uint32_t level,
 			_HW_3D_IN_ const Range3d& range,
 			_HW_3D_IN_ const void* data,
-			_HW_3D_IN_ Resource_write_hint
+			_HW_3D_IN_ Resource_write_hint hint
 		) {
 #ifdef _DEBUG
 		if (!_My_helper::is_mappable_as_dst(_metadata))
@@ -409,7 +409,7 @@ public:
 
 		_My_helper::write_via_mapping(
 			_render_manager->context(),
-			Subresource_type(_texture.get(), level, array_index),
+			Subresource_type(_texture.get(), level, 0),
 			_metadata,
 			range,
 			data,
@@ -460,7 +460,7 @@ public:
 			_HW_3D_IN_ Pixel_format format,
 			_HW_3D_IN_ Args&&... args
 		) {
-		_My_helper::create_render_target_view<type>(_render_manager->device(), _buffer.get(), format, _HW_3D_STD_ forward<Args>(args)...);
+		return _My_helper::template create_render_target_view<type>(_render_manager->device(), _texture.get(), format, _HW_3D_STD_ forward<Args>(args)...);
 	}
 
 	template <Resource_view_type type, typename... Args>
@@ -468,7 +468,7 @@ public:
 		_HW_3D_IN_ Pixel_format format,
 		_HW_3D_IN_ Args&&... args
 	) {
-		_My_helper::create_shader_resource_view<type>(_render_manager->device(), _buffer.get(), format, _HW_3D_STD_ forward<Args>(args)...);
+		return _My_helper::template create_shader_resource_view<type>(_render_manager->device(), _texture.get(), format, _HW_3D_STD_ forward<Args>(args)...);
 	}
 
 	template <Resource_view_type type, typename... Args>
@@ -476,7 +476,7 @@ public:
 		_HW_3D_IN_ Pixel_format format,
 		_HW_3D_IN_ Args&&... args
 	) {
-		_My_helper::create_depth_stencil_view<type>(_render_manager->device(), _buffer.get(), format, _HW_3D_STD_ forward<Args>(args)...);
+		return _My_helper::template create_depth_stencil_view<type>(_render_manager->device(), _texture.get(), format, _HW_3D_STD_ forward<Args>(args)...);
 	}
 
 	template <Resource_view_type type, typename... Args>
@@ -484,7 +484,7 @@ public:
 		_HW_3D_IN_ Pixel_format format,
 		_HW_3D_IN_ Args&&... args
 	) {
-		_My_helper::create_unordered_access_view<type>(_render_manager->device(), _buffer.get(), format, _HW_3D_STD_ forward<Args>(args)...);
+		return _My_helper::template create_unordered_access_view<type>(_render_manager->device(), _texture.get(), format, _HW_3D_STD_ forward<Args>(args)...);
 	}
 private:
 	_HW_3D_STD_ unique_ptr<Handle_type> _texture;
